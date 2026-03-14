@@ -16,15 +16,15 @@ const reset = '\x1b[0m';
 const pkg = require('../package.json');
 
 const banner = `
-${cyan}  ██████╗  █████╗ ██╗   ██╗██╗
-  ██╔══██╗██╔══██╗██║   ██║██║
-  ██████╔╝███████║██║   ██║██║
-  ██╔═══╝ ██╔══██║██║   ██║██║
-  ██║     ██║  ██║╚██████╔╝███████╗
-  ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝${reset}
+${cyan}  ███╗   ███╗███████╗███╗   ██╗ ██████╗ ███████╗     ██╗██╗   ██╗██████╗  ██████╗ ███████╗
+  ████╗ ████║██╔════╝████╗  ██║██╔═══██╗██╔════╝     ██║██║   ██║██╔══██╗██╔═══██╗██╔════╝
+  ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║███████╗     ██║██║   ██║██████╔╝██║   ██║███████╗
+  ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║╚════██║██   ██║██║   ██║██╔══██╗██║   ██║╚════██║
+  ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝███████║╚█████╔╝╚██████╔╝██║  ██║╚██████╔╝███████║
+  ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝ ╚════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝${reset}
 
-  PAUL Framework ${dim}v${pkg.version}${reset}
-  Plan-Apply-Unify Loop for Claude Code
+  ORBIT Framework ${dim}v${pkg.version}${reset}
+  Observe, Refine, Build, Integrate, Test for Claude Code
 `;
 
 // Parse args
@@ -56,7 +56,7 @@ console.log(banner);
 
 // Show help if requested
 if (hasHelp) {
-  console.log(`  ${yellow}Usage:${reset} npx paul-framework [options]
+  console.log(`  ${yellow}Usage:${reset} npx orbit-framework [options]
 
   ${yellow}Options:${reset}
     ${cyan}-g, --global${reset}              Install globally (to Claude config directory)
@@ -66,17 +66,17 @@ if (hasHelp) {
 
   ${yellow}Examples:${reset}
     ${dim}# Install to default ~/.claude directory${reset}
-    npx paul-framework --global
+    npx orbit-framework --global
 
     ${dim}# Install to custom config directory${reset}
-    npx paul-framework --global --config-dir ~/.claude-custom
+    npx orbit-framework --global --config-dir ~/.claude-custom
 
     ${dim}# Install to current project only${reset}
-    npx paul-framework --local
+    npx orbit-framework --local
 
   ${yellow}What gets installed:${reset}
-    commands/paul/     - Slash commands (/paul:init, /paul:plan, etc.)
-    paul-framework/    - Templates, workflows, references, rules
+    commands/orbit/     - Slash commands (/orbit:init, /orbit:plan, etc.)
+    orbit-framework/    - Templates, workflows, references, rules
 `);
   process.exit(0);
 }
@@ -142,14 +142,14 @@ function install(isGlobal) {
   const commandsDir = path.join(claudeDir, 'commands');
   fs.mkdirSync(commandsDir, { recursive: true });
 
-  // Copy src/commands to commands/paul
+  // Copy src/commands to commands/orbit
   const commandsSrc = path.join(src, 'src', 'commands');
-  const commandsDest = path.join(commandsDir, 'paul');
+  const commandsDest = path.join(commandsDir, 'orbit');
   copyWithPathReplacement(commandsSrc, commandsDest, pathPrefix);
-  console.log(`  ${green}✓${reset} Installed commands/paul`);
+  console.log(`  ${green}✓${reset} Installed commands/orbit`);
 
-  // Copy src/* (except commands) to paul-framework/
-  const skillDest = path.join(claudeDir, 'paul-framework');
+  // Copy src/* (except commands) to orbit-framework/
+  const skillDest = path.join(claudeDir, 'orbit-framework');
   fs.mkdirSync(skillDest, { recursive: true });
 
   const srcDirs = ['templates', 'workflows', 'references', 'rules'];
@@ -160,10 +160,10 @@ function install(isGlobal) {
       copyWithPathReplacement(dirSrc, dirDest, pathPrefix);
     }
   }
-  console.log(`  ${green}✓${reset} Installed paul-framework`);
+  console.log(`  ${green}✓${reset} Installed orbit-framework`);
 
   console.log(`
-  ${green}Done!${reset} Launch Claude Code and run ${cyan}/paul:help${reset}.
+  ${green}Done!${reset} Launch Claude Code and run ${cyan}/orbit:help${reset}.
 `);
 }
 

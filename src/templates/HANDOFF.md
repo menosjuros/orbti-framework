@@ -1,4 +1,4 @@
-# PAUL Handoff
+# ORBIT Handoff
 
 **Date:** {{timestamp}}
 **Session:** {{session_id}}
@@ -53,23 +53,23 @@ PLAN ──▶ APPLY ──▶ UNIFY
 
 | File | Purpose |
 |------|---------|
-| `.paul/STATE.md` | Live project state |
-| `.paul/ROADMAP.md` | Phase overview |
+| `.orbit/STATE.md` | Live project state |
+| `.orbit/ROADMAP.md` | Phase overview |
 | {{current_plan_path}} | {{plan_purpose}} |
 
 ---
 
 ## Resume Instructions
 
-1. Read `.paul/STATE.md` for latest position
+1. Read `.orbit/STATE.md` for latest position
 2. Check if PLAN exists for current phase
 3. Based on loop position:
-   - `○○○` (fresh) → Run `/paul:plan`
-   - `✓○○` (planned) → Review plan, then `/paul:apply`
-   - `✓✓○` (applied) → Run `/paul:unify`
+   - `○○○` (fresh) → Run `/orbit:plan`
+   - `✓○○` (planned) → Review plan, then `/orbit:apply`
+   - `✓✓○` (applied) → Run `/orbit:unify`
    - `✓✓✓` (complete) → Ready for next phase
 
-**Or simply run:** `/paul:resume`
+**Or simply run:** `/orbit:resume`
 
 ---
 

@@ -15,13 +15,13 @@ Next phase: UNIFY (after execution completes)
 </loop_context>
 
 <required_reading>
-@.paul/STATE.md
-@.paul/phases/{phase}/{plan}-PLAN.md
+@.orbit/STATE.md
+@.orbit/phases/{phase}/{plan}-PLAN.md
 </required_reading>
 
 <references>
-@~/.claude/paul-framework/references/checkpoints.md (if plan has checkpoints)
-@~/.claude/paul-framework/references/loop-phases.md
+@~/.claude/orbit-framework/references/checkpoints.md (if plan has checkpoints)
+@~/.claude/orbit-framework/references/loop-phases.md
 </references>
 
 <process>
@@ -146,10 +146,10 @@ For each <task> in order:
    ```
 3. Wait for user selection
 4. **Record decision to STATE.md:**
-   - Open `.paul/STATE.md`
+   - Open `.orbit/STATE.md`
    - Find `### Decisions` under `## Accumulated Context`
    - Add row: `| [date]: [Decision summary] | Phase [N] | [Impact on work] |`
-   - Example: `| 2026-01-28: Install in sandbox for testing | Phase 1 | Project created in sandbox/box2-paul-test |`
+   - Example: `| 2026-01-28: Install in sandbox for testing | Phase 1 | Project created in sandbox/box2-orbit-test |`
 5. Continue with chosen direction
 
 **If type="checkpoint:human-action":**
@@ -225,7 +225,7 @@ After all tasks attempted:
 
    [1] Yes, run UNIFY | [2] Pause here
    ```
-4. **Accept quick inputs:** "1", "yes", "continue", "go" → run `/paul:unify [plan-path]`
+4. **Accept quick inputs:** "1", "yes", "continue", "go" → run `/orbit:unify [plan-path]`
 </step>
 
 </process>

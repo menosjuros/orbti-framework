@@ -31,7 +31,7 @@ When using `<step>` elements within `<process>`:
 
 ```xml
 <step name="load_project_state" priority="first">
-  Read .paul/STATE.md to determine current position.
+  Read .orbit/STATE.md to determine current position.
   Verify loop phase matches expected phase for this workflow.
 </step>
 
@@ -49,7 +49,7 @@ When using `<step>` elements within `<process>`:
 
 ## Loop Phase Awareness
 
-Workflows should be aware of their position in the PAUL loop:
+Workflows should be aware of their position in the ORBIT loop:
 
 ```xml
 <loop_context>
@@ -97,8 +97,8 @@ Execute an approved PLAN by running tasks in order, verifying each, and recordin
 </when_to_use>
 
 <required_reading>
-@.paul/STATE.md
-@.paul/phases/{phase}/{plan}-PLAN.md
+@.orbit/STATE.md
+@.orbit/phases/{phase}/{plan}-PLAN.md
 </required_reading>
 
 <loop_context>

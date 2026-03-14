@@ -8,18 +8,18 @@ Facilitate vision articulation before creating a milestone. Acts as a thinking p
 - User completed previous milestone, considering what's next
 - User wants to think through scope before committing
 - User has rough ideas but needs to articulate them
-- Before /paul:milestone when planning is desired
+- Before /orbit:milestone when planning is desired
 </when_to_use>
 
 <loop_context>
 N/A - This is a pre-planning workflow, not a loop phase.
-After discussion, routes to /paul:milestone (create-milestone).
+After discussion, routes to /orbit:milestone (create-milestone).
 </loop_context>
 
 <required_reading>
-@.paul/STATE.md
-@.paul/PROJECT.md (current requirements and progress)
-@.paul/MILESTONES.md (previous milestone accomplishments, if exists)
+@.orbit/STATE.md
+@.orbit/PROJECT.md (current requirements and progress)
+@.orbit/MILESTONES.md (previous milestone accomplishments, if exists)
 </required_reading>
 
 <references>
@@ -123,13 +123,13 @@ Confirm with user before proceeding.
 </step>
 
 <step name="write_context">
-Create `.paul/MILESTONE-CONTEXT.md`:
+Create `.orbit/MILESTONE-CONTEXT.md`:
 
 ```markdown
 # Milestone Context
 
 **Generated:** {date}
-**Status:** Ready for /paul:milestone
+**Status:** Ready for /orbit:milestone
 
 ## Features to Build
 
@@ -158,12 +158,12 @@ Create `.paul/MILESTONE-CONTEXT.md`:
 
 ---
 
-*This file is temporary. It will be deleted after /paul:milestone creates the milestone.*
+*This file is temporary. It will be deleted after /orbit:milestone creates the milestone.*
 ```
 
 Display:
 ```
-Context saved to .paul/MILESTONE-CONTEXT.md
+Context saved to .orbit/MILESTONE-CONTEXT.md
 
 This file persists across /clear so you can take a break if needed.
 ```
@@ -184,22 +184,22 @@ Phases: {phase_count}
 Context saved for handoff.
 
 ────────────────────────────────────────
-▶ NEXT: /paul:milestone
+▶ NEXT: /orbit:milestone
   Create the milestone structure from this context
 ────────────────────────────────────────
 
 Type "yes" to proceed, or continue discussing.
 ```
 
-**Accept:** "yes", "go", "create" → run `/paul:milestone`
+**Accept:** "yes", "go", "create" → run `/orbit:milestone`
 </step>
 
 </process>
 
 <output>
-- .paul/MILESTONE-CONTEXT.md created (handoff file)
+- .orbit/MILESTONE-CONTEXT.md created (handoff file)
 - Features, scope, and phases articulated
-- Ready for /paul:milestone to consume
+- Ready for /orbit:milestone to consume
 </output>
 
 <success_criteria>
@@ -208,7 +208,7 @@ Type "yes" to proceed, or continue discussing.
 - [ ] Scope synthesized from features
 - [ ] Phase mapping suggested
 - [ ] MILESTONE-CONTEXT.md written
-- [ ] Clear handoff to /paul:milestone
+- [ ] Clear handoff to /orbit:milestone
 </success_criteria>
 
 <anti_patterns>
@@ -240,6 +240,6 @@ DO: Always write the file so /clear doesn't lose progress.
 - Ask: "What's the minimum viable version?"
 
 **User wants to skip discussion:**
-- Route directly to /paul:milestone
+- Route directly to /orbit:milestone
 - Note: "Going straight to milestone creation — no discussion context will be available"
 </error_handling>

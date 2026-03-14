@@ -1,5 +1,5 @@
 ---
-name: paul:research-phase
+name: orbit:research-phase
 description: Research unknowns for a phase using subagents
 argument-hint: "<phase-number>"
 allowed-tools: [Read, Task, Bash, Write]
@@ -10,24 +10,24 @@ Analyze a phase for unknowns and research them using subagents.
 
 **When to use:** Before planning a phase when there are technical unknowns that need investigation.
 
-**Distinction from /paul:research:**
-- `/paul:research <topic>`: User knows what to research
-- `/paul:research-phase <N>`: Claude identifies what needs researching
+**Distinction from /orbit:research:**
+- `/orbit:research <topic>`: User knows what to research
+- `/orbit:research-phase <N>`: Claude identifies what needs researching
 
 **Subagent orchestration:** Spawns multiple research agents in parallel for independent unknowns.
 </objective>
 
 <execution_context>
-@~/.claude/paul-framework/workflows/research.md
-@~/.claude/paul-framework/references/subagent-criteria.md
+@~/.claude/orbit-framework/workflows/research.md
+@~/.claude/orbit-framework/references/subagent-criteria.md
 </execution_context>
 
 <context>
 Phase number: $ARGUMENTS (required)
 
-@.paul/PROJECT.md
-@.paul/STATE.md
-@.paul/ROADMAP.md
+@.orbit/PROJECT.md
+@.orbit/STATE.md
+@.orbit/ROADMAP.md
 </context>
 
 <process>
@@ -39,8 +39,8 @@ Phase number: $ARGUMENTS (required)
 ```
 Error: Phase number required.
 
-Usage: /paul:research-phase <phase-number>
-Example: /paul:research-phase 10
+Usage: /orbit:research-phase <phase-number>
+Example: /orbit:research-phase 10
 ```
 Exit workflow.
 
@@ -155,14 +155,14 @@ When all agents complete:
 
 1. Create research directory for phase:
    ```bash
-   mkdir -p .paul/phases/{NN}-{name}/research
+   mkdir -p .orbit/phases/{NN}-{name}/research
    ```
 
 2. Save individual findings:
-   - `.paul/phases/{NN}-{name}/research/{unknown-slug}.md`
+   - `.orbit/phases/{NN}-{name}/research/{unknown-slug}.md`
 
 3. Create consolidated RESEARCH.md:
-   - `.paul/phases/{NN}-{name}/RESEARCH.md`
+   - `.orbit/phases/{NN}-{name}/RESEARCH.md`
    - Summarizes all findings
    - Links to individual research files
 
@@ -181,8 +181,8 @@ Summary:
 3. {unknown_3}: {key finding}
 
 Detailed findings:
-- .paul/phases/{NN}-{name}/RESEARCH.md (consolidated)
-- .paul/phases/{NN}-{name}/research/*.md (individual)
+- .orbit/phases/{NN}-{name}/RESEARCH.md (consolidated)
+- .orbit/phases/{NN}-{name}/research/*.md (individual)
 
 ────────────────────────────────────────
 Review the findings above. This research informs but does not
@@ -190,8 +190,8 @@ automatically integrate into plans.
 
 What's next?
 [1] Review consolidated findings
-[2] Plan this phase (/paul:plan)
-[3] Discuss this phase (/paul:discuss)
+[2] Plan this phase (/orbit:plan)
+[3] Discuss this phase (/orbit:discuss)
 [4] Done for now
 ────────────────────────────────────────
 ```

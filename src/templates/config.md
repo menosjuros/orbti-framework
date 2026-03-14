@@ -1,8 +1,8 @@
 # Project Config Template
 
-Template for `.paul/config.md` - project-specific configuration and integrations.
+Template for `.orbit/config.md` - project-specific configuration and integrations.
 
-**Purpose:** Store project settings and optional integration flags. Allows PAUL to adapt behavior based on available tools.
+**Purpose:** Store project settings and optional integration flags. Allows ORBIT to adapt behavior based on available tools.
 
 ---
 
@@ -24,7 +24,7 @@ project:
 
 ## Integrations
 
-Optional integrations that enhance PAUL functionality.
+Optional integrations that enhance ORBIT functionality.
 
 ### SonarQube
 
@@ -38,7 +38,7 @@ sonarqube:
 ```
 
 **When enabled:**
-- `/paul:quality-gate` runs scans and updates CONCERNS.md
+- `/orbit:quality-gate` runs scans and updates CONCERNS.md
 - Quality metrics inform planning decisions
 - Issues feed into tech debt tracking
 
@@ -63,7 +63,7 @@ Reserved for future use:
 
 ## Preferences
 
-Optional user preferences for PAUL behavior.
+Optional user preferences for ORBIT behavior.
 
 ```yaml
 preferences:
@@ -136,7 +136,7 @@ preferences:
 - Project identification (name, version)
 - Integration toggles (enabled/disabled flags)
 - Integration-specific settings (project keys, URLs)
-- User preferences for PAUL behavior
+- User preferences for ORBIT behavior
 
 **What does NOT belong here:**
 - Sensitive credentials (use environment variables)
@@ -145,9 +145,9 @@ preferences:
 - Roadmap information (that's ROADMAP.md)
 
 **When to create config.md:**
-- During `/paul:init` if user enables integrations
+- During `/orbit:init` if user enables integrations
 - Manually when adding integrations later
-- Not required for basic PAUL usage
+- Not required for basic ORBIT usage
 
 **Git behavior:**
 - Can be committed (no secrets)

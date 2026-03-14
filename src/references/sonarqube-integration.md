@@ -1,6 +1,6 @@
 # SonarQube Integration
 
-Reference for integrating SonarQube code quality scanning with PAUL.
+Reference for integrating SonarQube code quality scanning with ORBIT.
 
 ---
 
@@ -13,7 +13,7 @@ Reference for integrating SonarQube code quality scanning with PAUL.
 - Code coverage tracking
 - Duplicate code detection
 
-**Why integrate with PAUL:**
+**Why integrate with ORBIT:**
 - Auto-populate CONCERNS.md with real issues
 - Objective quality metrics for planning
 - Track improvement over time
@@ -66,9 +66,9 @@ Ensure sonarqube MCP is configured in Claude Code:
 
 ## Setup Steps
 
-### Step 1: Enable in PAUL Config
+### Step 1: Enable in ORBIT Config
 
-Edit `.paul/config.md`:
+Edit `.orbit/config.md`:
 
 ```yaml
 sonarqube:
@@ -96,9 +96,9 @@ mcp__sonarqube__sonar_scan
   project_path: "/path/to/project"
 ```
 
-Or use PAUL workflow:
+Or use ORBIT workflow:
 ```
-/paul:quality-gate
+/orbit:quality-gate
 ```
 
 ### Step 4: Verify Integration
@@ -117,7 +117,7 @@ mcp__sonarqube__sonar_get_metrics
 
 Run quality checks anytime:
 ```
-/paul:quality-gate
+/orbit:quality-gate
 ```
 
 This will:
@@ -162,11 +162,11 @@ Returns: file, line, message, severity for each issue
 
 ---
 
-## Integration with PAUL
+## Integration with ORBIT
 
 ### CONCERNS.md Auto-Population
 
-The quality-gate workflow updates `.paul/codebase/CONCERNS.md`:
+The quality-gate workflow updates `.orbit/codebase/CONCERNS.md`:
 
 ```markdown
 ## SonarQube Analysis
@@ -211,7 +211,7 @@ Compare scans over time:
 
 ### "SonarQube not enabled"
 
-Check `.paul/config.md` has:
+Check `.orbit/config.md` has:
 ```yaml
 sonarqube:
   enabled: true
@@ -220,7 +220,7 @@ sonarqube:
 ### "Project not found"
 
 Ensure project_key matches between:
-- `.paul/config.md`
+- `.orbit/config.md`
 - `sonar-project.properties`
 - SonarQube server
 

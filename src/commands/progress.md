@@ -1,5 +1,5 @@
 ---
-name: paul:progress
+name: orbit:progress
 description: Smart status with routing - suggests ONE next action
 argument-hint: "[context]"
 allowed-tools: [Read]
@@ -10,7 +10,7 @@ Show current progress and **route to exactly ONE next action**. Prevents decisio
 
 **When to use:**
 - Mid-session check on progress
-- After `/paul:resume` for more context
+- After `/orbit:resume` for more context
 - When unsure what to do next
 - To get a tailored suggestion based on your current focus
 </objective>
@@ -21,14 +21,14 @@ Show current progress and **route to exactly ONE next action**. Prevents decisio
 <context>
 $ARGUMENTS
 
-@.paul/STATE.md
-@.paul/ROADMAP.md
+@.orbit/STATE.md
+@.orbit/ROADMAP.md
 </context>
 
 <process>
 
 <step name="load_state">
-Read `.paul/STATE.md` and `.paul/ROADMAP.md`:
+Read `.orbit/STATE.md` and `.orbit/ROADMAP.md`:
 - Current phase and total phases
 - Current plan (if any)
 - Loop position (PLAN/APPLY/UNIFY markers)
@@ -69,14 +69,14 @@ Based on state (+ user context if provided), determine **ONE** next action:
 
 | Situation | Single Suggestion |
 |-----------|-------------------|
-| No plan exists | `/paul:plan` |
+| No plan exists | `/orbit:plan` |
 | Plan awaiting approval | "Approve plan to proceed" |
-| Plan approved, not executed | `/paul:apply [path]` |
-| Applied, not unified | `/paul:unify [path]` |
-| Loop complete, more phases | `/paul:plan` (next phase) |
+| Plan approved, not executed | `/orbit:apply [path]` |
+| Applied, not unified | `/orbit:unify [path]` |
+| Loop complete, more phases | `/orbit:plan` (next phase) |
 | Milestone complete | "Create next milestone or ship" |
 | Blockers present | "Address blocker: [specific]" |
-| Context at DEEP/CRITICAL | `/paul:pause` |
+| Context at DEEP/CRITICAL | `/orbit:pause` |
 
 **With user context:** Adjust suggestion to align with stated intent.
 
@@ -88,7 +88,7 @@ Show progress with single routing:
 
 ```
 ════════════════════════════════════════
-PAUL PROGRESS
+ORBIT PROGRESS
 ════════════════════════════════════════
 
 Milestone: [name] - [X]% complete
@@ -104,7 +104,7 @@ Current Loop: Phase 2, Plan 02-03
 └─────────────────────────────────────┘
 
 ────────────────────────────────────────
-▶ NEXT: /paul:unify .paul/phases/02-features/02-03-PLAN.md
+▶ NEXT: /orbit:unify .orbit/phases/02-features/02-03-PLAN.md
   Close the loop and update state.
 ────────────────────────────────────────
 
@@ -117,7 +117,7 @@ If context is at DEEP or CRITICAL bracket:
 
 ```
 ⚠️ Context Advisory: Session at [X]% capacity.
-   Recommended: /paul:pause before continuing.
+   Recommended: /orbit:pause before continuing.
 ```
 </step>
 

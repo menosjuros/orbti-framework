@@ -1,9 +1,9 @@
 {
-  "name": "paul-framework",
+  "name": "orbit-framework",
   "version": "1.0.3",
-  "description": "Plan-Apply-Unify Loop - A structured AI-assisted development framework for Claude Code",
+  "description": "Observe, Refine, Build, Integrate, Test - A structured AI-assisted development framework for Claude Code",
   "bin": {
-    "paul-framework": "bin/install.js"
+    "orbit-framework": "bin/install.js"
   },
   "files": [
     "bin",
@@ -19,19 +19,19 @@
     "ai",
     "planning",
     "structured-development",
-    "paul",
-    "plan-apply-unify"
+    "orbit",
+    "observe-refine-build-integrate-test"
   ],
   "author": "Chris Kahler",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChristopherKahler/paul.git"
+    "url": "git+https://github.com/ChristopherKahler/orbit.git"
   },
   "bugs": {
-    "url": "https://github.com/ChristopherKahler/paul/issues"
+    "url": "https://github.com/ChristopherKahler/orbit/issues"
   },
-  "homepage": "https://github.com/ChristopherKahler/paul#readme",
+  "homepage": "https://github.com/ChristopherKahler/orbit#readme",
   "engines": {
     "node": ">=16.7.0"
   }

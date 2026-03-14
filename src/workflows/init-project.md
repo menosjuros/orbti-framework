@@ -1,9 +1,9 @@
 <purpose>
-Initialize PAUL structure in a new project. Creates .paul/ directory with PROJECT.md, ROADMAP.md, STATE.md, and phases/ directory. Gathers project context conversationally before routing to planning.
+Initialize ORBIT structure in a new project. Creates .orbit/ directory with PROJECT.md, ROADMAP.md, STATE.md, and phases/ directory. Gathers project context conversationally before routing to planning.
 </purpose>
 
 <when_to_use>
-- Starting PAUL in a project that doesn't have .paul/ directory
+- Starting ORBIT in a project that doesn't have .orbit/ directory
 - User explicitly requests project initialization
 - Beginning a new project from scratch
 </when_to_use>
@@ -29,13 +29,13 @@ After init, project is ready for first PLAN.
 <process>
 
 <step name="check_existing" priority="first">
-1. Check if .paul/ directory exists:
+1. Check if .orbit/ directory exists:
    ```bash
-   ls .paul/ 2>/dev/null
+   ls .orbit/ 2>/dev/null
    ```
 2. If exists:
-   - "PAUL already initialized in this project."
-   - Route to `/paul:resume` or `/paul:progress`
+   - "ORBIT already initialized in this project."
+   - Route to `/orbit:resume` or `/orbit:progress`
    - Exit this workflow
 3. If not exists: proceed with initialization
 </step>
@@ -43,12 +43,12 @@ After init, project is ready for first PLAN.
 <step name="create_structure">
 Create directories first (gives immediate feedback):
 ```bash
-mkdir -p .paul/phases
+mkdir -p .orbit/phases
 ```
 
 Display:
 ```
-PAUL structure created.
+ORBIT structure created.
 
 Before planning, I need to understand what you're building.
 ```
@@ -97,7 +97,7 @@ Store as `project_name`.
 </step>
 
 <step name="create_project_md">
-Create `.paul/PROJECT.md` with gathered information:
+Create `.orbit/PROJECT.md` with gathered information:
 
 ```markdown
 # Project: [project_name]
@@ -134,7 +134,7 @@ Note: Requirements and constraints are populated during planning, not init.
 </step>
 
 <step name="create_roadmap_md">
-Create `.paul/ROADMAP.md`:
+Create `.orbit/ROADMAP.md`:
 
 ```markdown
 # Roadmap: [project_name]
@@ -155,7 +155,7 @@ Phases: 0 of TBD complete
 
 ## Phase Details
 
-Phases will be defined during `/paul:plan`.
+Phases will be defined during `/orbit:plan`.
 
 ---
 *Roadmap created: [timestamp]*
@@ -165,14 +165,14 @@ Note: Phase details are populated during planning, not init.
 </step>
 
 <step name="create_state_md">
-Create `.paul/STATE.md`:
+Create `.orbit/STATE.md`:
 
 ```markdown
 # Project State
 
 ## Project Reference
 
-See: .paul/PROJECT.md (updated [timestamp])
+See: .orbit/PROJECT.md (updated [timestamp])
 
 **Core value:** [core_value]
 **Current focus:** Project initialized — ready for planning
@@ -211,8 +211,8 @@ None yet.
 
 Last session: [timestamp]
 Stopped at: Project initialization complete
-Next action: Run /paul:plan to define phases and first plan
-Resume file: .paul/PROJECT.md
+Next action: Run /orbit:plan to define phases and first plan
+Resume file: .orbit/PROJECT.md
 
 ---
 *STATE.md — Updated after every significant action*
@@ -245,7 +245,7 @@ Wait for user response.
    - If user presses Enter: use `project_name`
    - Otherwise: use provided key
 
-2. Create `.paul/config.md`:
+2. Create `.orbit/config.md`:
    ```markdown
    # Project Config
 
@@ -298,7 +298,7 @@ Do you have specialized skills or commands for this project?
 (e.g., /revops-expert, /frontend-design, custom workflows)
 
 [1] Yes, configure now
-[2] Skip for now (add later via /paul:flows)
+[2] Skip for now (add later via /orbit:flows)
 ```
 
 Wait for user response.
@@ -313,7 +313,7 @@ Wait for user response.
 **If "2" or "skip" or "no":**
 
 Store `specialized_flows_enabled = false`
-(User can add later via /paul:flows)
+(User can add later via /orbit:flows)
 </step>
 
 <step name="confirm_and_route">
@@ -323,22 +323,22 @@ Store `specialized_flows_enabled = false`
 
 ```
 ════════════════════════════════════════
-PAUL INITIALIZED
+ORBIT INITIALIZED
 ════════════════════════════════════════
 
 Project: [project_name]
 Core value: [core_value]
 
 Created:
-  .paul/PROJECT.md    ✓
-  .paul/ROADMAP.md    ✓
-  .paul/STATE.md      ✓
-  .paul/config.md     ✓  (if integrations_enabled: "SonarQube enabled")
-  .paul/SPECIAL-FLOWS.md  ✓  (if specialized_flows_enabled: "[N] skills configured")
-  .paul/phases/       ✓
+  .orbit/PROJECT.md    ✓
+  .orbit/ROADMAP.md    ✓
+  .orbit/STATE.md      ✓
+  .orbit/config.md     ✓  (if integrations_enabled: "SonarQube enabled")
+  .orbit/SPECIAL-FLOWS.md  ✓  (if specialized_flows_enabled: "[N] skills configured")
+  .orbit/phases/       ✓
 
 ────────────────────────────────────────
-▶ NEXT: /paul:plan
+▶ NEXT: /orbit:plan
   Define your phases and create your first plan.
 ────────────────────────────────────────
 
@@ -354,14 +354,14 @@ If neither was enabled, show the minimal version without those lines.
 </process>
 
 <output>
-- `.paul/` directory structure
-- `.paul/PROJECT.md` (populated from conversation)
-- `.paul/ROADMAP.md` (skeleton for planning)
-- `.paul/STATE.md` (initialized state)
-- `.paul/config.md` (if integrations enabled)
-- `.paul/SPECIAL-FLOWS.md` (if specialized flows enabled)
-- `.paul/phases/` (empty directory)
-- Clear routing to `/paul:plan`
+- `.orbit/` directory structure
+- `.orbit/PROJECT.md` (populated from conversation)
+- `.orbit/ROADMAP.md` (skeleton for planning)
+- `.orbit/STATE.md` (initialized state)
+- `.orbit/config.md` (if integrations enabled)
+- `.orbit/SPECIAL-FLOWS.md` (if specialized flows enabled)
+- `.orbit/phases/` (empty directory)
+- Clear routing to `/orbit:plan`
 </output>
 
 <error_handling>

@@ -1,24 +1,24 @@
 <div align="center">
 
-# PAUL
+# ORBIT
 
-**Plan-Apply-Unify Loop** — Structured AI-assisted development for Claude Code.
+**Observe, Refine, Build, Integrate, Test** — Structured AI-assisted development for Claude Code.
 
-[![npm version](https://img.shields.io/npm/v/paul-framework?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/paul-framework)
+[![npm version](https://img.shields.io/npm/v/orbit-framework?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/orbit-framework)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/ChristopherKahler/paul?style=for-the-badge&logo=github&color=181717)](https://github.com/ChristopherKahler/paul)
+[![GitHub stars](https://img.shields.io/github/stars/ChristopherKahler/orbit?style=for-the-badge&logo=github&color=181717)](https://github.com/ChristopherKahler/orbit)
 
 <br>
 
 ```bash
-npx paul-framework
+npx orbit-framework
 ```
 
 **Works on Mac, Windows, and Linux.**
 
 <br>
 
-![PAUL Install](assets/terminal.svg)
+![ORBIT Install](assets/terminal.svg)
 
 <br>
 
@@ -26,23 +26,23 @@ npx paul-framework
 
 <br>
 
-[Why PAUL](#why-paul) · [Getting Started](#getting-started) · [The Loop](#the-loop) · [Commands](#commands) · [How It Works](#how-it-works)
+[Why ORBIT](#why-orbit) · [Getting Started](#getting-started) · [The Loop](#the-loop) · [Commands](#commands) · [How It Works](#how-it-works)
 
 </div>
 
 ---
 
-## Why PAUL
+## Why ORBIT
 
 I build with Claude Code every day. It's incredibly powerful — when you give it the right context.
 
 The problem? **Context rot.** As your session fills up, quality degrades. Subagents spawn with fresh context but return ~70% quality work that needs cleanup. Plans get created but never closed. State drifts. You end up debugging AI output instead of shipping features.
 
-PAUL fixes this with three principles:
+ORBIT fixes this with three principles:
 
 1. **Loop integrity** — Every plan closes with UNIFY. No orphan plans. UNIFY reconciles what was planned vs what happened, updates state, logs decisions. This is the heartbeat.
 
-2. **In-session context** — Subagents are expensive and produce lower quality for implementation work. PAUL keeps development in-session with properly managed context. Subagents are reserved for discovery and research — their job IS to gather context.
+2. **In-session context** — Subagents are expensive and produce lower quality for implementation work. ORBIT keeps development in-session with properly managed context. Subagents are reserved for discovery and research — their job IS to gather context.
 
 3. **Acceptance-driven development** — Acceptance criteria are first-class citizens, not afterthoughts. Define done before starting. Every task references its AC. BDD format: `Given [precondition] / When [action] / Then [outcome]`.
 
@@ -54,7 +54,7 @@ The complexity is in the system, not your workflow. Behind the scenes: structure
 
 **AI-assisted developers** who want structure without bureaucracy.
 
-You describe what you want, Claude Code builds it, and PAUL ensures:
+You describe what you want, Claude Code builds it, and ORBIT ensures:
 - Plans have clear acceptance criteria
 - Execution stays bounded
 - Every unit of work gets closed properly
@@ -68,45 +68,45 @@ No sprint ceremonies. No story points. No enterprise theater. Just a system that
 ## Getting Started
 
 ```bash
-npx paul-framework
+npx orbit-framework
 ```
 
 The installer prompts you to choose:
 1. **Location** — Global (all projects) or local (current project only)
 
-Verify with `/paul:help` inside Claude Code.
+Verify with `/orbit:help` inside Claude Code.
 
 ### Quick Workflow
 
 ```bash
-# 1. Initialize PAUL in your project
-/paul:init
+# 1. Initialize ORBIT in your project
+/orbit:init
 
 # 2. Create a plan for your work
-/paul:plan
+/orbit:plan
 
 # 3. Execute the approved plan
-/paul:apply
+/orbit:apply
 
 # 4. Close the loop (required!)
-/paul:unify
+/orbit:unify
 
 # 5. Check progress anytime
-/paul:progress
+/orbit:progress
 ```
 
 ### Staying Updated
 
 ```bash
-npx paul-framework@latest
+npx orbit-framework@latest
 ```
 
 <details>
 <summary><strong>Non-interactive Install</strong></summary>
 
 ```bash
-npx paul-framework --global   # Install to ~/.claude/
-npx paul-framework --local    # Install to ./.claude/
+npx orbit-framework --global   # Install to ~/.claude/
+npx orbit-framework --local    # Install to ./.claude/
 ```
 
 </details>
@@ -156,73 +156,73 @@ Close the loop (required!):
 
 ## Commands
 
-PAUL provides 26 commands organized by purpose. Run `/paul:help` for the complete reference.
+ORBIT provides 26 commands organized by purpose. Run `/orbit:help` for the complete reference.
 
 ### Core Loop
 
 | Command | What it does |
 |---------|--------------|
-| `/paul:init` | Initialize PAUL in a project |
-| `/paul:plan [phase]` | Create an executable plan |
-| `/paul:apply [path]` | Execute an approved plan |
-| `/paul:unify [path]` | Reconcile and close the loop |
-| `/paul:help` | Show command reference |
-| `/paul:status` | Show loop position *(deprecated — use progress)* |
+| `/orbit:init` | Initialize ORBIT in a project |
+| `/orbit:plan [phase]` | Create an executable plan |
+| `/orbit:apply [path]` | Execute an approved plan |
+| `/orbit:unify [path]` | Reconcile and close the loop |
+| `/orbit:help` | Show command reference |
+| `/orbit:status` | Show loop position *(deprecated — use progress)* |
 
 ### Session
 
 | Command | What it does |
 |---------|--------------|
-| `/paul:pause [reason]` | Create handoff for session break |
-| `/paul:resume [path]` | Restore context and continue |
-| `/paul:progress [context]` | Smart status + ONE next action |
-| `/paul:handoff [context]` | Generate comprehensive handoff |
+| `/orbit:pause [reason]` | Create handoff for session break |
+| `/orbit:resume [path]` | Restore context and continue |
+| `/orbit:progress [context]` | Smart status + ONE next action |
+| `/orbit:handoff [context]` | Generate comprehensive handoff |
 
 ### Roadmap
 
 | Command | What it does |
 |---------|--------------|
-| `/paul:add-phase <desc>` | Append phase to roadmap |
-| `/paul:remove-phase <N>` | Remove future phase |
+| `/orbit:add-phase <desc>` | Append phase to roadmap |
+| `/orbit:remove-phase <N>` | Remove future phase |
 
 ### Milestone
 
 | Command | What it does |
 |---------|--------------|
-| `/paul:milestone <name>` | Create new milestone |
-| `/paul:complete-milestone` | Archive and tag milestone |
-| `/paul:discuss-milestone` | Articulate vision before starting |
+| `/orbit:milestone <name>` | Create new milestone |
+| `/orbit:complete-milestone` | Archive and tag milestone |
+| `/orbit:discuss-milestone` | Articulate vision before starting |
 
 ### Pre-Planning
 
 | Command | What it does |
 |---------|--------------|
-| `/paul:discuss <phase>` | Capture decisions before planning |
-| `/paul:assumptions <phase>` | See Claude's intended approach |
-| `/paul:discover <topic>` | Explore options before planning |
-| `/paul:consider-issues` | Triage deferred issues |
+| `/orbit:discuss <phase>` | Capture decisions before planning |
+| `/orbit:assumptions <phase>` | See Claude's intended approach |
+| `/orbit:discover <topic>` | Explore options before planning |
+| `/orbit:consider-issues` | Triage deferred issues |
 
 ### Research
 
 | Command | What it does |
 |---------|--------------|
-| `/paul:research <topic>` | Deploy research agents |
-| `/paul:research-phase <N>` | Research unknowns for a phase |
+| `/orbit:research <topic>` | Deploy research agents |
+| `/orbit:research-phase <N>` | Research unknowns for a phase |
 
 ### Specialized
 
 | Command | What it does |
 |---------|--------------|
-| `/paul:flows` | Configure skill requirements |
-| `/paul:config` | View/modify PAUL settings |
-| `/paul:map-codebase` | Generate codebase overview |
+| `/orbit:flows` | Configure skill requirements |
+| `/orbit:config` | View/modify ORBIT settings |
+| `/orbit:map-codebase` | Generate codebase overview |
 
 ### Quality
 
 | Command | What it does |
 |---------|--------------|
-| `/paul:verify` | Guide manual acceptance testing |
-| `/paul:plan-fix` | Plan fixes for UAT issues |
+| `/orbit:verify` | Guide manual acceptance testing |
+| `/orbit:plan-fix` | Plan fixes for UAT issues |
 
 ---
 
@@ -231,7 +231,7 @@ PAUL provides 26 commands organized by purpose. Run `/paul:help` for the complet
 ### Project Structure
 
 ```
-.paul/
+.orbit/
 ├── PROJECT.md           # Project context and requirements
 ├── ROADMAP.md           # Phase breakdown and milestones
 ├── STATE.md             # Loop position and session state
@@ -255,7 +255,7 @@ PAUL provides 26 commands organized by purpose. Run `/paul:help` for the complet
 - Accumulated decisions
 - Blockers and deferred issues
 
-When you resume work, `/paul:resume` reads STATE.md and suggests exactly ONE next action. No decision fatigue.
+When you resume work, `/orbit:resume` reads STATE.md and suggests exactly ONE next action. No decision fatigue.
 
 ### PLAN.md Structure
 
@@ -303,24 +303,24 @@ Every task has: files, action, verify, done. If you can't specify all four, the 
 
 ### CARL Integration
 
-PAUL has a companion: **[CARL](https://github.com/ChristopherKahler/carl-core)** (Context Augmentation & Reinforcement Layer).
+ORBIT has a companion: **[CARL](https://github.com/ChristopherKahler/carl-core)** (Context Augmentation & Reinforcement Layer).
 
 CARL is a dynamic rule injection system. Instead of bloating your context with static prompts, CARL loads rules just-in-time based on what you're doing:
 
 | Trigger | Rules Loaded |
 |---------|--------------|
-| Working in `.paul/` directory | PAUL domain activates |
+| Working in `.orbit/` directory | ORBIT domain activates |
 | Writing code | DEVELOPMENT rules load |
 | Managing projects | PROJECTS rules load |
 
-**PAUL-specific rules CARL enforces:**
+**ORBIT-specific rules CARL enforces:**
 - Loop enforcement (PLAN → APPLY → UNIFY — no shortcuts)
 - Boundary protection (DO NOT CHANGE sections are real)
 - State consistency checks at phase transitions
 - Verification requirements for every task
 - Skill blocking (required skills must load before APPLY)
 
-The PAUL domain contains 14 rules that govern structured AI development. They load when you're in a PAUL project, disappear when you're not. Your context stays lean.
+The ORBIT domain contains 14 rules that govern structured AI development. They load when you're in a ORBIT project, disappear when you're not. Your context stays lean.
 
 **Without CARL:** You'd need massive static prompts in every session.
 **With CARL:** Rules activate when relevant, disappear when not.
@@ -340,7 +340,7 @@ Acceptance criteria aren't afterthoughts — they're the foundation:
 
 ### In-Session Context
 
-Why PAUL minimizes subagents for development work:
+Why ORBIT minimizes subagents for development work:
 
 | Issue | Impact |
 |-------|--------|
@@ -350,11 +350,11 @@ Why PAUL minimizes subagents for development work:
 | Quality gap | ~70% compared to in-session work |
 | Rework | Subagent output often needs cleanup |
 
-**When PAUL does use subagents:**
+**When ORBIT does use subagents:**
 - **Discovery/exploration** — Codebase mapping, parallel exploration
 - **Research** — Web searches, documentation gathering
 
-For implementation, PAUL keeps everything in-session with proper context management.
+For implementation, ORBIT keeps everything in-session with proper context management.
 
 ### Loop Integrity
 
@@ -375,7 +375,7 @@ PLAN ──▶ APPLY ──▶ UNIFY
 
 ### Optional Integrations
 
-PAUL supports modular integrations configured in `.paul/config.md`:
+ORBIT supports modular integrations configured in `.orbit/config.md`:
 
 | Integration | Purpose |
 |-------------|---------|
@@ -384,7 +384,7 @@ PAUL supports modular integrations configured in `.paul/config.md`:
 
 ### SPECIAL-FLOWS
 
-For projects with specialized requirements, `.paul/SPECIAL-FLOWS.md` defines skills that must be loaded before execution:
+For projects with specialized requirements, `.orbit/SPECIAL-FLOWS.md` defines skills that must be loaded before execution:
 
 ```markdown
 ## Required Skills
@@ -403,18 +403,18 @@ APPLY blocks until required skills are confirmed loaded.
 
 **Commands not found after install?**
 - Restart Claude Code to reload slash commands
-- Verify files exist in `~/.claude/commands/paul/` (global) or `./.claude/commands/paul/` (local)
+- Verify files exist in `~/.claude/commands/orbit/` (global) or `./.claude/commands/orbit/` (local)
 
 **Commands not working as expected?**
-- Run `/paul:help` to verify installation
-- Re-run `npx paul-framework` to reinstall
+- Run `/orbit:help` to verify installation
+- Re-run `npx orbit-framework` to reinstall
 
 **Loop position seems wrong?**
-- Check `.paul/STATE.md` for current state
-- Run `/paul:progress` for guided next action
+- Check `.orbit/STATE.md` for current state
+- Run `/orbit:progress` for guided next action
 
 **Resuming after a break?**
-- Run `/paul:resume` — it reads state and handoffs automatically
+- Run `/orbit:resume` — it reads state and handoffs automatically
 
 ---
 
@@ -422,7 +422,7 @@ APPLY blocks until required skills are confirmed loaded.
 
 ### vs. Ad-hoc AI Coding
 
-| Ad-hoc | PAUL |
+| Ad-hoc | ORBIT |
 |--------|------|
 | No structure | Explicit planning gates |
 | State drifts | STATE.md tracks everything |
@@ -431,24 +431,24 @@ APPLY blocks until required skills are confirmed loaded.
 
 ### vs. GSD
 
-PAUL takes a different approach from GSD:
+ORBIT takes a different approach from GSD:
 
-| Aspect | GSD | PAUL |
+| Aspect | GSD | ORBIT |
 |--------|-----|------|
 | Execution | Parallel subagents | In-session context |
 | Loop | Optional closure | Mandatory UNIFY |
 | Criteria | Embedded in tasks | First-class AC section |
 | Rules | Static prompts | CARL dynamic loading |
 
-Same comprehensive coverage, different philosophy. PAUL prioritizes quality over speed-for-speed's-sake. See [PAUL-VS-GSD.md](PAUL-VS-GSD.md) for full comparison.
+Same comprehensive coverage, different philosophy. ORBIT prioritizes quality over speed-for-speed's-sake. See [ORBIT-VS-GSD.md](ORBIT-VS-GSD.md) for full comparison.
 
 ### vs. Traditional Planning
 
-| Traditional | PAUL |
+| Traditional | ORBIT |
 |-------------|------|
 | Documentation-first | Execution-first |
 | Human-readable specs | AI-executable prompts |
-| Separate from code | Colocated in .paul/ |
+| Separate from code | Colocated in .orbit/ |
 
 ---
 
@@ -468,6 +468,6 @@ Building tools for AI-assisted development.
 
 <div align="center">
 
-**Claude Code is powerful. PAUL makes it reliable.**
+**Claude Code is powerful. ORBIT makes it reliable.**
 
 </div>

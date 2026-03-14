@@ -1,5 +1,5 @@
-# PAUL instance data (user's own usage)
-.paul/
+# ORBIT instance data (user's own usage)
+.orbit/
 
 # Node
 node_modules/
@@ -16,4 +16,4 @@ Thumbs.db
 
 # Handoff files in root (session-specific, not part of distribution)
 /HANDOFF*.md
-PAUL-SPECIAL-FLOWS-SPEC.md
+ORBIT-SPECIAL-FLOWS-SPEC.md

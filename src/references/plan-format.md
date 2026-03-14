@@ -53,9 +53,9 @@ autonomous: true
 </objective>
 
 <context>
-@.paul/PROJECT.md
-@.paul/ROADMAP.md
-@.paul/STATE.md
+@.orbit/PROJECT.md
+@.orbit/ROADMAP.md
+@.orbit/STATE.md
 @relevant/source/files.ts
 </context>
 
@@ -165,7 +165,7 @@ Then [expected outcome]
 
 ## Boundaries Section
 
-PAUL plans include explicit boundaries:
+ORBIT plans include explicit boundaries:
 
 ```markdown
 <boundaries>

@@ -38,7 +38,7 @@ No multiple options. Prevents decision fatigue. User can redirect if needed.
    ls .orbit/STATE.md 2>/dev/null
    ```
 2. If not found:
-   - "No ORBIT project found. Run /orbit:observe first."
+   - "No ORBIT project found. Run /orbit:init first."
    - Exit workflow
 3. If found: proceed with resume
 </step>
@@ -182,7 +182,7 @@ When user confirms next action (e.g., "yes", "1", "approved"):
 <error_handling>
 **STATE.md corrupted or incomplete:**
 - Report what's missing
-- Suggest: `/orbit:observe` to reinitialize (destructive) or manual repair
+- Suggest: `/orbit:init` to reinitialize (destructive) or manual repair
 
 **Conflicting information:**
 - STATE.md says X, but files suggest Y

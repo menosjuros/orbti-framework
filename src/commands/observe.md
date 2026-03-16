@@ -1,54 +1,48 @@
 ---
 name: orbit:observe
-description: Initialize ORBIT in a project with conversational setup
-argument-hint:
-allowed-tools: [Read, Write, Bash, Glob, AskUserQuestion]
+description: Research technical options before planning a phase
+argument-hint: "<phase or topic>"
+allowed-tools: [Read, Bash, Glob, Grep, WebSearch, WebFetch, Task, AskUserQuestion]
 ---
 
 <objective>
-Initialize the `.orbit/` structure in a project directory through conversational setup.
+Execute discovery to inform planning decisions. Produces DISCOVERY.md with findings, recommendation, and confidence level.
 
-**When to use:** Starting a new project with ORBIT, or adding ORBIT to an existing codebase.
+**When to use:** Before planning a phase with technical unknowns (library selection, architecture decisions, integration approaches).
 
-Creates PROJECT.md, STATE.md, and ROADMAP.md populated from conversation - user does not manually edit templates.
+**Distinct from /orbit:research:** Research is for gathering documentation/information. Discover is for making technical decisions.
 </objective>
 
 <execution_context>
-@~/.claude/orbit-framework/workflows/init-project.md
-@~/.claude/orbit-framework/templates/PROJECT.md
-@~/.claude/orbit-framework/templates/STATE.md
-@~/.claude/orbit-framework/templates/ROADMAP.md
+@~/.claude/orbit-framework/workflows/discovery.md
+@~/.claude/orbit-framework/templates/DISCOVERY.md
 </execution_context>
 
 <context>
-Current directory state (check for existing .orbit/)
+$ARGUMENTS (phase number or topic)
+
+@.orbit/STATE.md
+@.orbit/ROADMAP.md
 </context>
 
 <process>
-**Follow workflow: @~/.claude/orbit-framework/workflows/init-project.md**
+**Follow workflow: @~/.claude/orbit-framework/workflows/discovery.md**
 
-The workflow implements conversational setup:
-
-1. Check for existing .orbit/ (route to resume if exists)
-2. Create directory structure
-3. Ask: "What's the core value this project delivers?"
-4. Ask: "What are you building?"
-5. Confirm project name (infer from directory)
-6. Populate PROJECT.md, ROADMAP.md, STATE.md from answers
-7. Display ONE next action: `/orbit:refine`
-
-**Key behaviors:**
-- Ask ONE question at a time
-- Wait for response before next question
-- Populate files from answers (user doesn't edit templates)
-- End with exactly ONE next action
-- Build momentum into planning phase
+The workflow implements:
+1. Determine depth level (quick/standard/deep)
+2. Identify unknowns for the phase
+3. Research options using subagents
+4. Cross-verify findings
+5. Create DISCOVERY.md with recommendation
+6. Assign confidence level
+7. Route to planning when complete
 </process>
 
 <success_criteria>
-- [ ] .orbit/ directory created
-- [ ] PROJECT.md populated with core value and description from conversation
-- [ ] STATE.md initialized with correct loop position
-- [ ] ROADMAP.md initialized (phases TBD until planning)
-- [ ] User presented with ONE clear next action
+- [ ] Discovery depth determined
+- [ ] Unknowns identified
+- [ ] Options researched with sources
+- [ ] DISCOVERY.md created (for standard/deep)
+- [ ] Recommendation provided with confidence
+- [ ] Ready for /orbit:refine
 </success_criteria>

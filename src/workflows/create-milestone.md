@@ -242,5 +242,5 @@ Type "yes" to proceed, or ask questions first.
 
 **ROADMAP.md missing:**
 - Create basic structure
-- Or route to /orbit:observe if project not initialized
+- Or route to /orbit:init if project not initialized
 </error_handling>

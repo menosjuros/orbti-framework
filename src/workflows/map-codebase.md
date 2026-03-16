@@ -428,7 +428,7 @@ Created .orbit/codebase/:
 
 **Initialize ORBIT project** — use codebase context for planning
 
-`/orbit:observe`
+`/orbit:init`
 
 <sub>`/clear` first → fresh context window</sub>
 

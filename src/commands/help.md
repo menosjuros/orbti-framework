@@ -36,7 +36,7 @@ Every unit of work follows this cycle:
 
 ## Quick Start
 
-1. `/orbit:observe` - Initialize ORBIT in your project
+1. `/orbit:init` - Initialize ORBIT in your project
 2. `/orbit:refine` - Create a plan for your work
 3. `/orbit:build` - Execute the approved plan
 4. `/orbit:integrate` - Close the loop with summary
@@ -58,7 +58,7 @@ Every unit of work follows this cycle:
 
 ## Core Loop Commands
 
-### `/orbit:observe`
+### `/orbit:init`
 Initialize ORBIT in a project.
 
 - Creates `.orbit/` directory structure
@@ -66,7 +66,7 @@ Initialize ORBIT in a project.
 - Prompts for project context and phases
 - Optionally configures integrations (SonarQube, etc.)
 
-Usage: `/orbit:observe`
+Usage: `/orbit:init`
 
 ---
 
@@ -264,14 +264,14 @@ Usage: `/orbit:assumptions 3`
 
 ---
 
-### `/orbit:discover <topic>`
+### `/orbit:observe <topic>`
 Research technical options before planning a phase.
 
 - Explores codebase for relevant patterns
 - Documents findings for planning reference
 - Lightweight alternative to full research
 
-Usage: `/orbit:discover "authentication patterns"`
+Usage: `/orbit:observe "authentication patterns"`
 
 ---
 
@@ -441,7 +441,7 @@ Completion checks
 
 **Starting a new project:**
 ```
-/orbit:observe → /orbit:refine → /orbit:build → /orbit:integrate
+/orbit:init → /orbit:refine → /orbit:build → /orbit:integrate
 ```
 
 **Checking where you are:**

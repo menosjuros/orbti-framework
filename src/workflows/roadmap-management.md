@@ -318,7 +318,7 @@ STATE.md updated ✓
 
 <error_handling>
 **No active milestone:**
-- Route to /orbit:milestone or /orbit:observe
+- Route to /orbit:milestone or /orbit:init
 
 **Phase directory not empty:**
 - Preserve directory, warn user

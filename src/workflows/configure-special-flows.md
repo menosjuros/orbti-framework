@@ -274,7 +274,7 @@ Enter skill names (comma-separated) or "skip":
 **No .orbit/ directory:**
 ```
 ORBIT not initialized in this project.
-Run /orbit:observe first, or create .orbit/ manually.
+Run /orbit:init first, or create .orbit/ manually.
 ```
 
 **User provides invalid skill name:**

@@ -145,7 +145,7 @@ preferences:
 - Roadmap information (that's ROADMAP.md)
 
 **When to create config.md:**
-- During `/orbit:observe` if user enables integrations
+- During `/orbit:init` if user enables integrations
 - Manually when adding integrations later
 - Not required for basic ORBIT usage
 

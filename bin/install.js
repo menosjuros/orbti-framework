@@ -168,6 +168,72 @@ function install(isGlobal) {
 }
 
 /**
+ * Check if Playwright is already installed
+ */
+function isPlaywrightInstalled() {
+  try {
+    const pkgJsonPath = path.join(process.cwd(), 'package.json');
+    if (!fs.existsSync(pkgJsonPath)) return false;
+    const projectPkg = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
+    const deps = { ...projectPkg.dependencies, ...projectPkg.devDependencies };
+    return !!deps['@playwright/test'];
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Install Playwright in the current project
+ */
+function installPlaywright(rl, callback) {
+  rl.close();
+  const { execSync } = require('child_process');
+  console.log(`\n  Installing Playwright...`);
+  try {
+    execSync('npm init playwright@latest -- --quiet --browser=chromium --no-examples --install-deps', {
+      stdio: 'inherit',
+      cwd: process.cwd()
+    });
+    console.log(`  ${green}✓${reset} Playwright installed\n`);
+  } catch {
+    console.log(`  ${yellow}⚠${reset}  Playwright install failed. Run manually: ${cyan}npm init playwright@latest${reset}\n`);
+  }
+  callback();
+}
+
+/**
+ * Prompt for Playwright test automation
+ */
+function promptPlaywright(callback) {
+  if (isPlaywrightInstalled()) {
+    console.log(`  ${green}✓${reset} Playwright already installed — automated testing enabled\n`);
+    return callback();
+  }
+
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+
+  console.log(`  ${yellow}Test Automation${reset}
+
+  ORBIT can use ${cyan}Playwright${reset} to run automated acceptance tests,
+  collect screenshots, and generate evidence reports.
+
+  ${cyan}1${reset}) Yes, install Playwright ${dim}(recommended for web projects)${reset}
+  ${cyan}2${reset}) Skip ${dim}(manual testing only)${reset}
+`);
+
+  rl.question(`  Choice ${dim}[2]${reset}: `, (answer) => {
+    const choice = answer.trim() || '2';
+    if (choice === '1') {
+      installPlaywright(rl, callback);
+    } else {
+      rl.close();
+      console.log(`  ${dim}Skipped. You can enable later with: npm init playwright@latest${reset}\n`);
+      callback();
+    }
+  });
+}
+
+/**
  * Prompt for install location
  */
 function promptLocation() {
@@ -190,7 +256,7 @@ function promptLocation() {
     rl.close();
     const choice = answer.trim() || '1';
     const isGlobal = choice !== '2';
-    install(isGlobal);
+    promptPlaywright(() => install(isGlobal));
   });
 }
 
@@ -202,9 +268,9 @@ if (hasGlobal && hasLocal) {
   console.error(`  ${yellow}Cannot use --config-dir with --local${reset}`);
   process.exit(1);
 } else if (hasGlobal) {
-  install(true);
+  promptPlaywright(() => install(true));
 } else if (hasLocal) {
-  install(false);
+  promptPlaywright(() => install(false));
 } else {
   promptLocation();
 }

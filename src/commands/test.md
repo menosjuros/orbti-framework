@@ -1,21 +1,25 @@
 ---
 name: orbit:test
-description: Guide manual user acceptance testing of recently built features
+description: Run acceptance tests — automated via Playwright if available, otherwise guided manual UAT
 argument-hint: "[optional: phase or plan number, e.g., '4' or '04-02']"
 allowed-tools: [Read, Bash, Glob, Grep, Edit, Write, AskUserQuestion]
 ---
 
 <objective>
-Guide the user through manual acceptance testing of recently built features.
+Validate that what was built actually works against the acceptance criteria.
 
-**When to use:** After completing a plan, validate that what Claude built actually works from the user's perspective.
+**Two modes — auto-detected:**
+1. **Playwright mode** — Playwright detected in project → generates spec from ACs, runs tests, collects screenshot/trace evidence
+2. **Manual mode** — No Playwright → guides user through checklist, captures results via AskUserQuestion
 
-**Who tests:** The USER performs all testing. Claude generates the test checklist, guides the process, and captures issues.
+Both modes log issues to the phase-scoped UAT file and produce a verdict.
 </objective>
 
 <execution_context>
+@~/.claude/orbit-framework/workflows/playwright-test.md
 @~/.claude/orbit-framework/workflows/verify-work.md
 @~/.claude/orbit-framework/templates/UAT-ISSUES.md
+@~/.claude/orbit-framework/templates/PLAYWRIGHT-EVIDENCE.md
 </execution_context>
 
 <context>
@@ -28,33 +32,36 @@ Scope: $ARGUMENTS (optional)
 </context>
 
 <process>
-**Follow workflow: @~/.claude/orbit-framework/workflows/verify-work.md**
 
-The workflow implements:
-1. Identify test scope (specified or most recent SUMMARY)
-2. Extract testable deliverables from SUMMARY.md
-3. Generate test checklist based on acceptance criteria
-4. Guide user through each test via AskUserQuestion
-5. Collect and categorize any issues found
-6. Log issues to phase-scoped UAT file
-7. Present summary with verdict
-8. Offer next steps based on results
+<step name="detect_mode">
+Check for Playwright:
+```bash
+npx playwright --version 2>/dev/null && echo "PLAYWRIGHT_AVAILABLE" || echo "MANUAL_MODE"
+```
+
+**If PLAYWRIGHT_AVAILABLE:**
+→ Follow workflow: @~/.claude/orbit-framework/workflows/playwright-test.md
+
+**If MANUAL_MODE:**
+→ Follow workflow: @~/.claude/orbit-framework/workflows/verify-work.md
+</step>
+
 </process>
 
 <success_criteria>
 - [ ] Test scope identified from SUMMARY.md
-- [ ] Checklist generated based on deliverables
-- [ ] User guided through each test
-- [ ] All test results captured (pass/fail/partial/skip)
-- [ ] Any issues logged to `.orbit/phases/XX-name/{plan}-UAT.md`
-- [ ] Summary presented with verdict
-- [ ] User knows next steps based on results
+- [ ] Mode detected (Playwright or manual)
+- [ ] **Playwright mode:** spec generated, tests executed, evidence collected
+- [ ] **Manual mode:** user guided through checklist, results captured
+- [ ] Issues logged to `.orbit/phases/XX-name/{plan}-UAT.md`
+- [ ] Evidence report created (Playwright mode only)
+- [ ] Verdict presented
+- [ ] User knows next steps
 </success_criteria>
 
 <anti_patterns>
-- Don't run automated tests (that's for CI/test suites)
-- Don't make assumptions about test results — USER reports outcomes
-- Don't skip the guidance — walk through each test
-- Don't dismiss minor issues — log everything user reports
-- Don't fix issues during testing — capture for later
+- Don't skip evidence collection — screenshots and traces are required in Playwright mode
+- Don't make assumptions about test results in manual mode — USER reports outcomes
+- Don't fix issues during testing — capture for later via /orbit:plan-fix
+- Don't dismiss minor issues — log everything
 </anti_patterns>

@@ -134,7 +134,7 @@ You should see the full command reference. If commands are missing, see [Trouble
 Open Claude Code inside your project directory and run:
 
 ```
-/orbit:init
+/orbit:observe
 ```
 
 This creates the `.orbit/` folder with `PROJECT.md`, `ROADMAP.md`, and `STATE.md` — the core state files ORBIT uses to track your work.
@@ -143,13 +143,13 @@ This creates the `.orbit/` folder with `PROJECT.md`, `ROADMAP.md`, and `STATE.md
 
 ```bash
 # Define what you're building
-/orbit:plan
+/orbit:refine
 
 # Execute the approved plan
-/orbit:apply
+/orbit:build
 
 # Close the loop (required!)
-/orbit:unify
+/orbit:integrate
 
 # Check progress anytime
 /orbit:progress
@@ -159,7 +159,7 @@ This creates the `.orbit/` folder with `PROJECT.md`, `ROADMAP.md`, and `STATE.md
 
 **Starting a new project:**
 ```
-/orbit:init → /orbit:plan → /orbit:apply → /orbit:unify
+/orbit:observe → /orbit:refine → /orbit:build → /orbit:integrate
 ```
 
 **Checking where you are:**
@@ -174,16 +174,16 @@ This creates the `.orbit/` folder with `PROJECT.md`, `ROADMAP.md`, and `STATE.md
 
 **Pre-planning exploration:**
 ```
-/orbit:discuss 3 → /orbit:assumptions 3 → /orbit:research "topic" → /orbit:plan 3
+/orbit:discuss 3 → /orbit:assumptions 3 → /orbit:research "topic" → /orbit:refine 3
 ```
 
 ### Key Principles
 
-1. **Loop must complete** — PLAN → APPLY → UNIFY, no shortcuts
+1. **Loop must complete** — REFINE → BUILD → INTEGRATE, no shortcuts
 2. **State is tracked** — STATE.md knows where you are
 3. **Boundaries are real** — Respect `DO NOT CHANGE` sections
 4. **Acceptance criteria first** — Define done before starting
-5. **Skills are enforced** — Required skills block APPLY until loaded
+5. **Skills are enforced** — Required skills block BUILD until loaded
 
 ### Staying Updated
 
@@ -242,10 +242,10 @@ ORBIT provides 26 commands organized by purpose. Run `/orbit:help` for the compl
 
 | Command | What it does |
 |---------|--------------|
-| `/orbit:init` | Initialize ORBIT in a project |
-| `/orbit:plan [phase]` | Create an executable plan |
-| `/orbit:apply [path]` | Execute an approved plan |
-| `/orbit:unify [path]` | Reconcile and close the loop |
+| `/orbit:observe` | Initialize ORBIT in a project |
+| `/orbit:refine [phase]` | Create an executable plan |
+| `/orbit:build [path]` | Execute an approved plan |
+| `/orbit:integrate [path]` | Reconcile and close the loop |
 | `/orbit:help` | Show command reference |
 | `/orbit:progress [context]` | Smart status + ONE next action |
 
@@ -300,7 +300,7 @@ ORBIT provides 26 commands organized by purpose. Run `/orbit:help` for the compl
 
 | Command | What it does |
 |---------|--------------|
-| `/orbit:verify` | Guide manual acceptance testing |
+| `/orbit:test` | Guide manual acceptance testing |
 | `/orbit:plan-fix` | Plan fixes for UAT issues |
 
 ---

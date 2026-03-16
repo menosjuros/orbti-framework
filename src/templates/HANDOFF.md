@@ -64,9 +64,9 @@ PLAN ──▶ APPLY ──▶ UNIFY
 1. Read `.orbit/STATE.md` for latest position
 2. Check if PLAN exists for current phase
 3. Based on loop position:
-   - `○○○` (fresh) → Run `/orbit:plan`
-   - `✓○○` (planned) → Review plan, then `/orbit:apply`
-   - `✓✓○` (applied) → Run `/orbit:unify`
+   - `○○○` (fresh) → Run `/orbit:refine`
+   - `✓○○` (planned) → Review plan, then `/orbit:build`
+   - `✓✓○` (applied) → Run `/orbit:integrate`
    - `✓✓✓` (complete) → Ready for next phase
 
 **Or simply run:** `/orbit:resume`

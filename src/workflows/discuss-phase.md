@@ -9,13 +9,13 @@ Facilitate vision articulation before planning a phase. Acts as a thinking partn
 <when_to_use>
 - User starting a new phase and wants to think through approach
 - User has rough ideas but needs to articulate them before planning
-- Before /orbit:plan when discussion is desired
+- Before /orbit:refine when discussion is desired
 - Phase scope is unclear or has multiple possible approaches
 </when_to_use>
 
 <loop_context>
 N/A - This is a pre-planning workflow, not a loop phase.
-After discussion, routes to /orbit:plan (plan-phase).
+After discussion, routes to /orbit:refine (plan-phase).
 </loop_context>
 
 <required_reading>
@@ -165,14 +165,14 @@ Status: Ready for planning
 Context saved for handoff.
 
 ────────────────────────────────────────
-▶ NEXT: /orbit:plan
+▶ NEXT: /orbit:refine
   Create the plan structure from this context
 ────────────────────────────────────────
 
 Type "yes" to proceed, or continue discussing.
 ```
 
-**Accept:** "yes", "go", "plan" → run `/orbit:plan`
+**Accept:** "yes", "go", "plan" → run `/orbit:refine`
 </step>
 
 </process>
@@ -180,7 +180,7 @@ Type "yes" to proceed, or continue discussing.
 <output>
 - .orbit/phases/{NN}-{name}/CONTEXT.md created (handoff file)
 - Goals and approach articulated
-- Ready for /orbit:plan to consume
+- Ready for /orbit:refine to consume
 </output>
 
 <success_criteria>
@@ -190,7 +190,7 @@ Type "yes" to proceed, or continue discussing.
 - [ ] Approach discussed
 - [ ] Context synthesized and confirmed
 - [ ] CONTEXT.md written to phase directory
-- [ ] Clear handoff to /orbit:plan
+- [ ] Clear handoff to /orbit:refine
 </success_criteria>
 
 <anti_patterns>
@@ -226,6 +226,6 @@ DO: Focus on user input. Use /orbit:assumptions for Claude's analysis.
 - Ask: "What's the most critical part?"
 
 **User wants to skip discussion:**
-- Route directly to /orbit:plan
+- Route directly to /orbit:refine
 - Note: "Going straight to planning — no discussion context will be available"
 </error_handling>

@@ -155,7 +155,7 @@ Phases: 0 of TBD complete
 
 ## Phase Details
 
-Phases will be defined during `/orbit:plan`.
+Phases will be defined during `/orbit:refine`.
 
 ---
 *Roadmap created: [timestamp]*
@@ -211,7 +211,7 @@ None yet.
 
 Last session: [timestamp]
 Stopped at: Project initialization complete
-Next action: Run /orbit:plan to define phases and first plan
+Next action: Run /orbit:refine to define phases and first plan
 Resume file: .orbit/PROJECT.md
 
 ---
@@ -338,7 +338,7 @@ Created:
   .orbit/phases/       ✓
 
 ────────────────────────────────────────
-▶ NEXT: /orbit:plan
+▶ NEXT: /orbit:refine
   Define your phases and create your first plan.
 ────────────────────────────────────────
 
@@ -361,7 +361,7 @@ If neither was enabled, show the minimal version without those lines.
 - `.orbit/config.md` (if integrations enabled)
 - `.orbit/SPECIAL-FLOWS.md` (if specialized flows enabled)
 - `.orbit/phases/` (empty directory)
-- Clear routing to `/orbit:plan`
+- Clear routing to `/orbit:refine`
 </output>
 
 <error_handling>

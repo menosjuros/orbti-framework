@@ -30,5 +30,5 @@ Follow workflow: @~/.claude/orbit-framework/workflows/discuss-phase.md
 <success_criteria>
 - [ ] CONTEXT.md created in phase directory
 - [ ] Goals and approach articulated
-- [ ] Ready for /orbit:plan command
+- [ ] Ready for /orbit:refine command
 </success_criteria>

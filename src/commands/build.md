@@ -1,5 +1,5 @@
 ---
-name: orbit:apply
+name: orbit:build
 description: Execute an approved PLAN
 argument-hint: "[plan-path]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, AskUserQuestion]
@@ -68,7 +68,7 @@ When a checkpoint task is reached:
 
 <step name="complete">
 After all tasks complete:
-- Report: "APPLY complete. Run /orbit:unify to close loop."
+- Report: "APPLY complete. Run /orbit:integrate to close loop."
 - Show files modified
 - Show SUMMARY path to create
 </step>
@@ -79,5 +79,5 @@ After all tasks complete:
 - [ ] All tasks executed
 - [ ] All checkpoints handled
 - [ ] User informed of completion
-- [ ] Next action clear (run /orbit:unify)
+- [ ] Next action clear (run /orbit:integrate)
 </success_criteria>

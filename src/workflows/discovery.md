@@ -160,7 +160,7 @@ Recommendation: [one-liner]
 Output: [path to DISCOVERY.md or "verbal confirmation"]
 
 ────────────────────────────────────────
-▶ NEXT: /orbit:plan [phase]
+▶ NEXT: /orbit:refine [phase]
 ────────────────────────────────────────
 ```
 </step>

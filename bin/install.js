@@ -75,7 +75,7 @@ if (hasHelp) {
     npx orbit-framework --local
 
   ${yellow}What gets installed:${reset}
-    commands/orbit/     - Slash commands (/orbit:init, /orbit:plan, etc.)
+    commands/orbit/     - Slash commands (/orbit:observe, /orbit:refine, etc.)
     orbit-framework/    - Templates, workflows, references, rules
 `);
   process.exit(0);

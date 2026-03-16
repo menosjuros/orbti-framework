@@ -225,7 +225,7 @@ After all tasks attempted:
 
    [1] Yes, run UNIFY | [2] Pause here
    ```
-4. **Accept quick inputs:** "1", "yes", "continue", "go" → run `/orbit:unify [plan-path]`
+4. **Accept quick inputs:** "1", "yes", "continue", "go" → run `/orbit:integrate [plan-path]`
 </step>
 
 </process>

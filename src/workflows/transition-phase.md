@@ -131,7 +131,7 @@ Update Session Continuity:
 
 Last session: [today]
 Stopped at: Phase [N] complete, ready to plan Phase [N+1]
-Next action: /orbit:plan for Phase [N+1]
+Next action: /orbit:refine for Phase [N+1]
 Resume file: .orbit/ROADMAP.md
 ```
 </step>
@@ -317,7 +317,7 @@ Next: Phase {N+1} — {Name}
 ════════════════════════════════════════
 ```
 
-**Accept:** "1", "yes", "continue" → run `/orbit:plan` for Phase N+1
+**Accept:** "1", "yes", "continue" → run `/orbit:refine` for Phase N+1
 
 ---
 

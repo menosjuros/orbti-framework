@@ -2,7 +2,7 @@
 
 Template for `.orbit/phases/{NN}-{name}/CONTEXT.md` - phase discussion context handoff.
 
-**Purpose:** Captures user's vision, goals, and approach before planning. Created by `/orbit:discuss`, consumed by `/orbit:plan`.
+**Purpose:** Captures user's vision, goals, and approach before planning. Created by `/orbit:discuss`, consumed by `/orbit:refine`.
 
 ---
 
@@ -48,7 +48,7 @@ Template for `.orbit/phases/{NN}-{name}/CONTEXT.md` - phase discussion context h
 ---
 
 *This file is temporary. It informs planning but is not required.*
-*Created by /orbit:discuss, consumed by /orbit:plan.*
+*Created by /orbit:discuss, consumed by /orbit:refine.*
 ```
 
 ---
@@ -73,7 +73,7 @@ Template for `.orbit/phases/{NN}-{name}/CONTEXT.md` - phase discussion context h
 1. User runs `/orbit:discuss <phase>`
 2. Discussion workflow explores goals and approach
 3. CONTEXT.md created in phase directory
-4. `/orbit:plan` reads CONTEXT.md to inform planning
+4. `/orbit:refine` reads CONTEXT.md to inform planning
 5. CONTEXT.md remains for reference (not deleted)
 
 ---

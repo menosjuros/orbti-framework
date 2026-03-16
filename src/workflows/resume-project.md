@@ -38,7 +38,7 @@ No multiple options. Prevents decision fatigue. User can redirect if needed.
    ls .orbit/STATE.md 2>/dev/null
    ```
 2. If not found:
-   - "No ORBIT project found. Run /orbit:init first."
+   - "No ORBIT project found. Run /orbit:observe first."
    - Exit workflow
 3. If found: proceed with resume
 </step>
@@ -98,10 +98,10 @@ Based on loop position, determine **exactly ONE** next action:
 
 | Loop State | Single Next Action |
 |------------|-------------------|
-| PLAN ○ (no plan yet) | `/orbit:plan` |
-| PLAN ✓, APPLY ○ (plan awaiting approval) | `/orbit:apply [plan-path]` |
-| PLAN ✓, APPLY ✓, UNIFY ○ (executed, not reconciled) | `/orbit:unify [plan-path]` |
-| All ✓ (loop complete) | `/orbit:plan` (next phase) |
+| PLAN ○ (no plan yet) | `/orbit:refine` |
+| PLAN ✓, APPLY ○ (plan awaiting approval) | `/orbit:build [plan-path]` |
+| PLAN ✓, APPLY ✓, UNIFY ○ (executed, not reconciled) | `/orbit:integrate [plan-path]` |
+| All ✓ (loop complete) | `/orbit:refine` (next phase) |
 | Blocked | "Address blocker: [specific issue]" |
 
 **Do NOT offer multiple options.** Pick the ONE correct action.
@@ -182,7 +182,7 @@ When user confirms next action (e.g., "yes", "1", "approved"):
 <error_handling>
 **STATE.md corrupted or incomplete:**
 - Report what's missing
-- Suggest: `/orbit:init` to reinitialize (destructive) or manual repair
+- Suggest: `/orbit:observe` to reinitialize (destructive) or manual repair
 
 **Conflicting information:**
 - STATE.md says X, but files suggest Y

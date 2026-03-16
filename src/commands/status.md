@@ -63,9 +63,9 @@ Next: [recommended action]
 
 <step name="suggest_next">
 Based on loop position, suggest next action:
-- If PLAN needed: "Run /orbit:plan to create plan"
-- If PLAN ready: "Approve plan, then run /orbit:apply"
-- If APPLY complete: "Run /orbit:unify to close loop"
+- If PLAN needed: "Run /orbit:refine to create plan"
+- If PLAN ready: "Approve plan, then run /orbit:build"
+- If APPLY complete: "Run /orbit:integrate to close loop"
 - If UNIFY complete: "Loop closed. Ready for next phase."
 </step>
 

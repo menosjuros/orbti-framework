@@ -81,7 +81,7 @@ Update ROADMAP.md:
    ### Phase {next_number}: {phase_name}
 
    Focus: {phase_description}
-   Plans: TBD (defined during /orbit:plan)
+   Plans: TBD (defined during /orbit:refine)
    Status: Not started
    ```
 
@@ -318,7 +318,7 @@ STATE.md updated ✓
 
 <error_handling>
 **No active milestone:**
-- Route to /orbit:milestone or /orbit:init
+- Route to /orbit:milestone or /orbit:observe
 
 **Phase directory not empty:**
 - Preserve directory, warn user

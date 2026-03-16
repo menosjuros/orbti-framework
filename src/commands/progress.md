@@ -69,11 +69,11 @@ Based on state (+ user context if provided), determine **ONE** next action:
 
 | Situation | Single Suggestion |
 |-----------|-------------------|
-| No plan exists | `/orbit:plan` |
+| No plan exists | `/orbit:refine` |
 | Plan awaiting approval | "Approve plan to proceed" |
-| Plan approved, not executed | `/orbit:apply [path]` |
-| Applied, not unified | `/orbit:unify [path]` |
-| Loop complete, more phases | `/orbit:plan` (next phase) |
+| Plan approved, not executed | `/orbit:build [path]` |
+| Applied, not unified | `/orbit:integrate [path]` |
+| Loop complete, more phases | `/orbit:refine` (next phase) |
 | Milestone complete | "Create next milestone or ship" |
 | Blockers present | "Address blocker: [specific]" |
 | Context at DEEP/CRITICAL | `/orbit:pause` |
@@ -104,7 +104,7 @@ Current Loop: Phase 2, Plan 02-03
 └─────────────────────────────────────┘
 
 ────────────────────────────────────────
-▶ NEXT: /orbit:unify .orbit/phases/02-features/02-03-PLAN.md
+▶ NEXT: /orbit:integrate .orbit/phases/02-features/02-03-PLAN.md
   Close the loop and update state.
 ────────────────────────────────────────
 

@@ -8,7 +8,7 @@ allowed-tools: [Read, Bash, Write, Glob, Grep, AskUserQuestion]
 <objective>
 Create FIX.md plan from UAT issues found during verify.
 
-**When to use:** After `/orbit:verify` logs issues to phase-scoped UAT file.
+**When to use:** After `/orbit:test` logs issues to phase-scoped UAT file.
 
 **Output:** `{plan}-FIX.md` in the phase directory, ready for execution.
 </objective>
@@ -56,7 +56,7 @@ If not found:
 ```
 No UAT.md found for plan {plan}.
 
-UAT.md files are created by /orbit:verify when testing finds issues.
+UAT.md files are created by /orbit:test when testing finds issues.
 If no issues were found during testing, no fix plan is needed.
 ```
 Exit.
@@ -169,7 +169,7 @@ Before declaring plan complete:
 
 <success_criteria>
 - All UAT issues from {plan}-UAT.md addressed
-- Ready for re-verification with /orbit:verify
+- Ready for re-verification with /orbit:test
 </success_criteria>
 
 <output>
@@ -203,7 +203,7 @@ Continue to APPLY?
 ```
 
 Use AskUserQuestion to get response.
-If approved: `/orbit:apply .orbit/phases/XX-name/{plan}-FIX.md`
+If approved: `/orbit:build .orbit/phases/XX-name/{plan}-FIX.md`
 </step>
 
 </process>

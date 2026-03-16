@@ -190,7 +190,7 @@ automatically integrate into plans.
 
 What's next?
 [1] Review consolidated findings
-[2] Plan this phase (/orbit:plan)
+[2] Plan this phase (/orbit:refine)
 [3] Discuss this phase (/orbit:discuss)
 [4] Done for now
 ────────────────────────────────────────

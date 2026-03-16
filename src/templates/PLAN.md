@@ -51,7 +51,7 @@ autonomous: true                 # false if plan has checkpoints requiring user 
 <skills>
 ## Required Skills (from SPECIAL-FLOWS.md)
 
-<!-- If .orbit/SPECIAL-FLOWS.md exists, this section is auto-populated by /orbit:plan -->
+<!-- If .orbit/SPECIAL-FLOWS.md exists, this section is auto-populated by /orbit:refine -->
 <!-- If no SPECIAL-FLOWS.md, omit this section or show "No specialized flows configured" -->
 
 | Skill | Priority | When to Invoke | Loaded? |

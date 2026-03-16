@@ -106,7 +106,7 @@ Read current ROADMAP.md and update:
    ### Phase {N}: {name}
 
    Focus: {description}
-   Plans: TBD (defined during /orbit:plan)
+   Plans: TBD (defined during /orbit:refine)
    ```
 
 4. **Update footer timestamp**
@@ -161,7 +161,7 @@ Update STATE.md:
 
    Last session: {timestamp}
    Stopped at: Milestone created, ready to plan
-   Next action: /orbit:plan for Phase {first_phase_number}
+   Next action: /orbit:refine for Phase {first_phase_number}
    Resume file: .orbit/ROADMAP.md
    ```
 </step>
@@ -200,7 +200,7 @@ ROADMAP.md updated ✓
 STATE.md updated ✓
 
 ────────────────────────────────────────
-▶ NEXT: /orbit:plan
+▶ NEXT: /orbit:refine
   Begin planning Phase {first_phase_number}: {first_phase_name}
 ────────────────────────────────────────
 
@@ -217,7 +217,7 @@ Type "yes" to proceed, or ask questions first.
 - Phase directories created in .orbit/phases/
 - STATE.md updated with new position
 - MILESTONE-CONTEXT.md deleted (if existed)
-- Clear routing to /orbit:plan
+- Clear routing to /orbit:refine
 </output>
 
 <success_criteria>
@@ -242,5 +242,5 @@ Type "yes" to proceed, or ask questions first.
 
 **ROADMAP.md missing:**
 - Create basic structure
-- Or route to /orbit:init if project not initialized
+- Or route to /orbit:observe if project not initialized
 </error_handling>

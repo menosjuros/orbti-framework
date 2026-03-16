@@ -36,29 +36,29 @@ Every unit of work follows this cycle:
 
 ## Quick Start
 
-1. `/orbit:init` - Initialize ORBIT in your project
-2. `/orbit:plan` - Create a plan for your work
-3. `/orbit:apply` - Execute the approved plan
-4. `/orbit:unify` - Close the loop with summary
+1. `/orbit:observe` - Initialize ORBIT in your project
+2. `/orbit:refine` - Create a plan for your work
+3. `/orbit:build` - Execute the approved plan
+4. `/orbit:integrate` - Close the loop with summary
 
 ## Commands Overview
 
 | Category | Commands |
 |----------|----------|
-| Core Loop | init, plan, apply, unify, help, status |
+| Core Loop | observe, refine, build, integrate, test, help, status |
 | Session | pause, resume, progress, handoff |
 | Roadmap | add-phase, remove-phase |
 | Milestone | milestone, complete-milestone, discuss-milestone |
 | Pre-Planning | discuss, assumptions, discover, consider-issues |
 | Research | research, research-phase |
 | Specialized | flows, config, map-codebase |
-| Quality | verify, plan-fix |
+| Quality | test, plan-fix |
 
 ---
 
 ## Core Loop Commands
 
-### `/orbit:init`
+### `/orbit:observe`
 Initialize ORBIT in a project.
 
 - Creates `.orbit/` directory structure
@@ -66,11 +66,11 @@ Initialize ORBIT in a project.
 - Prompts for project context and phases
 - Optionally configures integrations (SonarQube, etc.)
 
-Usage: `/orbit:init`
+Usage: `/orbit:observe`
 
 ---
 
-### `/orbit:plan [phase]`
+### `/orbit:refine [phase]`
 Enter PLAN phase - create an executable plan.
 
 - Reads current state from STATE.md
@@ -78,12 +78,12 @@ Enter PLAN phase - create an executable plan.
 - Populates skills section from SPECIAL-FLOWS.md (if configured)
 - Updates loop position
 
-Usage: `/orbit:plan` (auto-detects next phase)
-Usage: `/orbit:plan 3` (specific phase)
+Usage: `/orbit:refine` (auto-detects next phase)
+Usage: `/orbit:refine 3` (specific phase)
 
 ---
 
-### `/orbit:apply [plan-path]`
+### `/orbit:build [plan-path]`
 Execute an approved PLAN.md file.
 
 - **Blocks if required skills not loaded** (from SPECIAL-FLOWS.md)
@@ -92,12 +92,12 @@ Execute an approved PLAN.md file.
 - Handles checkpoints (decision, human-verify, human-action)
 - Reports completion and prompts for UNIFY
 
-Usage: `/orbit:apply`
-Usage: `/orbit:apply .orbit/phases/01-foundation/01-01-PLAN.md`
+Usage: `/orbit:build`
+Usage: `/orbit:build .orbit/phases/01-foundation/01-01-PLAN.md`
 
 ---
 
-### `/orbit:unify [plan-path]`
+### `/orbit:integrate [plan-path]`
 Reconcile plan vs actual and close the loop.
 
 - Creates SUMMARY.md documenting what was built
@@ -106,8 +106,8 @@ Reconcile plan vs actual and close the loop.
 - Updates STATE.md with loop closure
 - **Required** - never skip this step
 
-Usage: `/orbit:unify`
-Usage: `/orbit:unify .orbit/phases/01-foundation/01-01-PLAN.md`
+Usage: `/orbit:integrate`
+Usage: `/orbit:integrate .orbit/phases/01-foundation/01-01-PLAN.md`
 
 ---
 
@@ -246,7 +246,7 @@ Articulate vision and explore approach before planning.
 
 - Conversational discussion of phase goals
 - Creates CONTEXT.md capturing vision
-- Prepares for `/orbit:plan`
+- Prepares for `/orbit:refine`
 
 Usage: `/orbit:discuss 3`
 Usage: `/orbit:discuss "authentication layer"`
@@ -348,14 +348,14 @@ Usage: `/orbit:map-codebase`
 
 ## Quality Commands
 
-### `/orbit:verify`
+### `/orbit:test`
 Guide manual user acceptance testing of recently built features.
 
 - Generates verification checklist from SUMMARY.md
 - Guides through manual testing
 - Records verification results
 
-Usage: `/orbit:verify`
+Usage: `/orbit:test`
 
 ---
 
@@ -441,7 +441,7 @@ Completion checks
 
 **Starting a new project:**
 ```
-/orbit:init → /orbit:plan → /orbit:apply → /orbit:unify
+/orbit:observe → /orbit:refine → /orbit:build → /orbit:integrate
 ```
 
 **Checking where you are:**
@@ -456,12 +456,12 @@ Completion checks
 
 **Pre-planning exploration:**
 ```
-/orbit:discuss 3 → /orbit:assumptions 3 → /orbit:research "topic" → /orbit:plan 3
+/orbit:discuss 3 → /orbit:assumptions 3 → /orbit:research "topic" → /orbit:refine 3
 ```
 
 ## Key Principles
 
-1. **Loop must complete** - PLAN -> APPLY -> UNIFY, no shortcuts
+1. **Loop must complete** - REFINE -> BUILD -> INTEGRATE, no shortcuts
 2. **State is tracked** - STATE.md knows where you are
 3. **Boundaries are real** - Respect DO NOT CHANGE sections
 4. **Acceptance criteria first** - Define done before starting

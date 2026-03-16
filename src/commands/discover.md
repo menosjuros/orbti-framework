@@ -44,5 +44,5 @@ The workflow implements:
 - [ ] Options researched with sources
 - [ ] DISCOVERY.md created (for standard/deep)
 - [ ] Recommendation provided with confidence
-- [ ] Ready for /orbit:plan
+- [ ] Ready for /orbit:refine
 </success_criteria>

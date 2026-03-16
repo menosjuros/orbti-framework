@@ -1,5 +1,5 @@
 ---
-name: orbit:verify
+name: orbit:test
 description: Guide manual user acceptance testing of recently built features
 argument-hint: "[optional: phase or plan number, e.g., '4' or '04-02']"
 allowed-tools: [Read, Bash, Glob, Grep, Edit, Write, AskUserQuestion]

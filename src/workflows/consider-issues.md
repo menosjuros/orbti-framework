@@ -154,7 +154,7 @@ Use AskUserQuestion with relevant options:
 3. Update STATE.md deferred issues count
 
 **Inserting urgent phase:**
-- Suggest command: `/orbit:plan 10.3 Address urgent issues [list]`
+- Suggest command: `/orbit:refine 10.3 Address urgent issues [list]`
 
 **Noting for phase:**
 - Update issue entry with "Suggested: Phase [X]"

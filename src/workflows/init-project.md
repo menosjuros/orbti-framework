@@ -219,6 +219,32 @@ Resume file: .orbit/PROJECT.md
 ```
 </step>
 
+<step name="gather_project_type">
+**Question 4: Project type (for test configuration)**
+
+```
+What type of project is this?
+
+[1] Frontend (React, Vue, Next.js, etc.) — uses Playwright for testing
+[2] API / Backend — uses Bash commands for testing
+```
+
+Wait for user response. Store as `project_type` (`frontend` or `api`).
+
+**If frontend:**
+```
+What evidence should tests capture?
+
+[1] Video — records full test run (default)
+[2] Screenshot — captures screenshot on failure
+[3] Log — text output only
+```
+
+Wait for user response. Store as `test_evidence` (`video` | `screenshot` | `log`).
+
+Set `test_config_ready = true`. This will be written to config.md.
+</step>
+
 <step name="prompt_integrations">
 **Ask about optional integrations:**
 
@@ -260,6 +286,18 @@ Wait for user response.
      version: 0.0.0
    ```
 
+   ## Testing
+
+   ```yaml
+   testing:
+     type: [project_type]
+     frontend:
+       runner: playwright
+       evidence: [test_evidence]   # only if project_type == frontend
+     api:
+       runner: bash                # only if project_type == api
+   ```
+
    ## Integrations
 
    ### SonarQube
@@ -287,7 +325,45 @@ Wait for user response.
 **If "2" or "skip" or "no":**
 
 Store `integrations_enabled = false`
-(Don't create config.md - user can add later)
+
+Still create `.orbit/config.md` with testing config (always needed):
+```markdown
+# Project Config
+
+**Project:** [project_name]
+**Created:** [timestamp]
+
+## Project Settings
+
+```yaml
+project:
+  name: [project_name]
+  version: 0.0.0
+```
+
+## Testing
+
+```yaml
+testing:
+  type: [project_type]
+  frontend:
+    runner: playwright
+    evidence: [test_evidence]
+  api:
+    runner: bash
+```
+
+## Preferences
+
+```yaml
+preferences:
+  auto_commit: false
+  verbose_output: false
+```
+
+---
+*Config created: [timestamp]*
+```
 </step>
 
 <step name="check_specialized_flows">

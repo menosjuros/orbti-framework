@@ -1,211 +1,247 @@
 <purpose>
-Guide manual user acceptance testing of recently built features. Extract deliverables from INTEGRATE.md, generate test checklist, guide user through each test, log issues to phase-scoped file.
-
-The USER performs all testing — Claude generates the checklist, guides the process, and captures issues.
+Execute automated tests for the current phase and collect evidence. Routes to Playwright (frontend) or Bash (API) based on project type in config.md. On failure, triggers /orbit:observe to restart the cycle.
 </purpose>
 
-<template>
-@src/templates/TEST.md
-</template>
+<when_to_use>
+- After INTEGRATE — validating what was built
+- When /orbit:test is invoked
+</when_to_use>
 
 <process>
 
-<step name="identify">
+<step name="identify_scope" priority="first">
 **Determine what to test:**
 
 If $ARGUMENTS provided:
 - Parse as phase number (e.g., "4") or plan number (e.g., "04-02")
-- Find corresponding INTEGRATE.md file(s)
+- Find corresponding INTEGRATE.md
 
 If no arguments:
-- Find most recently modified INTEGRATE.md
+- Find most recently modified INTEGRATE.md:
+```bash
+find .orbit/phases -name "*INTEGRATE.md" -type f | xargs ls -t | head -1
+```
+
+Read INTEGRATE.md to extract acceptance criteria and verify commands.
+</step>
+
+<step name="read_config">
+**Read project type from `.orbit/config.md`:**
 
 ```bash
-find .orbit/phases -name "*INTEGRATE.md" -type f -exec ls -lt {} + | head -5
+cat .orbit/config.md 2>/dev/null
 ```
 
-Read the INTEGRATE.md to understand what was built.
+Extract:
+- `testing.type` → `frontend` or `api`
+- `testing.frontend.evidence` → `video` | `screenshot` | `log`
 
-Key extraction points:
-- Acceptance Criteria results
-- Files created/modified
-- Deviations (if any)
-</step>
-
-<step name="extract">
-**Extract testable deliverables from INTEGRATE.md:**
-
-Parse for:
-1. **Acceptance Criteria** - Each AC becomes a test item
-2. **Files Created/Modified** - What changed
-3. **User-facing changes** - UI, workflows, interactions
-
-Focus on USER-OBSERVABLE outcomes, not implementation details.
-
-Map AC to tests:
-- AC-1: "Feature X exists" → User can see/use Feature X
-- AC-2: "Behavior Y works" → User can trigger and verify Behavior Y
-</step>
-
-<step name="generate">
-**Generate manual test checklist:**
-
-Create structured test plan:
-
+If config.md missing or `testing.type` not set:
 ```
-# User Acceptance Test: [Plan Name]
+No test configuration found in .orbit/config.md.
 
-**Scope:** [What was built - from INTEGRATE.md]
-**Source:** [path to INTEGRATE.md]
-**Testing:** Manual user validation
+What type of project is this?
+[1] Frontend (Playwright)
+[2] API (Bash commands)
+```
+Ask user, then update config.md.
+</step>
 
-## Pre-flight
-- [ ] Application builds and runs without errors
-- [ ] Application launches to expected state
+<step name="prepare_evidence_dir">
+**Create evidence directory for this phase:**
 
-## Acceptance Criteria Tests
+```bash
+mkdir -p .orbit/phases/{NN}-{name}/evidence
+```
+</step>
 
-### AC-1: [Criteria from plan]
-**What to test:** [User-observable behavior]
-**Steps:**
-1. [Specific action to take]
-2. [What to look for]
-3. [Expected result]
+<!-- ============================================================ -->
+<!-- BRANCH A: FRONTEND — PLAYWRIGHT                              -->
+<!-- ============================================================ -->
 
-### AC-2: [Criteria from plan]
-...
+<step name="frontend_setup" condition="testing.type == frontend">
+**Check Playwright is available:**
 
-## Edge Cases
-- [ ] [Relevant edge case based on feature]
-- [ ] [Another edge case]
-
-## Visual/UX Check
-- [ ] UI matches expected design
-- [ ] No visual glitches or layout issues
+```bash
+npx playwright --version 2>/dev/null
 ```
 
-Present this checklist to user.
+If not installed:
+```
+Playwright not found. Installing...
+npm install --save-dev @playwright/test
+npx playwright install
+```
+
+**Configure evidence collection** based on `testing.frontend.evidence`:
+
+- `video` → ensure `playwright.config` has `use: { video: 'on' }`
+- `screenshot` → ensure `use: { screenshot: 'on' }`
+- `log` → no extra config needed, capture stdout only
+
+If `playwright.config.ts` / `playwright.config.js` doesn't exist, create minimal config:
+
+```typescript
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  use: {
+    video: '[video_setting]',       // 'on' | 'off'
+    screenshot: '[screenshot_setting]', // 'on' | 'off'
+    outputFolder: '.orbit/phases/{NN}-{name}/evidence',
+  },
+});
+```
 </step>
 
-<step name="guide">
-**Guide user through each test:**
+<step name="frontend_run" condition="testing.type == frontend">
+**Run Playwright tests:**
 
-For each test item, use AskUserQuestion:
-- header: "[AC-N or Feature name]"
-- question: "[Test description] - Did this work as expected?"
-- options:
-  - "Pass" — Works correctly
-  - "Fail" — Doesn't work as expected
-  - "Partial" — Works but with issues
-  - "Skip" — Can't test right now
+```bash
+npx playwright test --reporter=list 2>&1 | tee .orbit/phases/{NN}-{name}/evidence/test-log.txt
+```
 
-**If Pass:** Move to next test
-
-**If Fail or Partial:**
-Follow up with AskUserQuestion:
-- header: "Issue details"
-- question: "What went wrong?"
-- options:
-  - "Crashes/errors" — Application error or exception
-  - "Wrong behavior" — Does something unexpected
-  - "Missing feature" — Expected functionality not present
-  - "UI/visual issue" — Looks wrong but functions
-  - "Let me describe" — Free-form description needed
+Capture exit code. Store as `test_exit_code`.
 </step>
 
-<step name="collect">
-**Collect and categorize issues:**
+<step name="frontend_collect_evidence" condition="testing.type == frontend">
+**Collect and organize evidence** based on config:
 
-For each failed/partial test, gather:
-- Feature/AC affected
-- What went wrong (from user input)
-- Severity:
-  - **Blocker** — Can't use the feature at all
-  - **Major** — Feature works but significant problem
-  - **Minor** — Small issue, feature still usable
-  - **Cosmetic** — Visual only, no functional impact
+- `video` → move Playwright videos to `.orbit/phases/{NN}-{name}/evidence/videos/`
+- `screenshot` → move screenshots to `.orbit/phases/{NN}-{name}/evidence/screenshots/`
+- `log` → `test-log.txt` already saved
+
+List evidence collected:
+```bash
+ls -la .orbit/phases/{NN}-{name}/evidence/
+```
 </step>
 
-<step name="log">
-**Log issues to phase-scoped file:**
+<!-- ============================================================ -->
+<!-- BRANCH B: API — BASH                                         -->
+<!-- ============================================================ -->
 
-If any issues found:
+<step name="api_run" condition="testing.type == api">
+**Extract verify commands from REFINE.md:**
 
-1. Create `.orbit/phases/XX-name/{phase}-{plan}-UAT.md` if doesn't exist
-2. Use template from `@src/templates/TEST.md`
-3. Add each issue with UAT-NNN format:
+Read `.orbit/phases/{NN}-{name}/{plan}-REFINE.md` and extract all `<verify>` sections from tasks.
+
+**Execute each command and capture output:**
+
+```bash
+# For each verify command:
+echo "=== [task name] ===" >> .orbit/phases/{NN}-{name}/evidence/test-log.txt
+[verify command] >> .orbit/phases/{NN}-{name}/evidence/test-log.txt 2>&1
+echo "Exit: $?" >> .orbit/phases/{NN}-{name}/evidence/test-log.txt
+echo "" >> .orbit/phases/{NN}-{name}/evidence/test-log.txt
+```
+
+Track each command's exit code. Store as list of `{task, command, exit_code, output}`.
+</step>
+
+<!-- ============================================================ -->
+<!-- SHARED: RESULTS + EVIDENCE + FAILURE CYCLE                  -->
+<!-- ============================================================ -->
+
+<step name="evaluate_results">
+**Parse results:**
+
+- Count passed (exit code 0) vs failed (exit code != 0)
+- List any failures with output snippets
+
+Display:
+```
+════════════════════════════════════════
+TEST RESULTS
+════════════════════════════════════════
+
+Type:     [frontend / api]
+Passed:   [N]
+Failed:   [N]
+
+Evidence: .orbit/phases/{NN}-{name}/evidence/
+
+[If failed:]
+Failures:
+  ✗ [task/test name] — [brief error]
+  ✗ ...
+════════════════════════════════════════
+```
+</step>
+
+<step name="write_test_md">
+**Create TEST.md for this phase:**
+
+Path: `.orbit/phases/{NN}-{name}/{plan}-TEST.md`
 
 ```markdown
-### UAT-001: [Brief description]
+# Test Results: Phase [N] Plan [N]
 
-**Discovered:** [date] during user acceptance testing
-**Phase/Plan:** [phase]-[plan] that was tested
-**Severity:** [Blocker/Major/Minor/Cosmetic]
-**AC:** [Which acceptance criteria this relates to]
-**Description:** [User's description of the problem]
-**Expected:** [What should have happened]
-**Actual:** [What actually happened]
-```
+**Date:** [timestamp]
+**Type:** [frontend / api]
+**Verdict:** [PASS / FAIL]
 
-**Note:** Issues go to phase-scoped UAT file, NOT global `.orbit/ISSUES.md`.
-</step>
+## Results
 
-<step name="summarize">
-**Present test summary:**
+| Test | Status |
+|------|--------|
+| [name] | ✓ Pass / ✗ Fail |
 
-```
-# Test Results: [Plan Name]
+## Evidence
 
-**Tests run:** [N]
-**Passed:** [N]
-**Failed:** [N]
-**Partial:** [N]
-**Skipped:** [N]
+- Log: `.orbit/phases/{NN}-{name}/evidence/test-log.txt`
+- [Videos: `.orbit/phases/{NN}-{name}/evidence/videos/`]
+- [Screenshots: `.orbit/phases/{NN}-{name}/evidence/screenshots/`]
 
-## Issues Found
-[List any issues with severity]
+## Failures
 
-## Verdict
-[Based on results:]
-- ALL PASS: "All tests passed. Feature validated."
-- MINOR ISSUES: "Feature works with minor issues logged."
-- MAJOR ISSUES: "Significant issues found - review before proceeding."
-- BLOCKERS: "Blocking issues found - must fix before continuing."
-
-## Next Steps
-[Based on verdict:]
-- If clean: Suggest proceeding to next phase/plan
-- If issues: Suggest creating FIX plan to address
+[If any, list with error details]
 ```
 </step>
 
-<step name="offer">
-**Offer next actions based on results:**
+<step name="on_failure_restart_cycle">
+**If any tests failed:**
 
-Use AskUserQuestion:
-- header: "Next"
-- question: "What would you like to do?"
-- options (based on results):
+```
+Tests failed. Restarting cycle from OBSERVE to incorporate failure context.
 
-If all passed:
-- "Continue" — Proceed with confidence
-- "Test more" — Run additional manual tests
-- "Done" — Finish testing session
+Failures will be added to OBSERVE context so the plan can be corrected.
 
-If issues found:
-- "Plan fixes" — Create plan to address issues
-- "Log and continue" — Issues logged, proceed anyway
-- "Review issues" — Look at logged issues in detail
+────────────────────────────────────────
+▶ RESTARTING: /orbit:observe
+  Context: test failures from [plan]
+────────────────────────────────────────
+```
+
+Trigger `/orbit:observe` passing failure context:
+- Which tests failed
+- Error output snippets
+- Evidence paths
+
+The cycle restarts: OBSERVE → REFINE → BUILD → INTEGRATE → TEST
+
+**If all tests passed:**
+
+```
+════════════════════════════════════════
+ALL TESTS PASSED ✓
+════════════════════════════════════════
+
+Evidence saved to: .orbit/phases/{NN}-{name}/evidence/
+
+────────────────────────────────────────
+▶ NEXT: /orbit:refine (next phase)
+────────────────────────────────────────
+```
 </step>
 
 </process>
 
 <success_criteria>
-- [ ] Test scope identified from INTEGRATE.md
-- [ ] Checklist generated based on acceptance criteria
-- [ ] User guided through each test via AskUserQuestion
-- [ ] All test results captured (pass/fail/partial/skip)
-- [ ] Any issues logged to phase-scoped UAT file
-- [ ] Summary presented with verdict
-- [ ] User knows next steps based on results
+- [ ] Project type determined from config.md
+- [ ] Tests executed (Playwright or Bash)
+- [ ] Evidence collected in phase evidence directory
+- [ ] TEST.md created with results and evidence paths
+- [ ] On failure: /orbit:observe triggered with failure context
+- [ ] On pass: routed to next phase
 </success_criteria>

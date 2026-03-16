@@ -47,19 +47,30 @@ sonarqube:
 - `sonar-project.properties` in project root
 - SonarQube MCP server configured
 
-### Future Integrations
+### Testing
 
-Reserved for future use:
+Automated test execution and evidence collection.
 
 ```yaml
-# linting:
-#   enabled: false
-#   config_file: .eslintrc
-
-# testing:
-#   enabled: false
-#   coverage_threshold: 80
+testing:
+  type: frontend        # frontend | api
+  frontend:
+    runner: playwright
+    evidence: video     # video | screenshot | log
+  api:
+    runner: bash
 ```
+
+**Frontend (Playwright):**
+- `evidence: video` — records full video of each test run
+- `evidence: screenshot` — captures screenshot on failure
+- `evidence: log` — text output only
+
+**API (Bash):**
+- Executes `<verify>` commands from REFINE.md tasks
+- Captures stdout/stderr to log
+
+**On failure:** Triggers `/orbit:observe` to restart the cycle with failure context.
 
 ## Preferences
 

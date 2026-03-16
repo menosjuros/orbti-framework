@@ -28,7 +28,7 @@ ORBIT is a structured development loop for Claude Code. Each letter is a phase:
 
 | | Phase | What happens |
 |--|-------|-------------|
-| **O** | **Observe** | Evaluate options before planning. Technical decisions, unknowns, approach. |
+| **O** | **Observe** | Load context before planning. Understand a feature, flow, or business rule — technical, domain logic, and decisions already in place. |
 | **R** | **Refine** | Shape the plan. Acceptance criteria, scope, boundaries. |
 | **B** | **Build** | Execute in-session. Sequential tasks, every deviation logged. |
 | **I** | **Integrate** | Reconcile plan vs reality. Record decisions, close the loop. |
@@ -112,11 +112,17 @@ npx github:menosjuros/orbit-framework
 Every unit of work follows this cycle:
 
 ```
-┌──────────────────────────────────────────────┐
-│  REFINE ──▶ BUILD ──▶ INTEGRATE              │
-│  Define     Execute    Reconcile & close     │
-└──────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│  OBSERVE ──▶ REFINE ──▶ BUILD ──▶ INTEGRATE                 │
+│  Load ctx    Define    Execute    Reconcile & close          │
+└──────────────────────────────────────────────────────────────┘
 ```
+
+### OBSERVE
+
+Load all context needed before planning — technical options, business rules, existing codebase patterns, and relevant decisions. Produces an OBSERVE.md consumed by REFINE.
+
+**Always runs before REFINE.** Calling `/orbit:refine` directly triggers observe automatically if OBSERVE.md doesn't exist yet for the phase. If it already exists, it's skipped.
 
 ### REFINE
 
@@ -149,6 +155,7 @@ Close the loop — **never skip this**:
 **Starting a new project:**
 ```
 /orbit:init → /orbit:refine → /orbit:build → /orbit:integrate
+             (observe runs automatically before refine)
 ```
 
 **Resuming after a break (new session):**
@@ -221,7 +228,7 @@ Run `/orbit:help` for the full reference.
 
 | Command | What it does |
 |---------|--------------|
-| `/orbit:observe <topic>` | Explore technical options before planning |
+| `/orbit:observe <topic>` | Load context before planning (auto-runs as refine dependency) |
 | `/orbit:discuss <phase>` | Capture decisions before planning |
 | `/orbit:assumptions <phase>` | Surface Claude's intended approach |
 | `/orbit:consider-issues` | Triage deferred issues |

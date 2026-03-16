@@ -34,16 +34,39 @@ Scope: $ARGUMENTS (optional)
 <process>
 
 <step name="detect_mode">
-Check for Playwright:
+**Step 1 — Read config:**
 ```bash
-npx playwright --version 2>/dev/null && echo "PLAYWRIGHT_AVAILABLE" || echo "MANUAL_MODE"
+cat .orbit/config.md 2>/dev/null | grep -A 10 "testing:"
 ```
 
-**If PLAYWRIGHT_AVAILABLE:**
-→ Follow workflow: @~/.claude/orbit-framework/workflows/playwright-test.md
+Extract:
+- `automated` — true/false
+- `type` — ui / api / both / none (default: ui)
+- `evidence.video`, `evidence.screenshot`
 
-**If MANUAL_MODE:**
-→ Follow workflow: @~/.claude/orbit-framework/workflows/verify-work.md
+**Step 2 — Route based on config:**
+
+| Config state | Action |
+|---|---|
+| `automated: false` or no config | Manual → `verify-work.md` |
+| `automated: true, type: ui` | UI tests → `playwright-test.md` |
+| `automated: true, type: api` | API tests → `api-test.md` |
+| `automated: true, type: both` | UI tests first → `playwright-test.md`, then API → `api-test.md` |
+| Playwright not installed | Warn, fallback to manual |
+
+**Step 3 — Check Playwright if needed (ui/api/both):**
+```bash
+npx playwright --version 2>/dev/null && echo "FOUND" || echo "NOT_FOUND"
+```
+
+If NOT_FOUND and automated: true:
+```
+Playwright not found. To enable automated testing:
+  npm init playwright@latest
+
+Falling back to manual testing.
+```
+→ Route to verify-work.md
 </step>
 
 </process>

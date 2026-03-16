@@ -47,19 +47,37 @@ sonarqube:
 - `sonar-project.properties` in project root
 - SonarQube MCP server configured
 
-### Future Integrations
+### Testing
 
-Reserved for future use:
+Automated acceptance testing configuration for `/orbit:test`.
 
 ```yaml
-# linting:
-#   enabled: false
-#   config_file: .eslintrc
-
-# testing:
-#   enabled: false
-#   coverage_threshold: 80
+testing:
+  automated: false          # true = run tests automatically; false = manual UAT only
+  type: ui                  # ui | api | both
+  evidence:
+    video: true             # record .webm video per test (ui/both only)
+    screenshot: true        # capture screenshots (ui/both only)
+    logs: true              # save request/response logs (api/both always true)
 ```
+
+**type options:**
+- `ui` — Playwright browser tests (web apps, SPAs, full-stack)
+- `api` — Playwright request tests (REST APIs, no browser needed)
+- `both` — browser + API tests in the same suite
+
+**evidence options (ui/both):**
+- `video: true` — records full `.webm` video of each test
+- `screenshot: true` — captures screenshot at end of each test
+- `video: false, screenshot: false` — logs only (good for headless CI)
+
+**When automated: false:**
+- `/orbit:test` runs manual guided UAT regardless of type
+- Testing config is ignored until automated: true
+
+**Requirements:**
+- `@playwright/test` installed in project
+- Dev server running at configured base URL
 
 ## Preferences
 
@@ -107,11 +125,16 @@ sonarqube:
   server_url: http://localhost:9000
 ```
 
-### Future Integrations
+### Testing
 
 ```yaml
-# linting:
-#   enabled: false
+testing:
+  automated: true
+  type: ui
+  evidence:
+    video: true
+    screenshot: true
+    logs: true
 ```
 
 ## Preferences

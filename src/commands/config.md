@@ -45,11 +45,55 @@ Would you like to set up project configuration?
 ```
 Available integrations:
 
-[1] SonarQube - Code quality scanning
+[1] Testing  - Automated acceptance tests (Playwright)
+    Status: [automated: on/off | type: ui/api/both | evidence: video+screenshot/screenshot/logs]
+
+[2] SonarQube - Code quality scanning
     Status: [enabled/disabled/not configured]
 
-[2] Done - save and exit
+[3] Done - save and exit
 ```
+
+**If user selects Testing:**
+
+```
+Testing configuration:
+
+Current: automated=[true/false]  type=[ui/api/both/none]
+
+[1] Toggle automated on/off
+[2] Change type (ui / api / both / none)
+[3] Change evidence (video+screenshot / screenshot / logs only)
+[4] Change base URL
+[5] Back
+```
+
+**Toggle automated:**
+- Flip `automated` true↔false in config.md
+
+**Change type:**
+```
+Project type:
+[1] UI/Web    — browser tests, screenshots, video
+[2] API/Backend — HTTP tests, response logs only
+[3] Both      — browser + API
+[4] None      — disable automated testing
+```
+Update `type` in config.md.
+
+**Change evidence (UI/Both only):**
+```
+Evidence to collect:
+[1] Video + Screenshot  (full recording + snapshot)
+[2] Screenshot only
+[3] Logs only           (no visual evidence)
+```
+Update `evidence.video` and `evidence.screenshot` in config.md.
+
+**Change base URL:**
+- Prompt for new URL, update `base_url` or `api_base_url` as appropriate.
+
+---
 
 **If user selects SonarQube:**
 
@@ -118,6 +162,7 @@ CONFIG UPDATED
 ════════════════════════════════════════
 
 Integrations:
+  Testing:   automated=[on/off] type=[ui/api/both/none] evidence=[video+screenshot/screenshot/logs]
   SonarQube: [enabled/disabled]
 
 Config saved to: .orbit/config.md

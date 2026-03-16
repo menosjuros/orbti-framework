@@ -18,6 +18,25 @@ If not found, suggest: `npm init playwright@latest` and exit this workflow.
 
 <process>
 
+<step name="read_config">
+Read `.orbit/config.md` testing block:
+
+```yaml
+testing:
+  automated: true
+  type: ui          # or both
+  base_url: http://localhost:3000
+  evidence:
+    video: true       # record video?
+    screenshot: true  # capture screenshots?
+    logs: true
+```
+
+Store `evidence_video`, `evidence_screenshot`, `base_url` from config.
+
+If config missing or `automated: false` → route to manual verify-work.md.
+</step>
+
 <step name="detect_playwright">
 Check if Playwright is available:
 ```bash
@@ -96,22 +115,22 @@ test.describe('{Plan Name} — Acceptance Tests', () => {
 });
 ```
 
-Also generate/update `playwright.config.ts` in the project root to enable video recording:
+Also generate/update `playwright.config.ts` based on config evidence settings:
 
 ```typescript
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   use: {
-    video: 'on',          // record video for every test
-    screenshot: 'on',     // screenshot on every test
-    trace: 'on',          // trace for debugging
+    video: '{evidence_video ? "on" : "off"}',           // from config: evidence.video
+    screenshot: '{evidence_screenshot ? "on" : "off"}', // from config: evidence.screenshot
+    trace: 'on',                                        // always on for debugging
   },
   outputDir: '.orbit/phases/{phase-dir}/evidence',
 });
 ```
 
-If `playwright.config.ts` already exists, add only the missing `video`, `screenshot`, and `trace` fields under `use:` — do NOT overwrite the entire file.
+If `playwright.config.ts` already exists, update only `video`, `screenshot`, and `trace` under `use:` — do NOT overwrite other settings.
 
 **Mapping rules (Given/When/Then → Playwright):**
 

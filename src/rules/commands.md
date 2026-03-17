@@ -38,7 +38,7 @@ A command should fit on one screen. If it grows beyond that, logic belongs in a 
 
 ```markdown
 <execution_context>
-@src/workflows/plan-phase.md
+@src/workflows/refine.md
 @src/templates/REFINE.md
 @src/references/checkpoints.md
 </execution_context>
@@ -83,7 +83,7 @@ Create or continue a PLAN for the specified phase.
 </objective>
 
 <execution_context>
-@src/workflows/plan-phase.md
+@src/workflows/refine.md
 @src/templates/REFINE.md
 @src/references/plan-format.md
 </execution_context>
@@ -97,7 +97,7 @@ $ARGUMENTS
 </context>
 
 <process>
-Follow workflow: @src/workflows/plan-phase.md
+Follow workflow: @src/workflows/refine.md
 </process>
 
 <success_criteria>

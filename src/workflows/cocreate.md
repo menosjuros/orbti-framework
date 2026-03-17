@@ -1,5 +1,5 @@
 <purpose>
-Facilitate vision articulation before planning a phase. Acts as a thinking partner to explore what the user wants to accomplish, then creates CONTEXT.md for handoff to plan-phase.
+Facilitate vision articulation before planning a phase. Acts as a thinking partner to explore what the user wants to accomplish, then creates CONTEXT.md for handoff to refine.
 
 **Philosophy:** Goals first — everything else (approach, constraints, risks) derives from what the user wants to achieve.
 
@@ -15,7 +15,7 @@ Facilitate vision articulation before planning a phase. Acts as a thinking partn
 
 <loop_context>
 N/A - This is a pre-planning workflow, not a loop phase.
-After discussion, routes to /orbit:refine (plan-phase).
+After discussion, routes to /orbit:refine (refine).
 </loop_context>
 
 <required_reading>
@@ -151,7 +151,7 @@ This file persists across /clear so you can take a break if needed.
 </step>
 
 <step name="handoff">
-Route to plan-phase:
+Route to refine:
 
 ```
 ════════════════════════════════════════

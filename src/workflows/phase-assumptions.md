@@ -165,7 +165,7 @@ What's next?
 
 Wait for user selection.
 
-If "Plan this phase": Proceed to plan-phase workflow with validated assumptions
+If "Plan this phase": Proceed to refine workflow with validated assumptions
 If "Re-examine": Return to analyze_phase with updated understanding
 </step>
 

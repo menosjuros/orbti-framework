@@ -12,7 +12,7 @@ Create or continue a PLAN for the specified phase.
 </objective>
 
 <execution_context>
-@~/.claude/orbit-framework/workflows/plan-phase.md
+@~/.claude/orbit-framework/workflows/refine.md
 @~/.claude/orbit-framework/templates/REFINE.md
 @~/.claude/orbit-framework/references/plan-format.md
 </execution_context>
@@ -26,7 +26,7 @@ $ARGUMENTS
 </context>
 
 <process>
-Follow workflow: @~/.claude/orbit-framework/workflows/plan-phase.md
+Follow workflow: @~/.claude/orbit-framework/workflows/refine.md
 </process>
 
 <success_criteria>

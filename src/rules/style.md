@@ -29,7 +29,7 @@ Exception: INTEGRATE.md deviations section, git commits (their purpose IS tracki
 
 | Type | Convention | Example |
 |------|------------|---------|
-| Files | kebab-case | `plan-phase.md` |
+| Files | kebab-case | `refine.md` |
 | Commands | `orbit:kebab-case` | `orbit:refine` |
 | Step names | snake_case | `name="load_project_state"` |
 | Bash variables | CAPS_UNDERSCORES | `PHASE_ARG` |
@@ -74,7 +74,7 @@ Enable secure user access
 
 ```markdown
 # Static (always load)
-@src/workflows/plan-phase.md
+@src/workflows/refine.md
 @src/templates/REFINE.md
 
 # Project-relative (dynamic)
@@ -91,9 +91,9 @@ ORBIT uses explicit loop phase names:
 
 | Phase | Purpose | Artifacts |
 |-------|---------|-----------|
-| PLAN | Define work, acceptance criteria | REFINE.md |
-| APPLY | Execute approved plan | Code changes, BUILD-LOG |
-| UNIFY | Reconcile plan vs actual | INTEGRATE.md, STATE.md updates |
+| REFINE | Define work, acceptance criteria | REFINE.md |
+| BUILD | Execute approved plan | Code changes |
+| INTEGRATE | Reconcile plan vs actual | INTEGRATE.md, STATE.md updates |
 
 Always reference the current loop position when relevant.
 

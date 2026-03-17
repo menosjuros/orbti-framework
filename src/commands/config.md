@@ -104,13 +104,15 @@ Note: requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1.
 ```
 Agent Teams — parallel research (observe) and review (integrate)
 Current: [enabled/disabled]
+Default: enabled when CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 
-[1] Enable  [2] Disable  [3] Back
+[1] Disable for this project  [2] Re-enable  [3] Back
 ```
 
-Set agent_teams.enabled = true/false in config.md.
+Agent Teams are **on by default** when `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is set.
+Use this option to disable per project (e.g. simpler projects, token cost concerns).
 
-Note: requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1.
+Set agent_teams.enabled = false/true in config.md.
 
 **Step 3: Write config**
 

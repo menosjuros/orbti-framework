@@ -65,12 +65,15 @@ Output: Verbal confirmation to proceed.
 
 For: Choosing between options, new integration.
 
-**Check if agent teams are available:**
+**Check if agent teams are active:**
 ```bash
 echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
+grep "agent_teams:" .orbit/config.md 2>/dev/null | grep "enabled: false"
 ```
 
-**If teams available (value = 1): spawn research team**
+Teams are **on by default** when env var is set — only skip if `agent_teams.enabled: false` in config.
+
+**If teams active: spawn research team**
 
 Create a team with 2-3 researcher teammates, each assigned a different option or perspective. Teammates challenge each other's findings before producing OBSERVE.md.
 
@@ -120,10 +123,13 @@ Output: `.orbit/projects/XX-name/OBSERVE.md`
 
 For: Architectural decisions, novel problems.
 
-**Check if agent teams are available:**
+**Check if agent teams are active:**
 ```bash
 echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
+grep "agent_teams:" .orbit/config.md 2>/dev/null | grep "enabled: false"
 ```
+
+Teams are **on by default** when env var is set — only skip if `agent_teams.enabled: false` in config.
 
 **If teams available (value = 1): spawn adversarial debate team**
 

@@ -150,9 +150,9 @@ Use these to align before writing a single line of plan:
 /orbit:integrate   # close the loop
 ```
 
-**`/orbit:test`** — Runs the integration tests written during BUILD and maps results to AC-1, AC-2... Auto-detects the project's test runner (Jest, Vitest, Pytest, Go test, Cargo). Falls back to guided manual UAT if no test runner is found.
+**`/orbit:test`** — Runs integration tests and maps results to AC-1, AC-2... Auto-detects the project's test runner (Jest, Vitest, Pytest, Go test, Cargo). Falls back to guided manual UAT if no test runner is found.
 
-Tests are written during BUILD — one per AC, alongside the implementation. By the time you reach TEST, the tests already exist and just need to run.
+When **parallel tests** are enabled, tests are written during BUILD alongside the implementation — one per AC. By the time you reach TEST, they already exist and just need to run.
 
 Flags:
 - `--e2e` — also run Playwright CLI browser tests (requires setup below)
@@ -190,7 +190,26 @@ e2e:
   base_url: "http://localhost:3000"
 ```
 
-#### How it works
+#### Parallel Tests (agent teams)
+
+When enabled, BUILD spawns two agents simultaneously:
+- **builder** — implements the tasks in LOOP.md
+- **test-writer** — writes integration tests for each AC as the builder completes tasks
+
+Both share a task list. Test-writer watches for build completions and writes the corresponding test immediately. By the time `/orbit:test` runs, all tests already exist.
+
+To enable, add to `.orbit/config.md`:
+
+```yaml
+parallel_tests:
+  enabled: true   # requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+```
+
+Both features are **disabled by default**. Enable via `/orbit:config` or edit `.orbit/config.md` directly.
+
+---
+
+#### How Playwright CLI works
 
 When `default: true` or `--e2e` is passed:
 1. Integration tests run first (native test runner)

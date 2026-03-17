@@ -26,6 +26,24 @@ Next phase:  INTEGRATE (after execution completes)
 
 <process>
 
+<step name="check_parallel_tests" priority="first">
+**Check if parallel test writing is enabled:**
+
+```bash
+grep -A2 "parallel_tests:" .orbit/config.md 2>/dev/null | grep "enabled: true"
+```
+
+- If `parallel_tests.enabled: true` AND `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`:
+  → **Use team mode**: spawn builder + test-writer agents (see step `parallel_team_build`)
+  → Skip `execute_tasks` step (handled by team)
+
+- If `parallel_tests.enabled: true` AND teams NOT available:
+  → Continue with `execute_tasks`, write tests inline after each task (fallback)
+
+- If `parallel_tests.enabled: false` or not set (default):
+  → Continue normally with `execute_tasks`, no test writing during BUILD
+</step>
+
 <step name="validate_approval" priority="first">
 1. Confirm user has explicitly approved the plan
    - Do NOT assume approval
@@ -97,20 +115,11 @@ For each <task> in order:
    - Create/modify files specified in <files>
    - Follow specific instructions
    - Respect boundaries (DO NOT CHANGE protected files)
-3. **Write integration test for this task's AC (if AC referenced in <done>):**
-   - Find which AC this task satisfies (from <done> field)
-   - Check if the project has a test runner (package.json test script, pytest.ini, go.mod, etc.)
-   - If test runner exists: write a focused integration test alongside the implementation
-     - Place in the project's existing test directory (match conventions)
-     - Name clearly: reference the AC in the test name
-     - Test the behavior, not the implementation
-     - One test per AC — minimal, direct
-   - If no test runner detected: skip (test will be manual UAT)
-4. Run <verify> command/check
-5. Record result:
+3. Run <verify> command/check
+4. Record result:
    - PASS: verification succeeded
    - FAIL: verification failed (stop and report)
-6. Note <done> criteria satisfied
+5. Note <done> criteria satisfied
 
 **If type="checkpoint:human-verify":**
 1. Stop execution
@@ -183,6 +192,45 @@ For each <task> in order:
 3. Wait for user confirmation
 4. Run verification check
 5. Continue if verified, report if failed
+</step>
+
+<step name="parallel_team_build">
+**Team mode: builder + test-writer in parallel**
+
+Only runs when `parallel_tests.enabled: true` AND `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
+
+Spawn a 2-agent team sharing the same task list:
+
+```
+Create a build team for plan: [plan-path]
+
+Spawn 2 teammates:
+
+- builder: implement the tasks in LOOP.md in order.
+  For each task: execute <action>, run <verify>, log result.
+  After each task completes, post to shared task list: "task-N done: [AC satisfied]"
+
+- test-writer: write integration tests for each AC as builder completes tasks.
+  Watch the task list for "task-N done" signals.
+  For each completed task: write a focused integration test for the AC it satisfies.
+  Rules:
+    - Use the project's existing test runner (detect from package.json / pytest.ini / go.mod)
+    - Place tests in the project's existing test directory (match conventions)
+    - One test per AC, named clearly referencing the AC
+    - Test behavior, not implementation details
+    - No new dependencies
+  Post to task list when each test is written: "test-AC-N written"
+
+Both agents respect LOOP.md boundaries (DO NOT CHANGE sections).
+Builder blocks on checkpoints — test-writer continues working on other ACs.
+```
+
+Team lead monitors both agents. On builder checkpoint: pause team, present checkpoint to user, resume after response.
+
+After both agents complete:
+- Verify all tasks have a corresponding test
+- Any missing: test-writer fills the gap before proceeding
+- Proceed to `finalize` step
 </step>
 
 <step name="handle_failures">

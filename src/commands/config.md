@@ -48,13 +48,16 @@ Available integrations:
 [1] SonarQube - Code quality scanning
     Status: [enabled/disabled/not configured]
 
-[2] Playwright CLI E2E - Browser-based acceptance testing
+[2] Playwright CLI E2E - Browser-based acceptance testing (default: disabled)
     Status: [enabled/disabled/not configured]
 
-[3] Agent Teams - Parallel research and review
+[3] Parallel Tests - Write tests during BUILD using agent teams (default: disabled)
     Status: [enabled/disabled] (requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1)
 
-[4] Done - save and exit
+[4] Agent Teams - Parallel research and review
+    Status: [enabled/disabled] (requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1)
+
+[5] Done - save and exit
 ```
 
 **If user selects SonarQube:**
@@ -102,6 +105,24 @@ project:
 sonarqube:
   enabled: [true/false]
   project_key: [key]
+```
+
+### E2E Testing
+
+```yaml
+e2e:
+  enabled: false
+  runner: playwright-cli
+  browser: chromium
+  default: false
+  base_url: ""
+```
+
+### Parallel Tests
+
+```yaml
+parallel_tests:
+  enabled: false   # requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 ```
 
 ## Preferences

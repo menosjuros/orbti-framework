@@ -2,7 +2,7 @@
 
 # ORBIT
 
-**Observe, Refine, Build, Integrate, Test** — Structured AI-assisted development for Claude Code.
+**Observe, Refine, Build, Integrate, Test** — A structured development loop for Claude Code.
 
 [![npm version](https://img.shields.io/npm/v/orbit-framework?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/orbit-framework)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
@@ -14,327 +14,211 @@
 npx github:menosjuros/orbit-framework
 ```
 
-**Works on Mac, Windows, and Linux.**
-
-*"Quality over speed-for-speed's-sake. In-session context over subagent sprawl."*
-
 </div>
 
 ---
 
 ## What is ORBIT
 
-ORBIT is a structured development loop for Claude Code. Each letter is a phase:
+ORBIT is a framework for Claude Code that keeps AI-assisted development **predictable and reliable** across sessions.
 
-| | Phase | What happens |
-|--|-------|-------------|
-| **O** | **Observe** | Optional pre-planning step. Research technical options, compare libraries, and make architecture decisions before planning. Produces an OBSERVE.md with recommendation and confidence level. |
-| **R** | **Refine** | Shape the plan. Acceptance criteria, scope, boundaries. |
-| **B** | **Build** | Execute in-session. Sequential tasks, every deviation logged. |
-| **I** | **Integrate** | Reconcile plan vs reality. Record decisions, close the loop. |
-| **T** | **Test** | Verify against acceptance criteria. No verify, no done. |
+Most AI workflows break down over time: sessions fill up, context degrades, plans get started but never closed, state drifts. ORBIT solves this with a **mandatory closed loop** — every unit of work must be planned, executed, and reconciled before moving on.
 
-The problem ORBIT solves: **context rot**. As sessions fill up, quality degrades. Plans get created but never closed. State drifts. ORBIT keeps implementation in-session (where context is rich), reserves subagents for research, and enforces a closed loop so nothing slips through.
+### How ORBIT stands out
+
+| | ORBIT | Generic AI workflows |
+|--|-------|----------------------|
+| **State** | Tracked in `STATE.md` — always knows where you are | Lost between sessions |
+| **Planning** | Acceptance criteria before a single line of code | Vague prompts |
+| **Execution** | Tasks run sequentially, deviations logged | Freeform, unpredictable |
+| **Closure** | INTEGRATE is mandatory — loop can't skip | Plans abandoned mid-way |
+| **Research** | Subagents for research only, never implementation | Mixed concerns |
+| **Context** | Rich in-session context preserved via pause/resume | Restarts from zero |
 
 ---
 
 ## Getting Started
 
-### 1. Install
+**Prerequisites:** [Node.js](https://nodejs.org) 18+ and [Claude Code](https://claude.ai/code).
+
+### Install
 
 ```bash
 npx github:menosjuros/orbit-framework
 ```
 
-> **Prerequisites:** [Node.js](https://nodejs.org) 18+ and [Claude Code](https://claude.ai/code) installed.
-
-The installer prompts you to choose:
-- **Global** — available in all projects (`~/.claude/`)
-- **Local** — this project only (`./.claude/`)
+Choose **global** (`~/.claude/`) to use in all projects, or **local** (`./.claude/`) for this project only.
 
 <details>
-<summary><strong>Non-interactive install</strong></summary>
+<summary>Non-interactive install</summary>
 
 ```bash
-npx github:menosjuros/orbit-framework --global   # Install to ~/.claude/
-npx github:menosjuros/orbit-framework --local    # Install to ./.claude/
+npx github:menosjuros/orbit-framework --global
+npx github:menosjuros/orbit-framework --local
 ```
 
 </details>
 
-<details>
-<summary><strong>Install via clone</strong></summary>
-
-```bash
-git clone https://github.com/menosjuros/orbit-framework.git
-cd orbit-framework
-node bin/install.js
-```
-
-</details>
-
-### 2. Verify the install
+### Initialize
 
 Restart Claude Code, then run:
 
 ```
-/orbit:help
-```
-
-You should see the full command reference. If commands are missing, see [Troubleshooting](#troubleshooting).
-
-### 3. Initialize a project
-
-```
 /orbit:init
 ```
 
-Creates `.orbit/` with `PROJECT.md`, `ROADMAP.md`, and `STATE.md` through a short conversational setup.
+This creates `.orbit/` with `PROJECT.md`, `ROADMAP.md`, and `STATE.md` through a short conversational setup.
 
-### 4. Run your first loop
-
-```bash
-/orbit:refine     # Define what you're building
-/orbit:build      # Execute the approved plan
-/orbit:integrate  # Close the loop (required)
-```
-
-### Staying updated
-
-```bash
-npx github:menosjuros/orbit-framework
-```
+Verify with `/orbit:help` — you should see the full command reference.
 
 ---
 
-## Workflows
+## The Main Loop
 
-### Minimal — day-to-day
-
-The core loop. Use this every day for any unit of work.
+The core of ORBIT. Every unit of work follows this cycle — no shortcuts.
 
 ```
-/orbit:init          # once per project
-
-/orbit:refine        # define the plan, get approval
-/orbit:build         # execute
-/orbit:integrate     # close the loop — never skip
+┌──────────────────────────────────────────┐
+│  REFINE ──▶ BUILD ──▶ INTEGRATE          │
+│  Define     Execute    Reconcile & close  │
+└──────────────────────────────────────────┘
 ```
 
-Repeat `refine → build → integrate` for each piece of work.
-
----
-
-### Full — maximum structure and clarity
-
-Combine all tools for complex projects with unclear scope, technical unknowns, and team handoffs.
-
 ```
-/orbit:init
-
-/orbit:cocreate-milestone    # align on milestone vision
-/orbit:milestone             # create projects in ROADMAP.md
-
-# Before planning a project
-/orbit:cocreate 3            # articulate what you want to build
-/orbit:assumptions 3         # surface Claude's understanding — catch misalignments early
-/orbit:observe "topic"       # resolve technical unknowns
-
-# The loop
-/orbit:refine 3              # plan informed by cocreate + observe
-/orbit:build
-/orbit:test                  # verify against acceptance criteria
-/orbit:integrate             # close the loop
-
-# Session management
-/orbit:pause                 # safe stop with full context preserved
-/orbit:resume                # restore and continue in next session
-
-/orbit:complete-milestone
+/orbit:refine     # define what you're building — get plan approved
+/orbit:build      # execute the approved plan
+/orbit:integrate  # reconcile and close the loop — never skip
 ```
 
----
-
-## Common Workflows
-
-**Resuming after a break (new session):**
-```
-/orbit:resume
-```
-
-**Checking where you are:**
-```
-/orbit:progress
-```
-
-**Pausing mid-session:**
-```
-/orbit:pause → (new session) → /orbit:resume
-```
-
-**Research before planning:**
-```
-/orbit:research "JWT best practices" → /orbit:refine 2
-```
-
-**Triage deferred issues:**
-```
-/orbit:consider-issues → /orbit:refine
-```
-
----
-
-## The Loop
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│  REFINE ──▶ BUILD ──▶ INTEGRATE                              │
-│  Define    Execute    Reconcile & close                      │
-└──────────────────────────────────────────────────────────────┘
-```
+Repeat for each piece of work.
 
 ### REFINE
 
-Create a LOOP.md with:
-- **Objective** — What you're building and why
+Creates a `LOOP.md` — the contract for what gets built. Defines:
+- **Objective** — what and why
 - **Acceptance Criteria** — Given/When/Then definitions of done
-- **Tasks** — Files, action, verify, done for each step
-- **Boundaries** — What NOT to change
+- **Tasks** — each with `files`, `action`, `verify`, and `done`
+- **Boundaries** — what must NOT change
+
+If you can't fill all four fields per task, the task is too vague to execute.
 
 ### BUILD
 
-Execute the approved plan:
-- Tasks run sequentially
-- Each task has a verification step
-- Checkpoints pause for human input (decision, verify, action)
+Executes the approved plan sequentially:
+- Each task has a built-in verification step
 - Deviations are logged with reason and impact
+- Checkpoints pause for human decisions, visual verification, or manual steps
 
 ### INTEGRATE
 
-Close the loop — **never skip this**:
-- Create INTEGRATE.md documenting what was built
-- Compare plan vs actual
-- Record decisions and deferred issues
-- Update STATE.md
-- If last plan in phase: triggers phase transition and git commit automatically
+Closes the loop — **never skip this**:
+- Compares plan vs what was actually built
+- Records decisions and deferred issues
+- Updates `STATE.md`
+- If it's the last plan in a project: triggers project transition and git commit automatically
 
 ---
 
-## Key Principles
+## Going Deeper
 
-1. **Loop must complete** — REFINE → BUILD → INTEGRATE, no shortcuts
-2. **State is tracked** — STATE.md always knows where you are
-3. **Boundaries are real** — `DO NOT CHANGE` sections are enforced
-4. **Acceptance criteria first** — define done before building
-5. **Skills are enforced** — required skills block BUILD until loaded
-6. **Quality stays in-session** — subagents for research only, not implementation
+These commands add structure before and around the main loop. Use them for complex projects, unclear scope, or multi-session work.
+
+### Before planning a project
+
+Use these to align before writing a single line of plan:
+
+```
+/orbit:cocreate "feature"    # articulate what you want to build
+/orbit:observe "topic"       # research technical unknowns before deciding
+/orbit:assumptions           # surface Claude's understanding — catch misalignments early
+```
+
+**`/orbit:cocreate`** — Conversational exploration of the feature. Helps you articulate goals, scope, and constraints before committing to a plan. Avoids building the wrong thing.
+
+**`/orbit:observe "topic"`** — Deploys research subagents to compare libraries, patterns, or approaches. Produces an `OBSERVE.md` with a recommendation and confidence level. Use when you have a technical unknown that could change the plan.
+
+**`/orbit:assumptions`** — Surfaces what Claude *intends* to do before planning. Run this after cocreate and observe to catch misalignments early, not mid-build.
 
 ---
 
-## Commands
+### The full loop
 
-Run `/orbit:help` for the full reference.
+```
+/orbit:refine      # plan informed by cocreate + observe
+/orbit:build       # execute
+/orbit:test        # verify against acceptance criteria
+/orbit:integrate   # close the loop
+```
 
-### Core Loop
+**`/orbit:test`** — Guides manual acceptance testing against the criteria defined in REFINE. Structured verification: each AC is checked, failures are logged. No test, no done.
 
-| Command | What it does |
-|---------|--------------|
-| `/orbit:init` | Initialize ORBIT in a project |
-| `/orbit:refine [phase]` | Create an executable plan |
-| `/orbit:build [path]` | Execute an approved plan |
-| `/orbit:integrate [path]` | Reconcile and close the loop |
-| `/orbit:progress [context]` | Smart status + ONE next action |
-| `/orbit:help` | Show command reference |
+---
 
-### Session
+### Session management
 
-| Command | What it does |
-|---------|--------------|
-| `/orbit:pause [reason]` | Create handoff for session break |
-| `/orbit:resume [path]` | Restore context and continue |
-| `/orbit:handoff [context]` | Generate comprehensive handoff |
+Work across multiple sessions without losing context:
 
-### Pre-Planning
+```
+/orbit:pause    # safe stop — creates a handoff with full context
+/orbit:resume   # restore context and get exactly ONE next action
+```
 
-| Command | What it does |
-|---------|--------------|
-| `/orbit:observe <topic>` | Research technical options and make decisions before planning |
-| `/orbit:cocreate <project>` | Articulate project vision and goals before planning |
-| `/orbit:assumptions <phase>` | Surface Claude's intended approach |
-| `/orbit:consider-issues` | Triage deferred issues |
+**`/orbit:pause`** — Captures current loop position, open decisions, and next steps into a handoff file. Safe to close Claude Code after this.
 
-### Research
+**`/orbit:resume`** — Reads `STATE.md` and the latest handoff. Gives you exactly one next action — no decision fatigue when returning to work.
 
-| Command | What it does |
-|---------|--------------|
-| `/orbit:research <topic>` | Deploy research agents |
-| `/orbit:research-phase <N>` | Research unknowns for a project |
-
-### Roadmap
-
-| Command | What it does |
-|---------|--------------|
-| `/orbit:add-project <desc>` | Append project to roadmap |
-| `/orbit:remove-project <N>` | Remove future project |
+---
 
 ### Milestones
 
-| Command | What it does |
-|---------|--------------|
-| `/orbit:milestone <name>` | Create new milestone |
-| `/orbit:complete-milestone` | Archive and tag milestone |
-| `/orbit:cocreate-milestone` | Articulate vision before starting a milestone |
+Group related projects into milestones for larger initiatives:
 
-### Specialized
+```
+/orbit:cocreate-milestone    # align on milestone vision before starting
+/orbit:milestone "name"      # create milestone and add projects to ROADMAP.md
+...                          # work through projects with the main loop
+/orbit:complete-milestone    # archive, tag, and close the milestone
+```
 
-| Command | What it does |
-|---------|--------------|
-| `/orbit:map-codebase` | Generate codebase overview |
-| `/orbit:flows` | Configure skill requirements |
-| `/orbit:config` | View/modify ORBIT settings |
+**`/orbit:cocreate-milestone`** — Like cocreate, but for the full milestone. Define the vision, success criteria, and scope before creating any projects.
 
-### Quality
-
-| Command | What it does |
-|---------|--------------|
-| `/orbit:test` | Guide manual acceptance testing |
-| `/orbit:plan-fix` | Plan fixes for UAT issues |
+**`/orbit:complete-milestone`** — Archives completed milestone to `.orbit/milestones/`, creates a git tag, and prepares `STATE.md` for the next milestone.
 
 ---
 
 ## How It Works
 
-### Project structure
+### File structure
 
 ```
 .orbit/
 ├── PROJECT.md           # Project context and goals
-├── ROADMAP.md           # Phase breakdown and milestones
-├── STATE.md             # Loop position and session state
+├── ROADMAP.md           # Milestones and project breakdown
+├── STATE.md             # Loop position, session state, decisions
 ├── config.md            # Optional integrations
-├── SPECIAL-FLOWS.md     # Optional skill requirements
+├── SPECIAL-FLOWS.md     # Optional skill requirements per project
 ├── milestones/          # Archived completed milestones
-│   └── v0.1-core-loop.md
-└── projects/            # All projects — flat numbering across milestones
-    ├── 01-foundation/
+│   └── v1.0-launch.md
+└── projects/            # Flat numbering — never restarts at 01
+    ├── 01-auth/
     │   ├── 01-01-LOOP.md
     │   └── 01-01-INTEGRATE.md
-    └── 02-features/
+    └── 02-dashboard/
         ├── 02-01-LOOP.md
         └── 02-01-INTEGRATE.md
 ```
 
-Projects are numbered continuously across milestones — they never restart at 01. Milestone grouping lives in `ROADMAP.md`, not in the folder structure.
+Projects are numbered continuously across milestones. Milestone grouping lives in `ROADMAP.md`, not in the folder structure.
 
 ### State management
 
-**STATE.md** tracks current project, loop position (REFINE/BUILD/INTEGRATE), session continuity, accumulated decisions, and blockers. `/orbit:resume` reads it and gives exactly ONE next action — no decision fatigue.
+`STATE.md` always knows where you are: current project, loop position (REFINE / BUILD / INTEGRATE), accumulated decisions, and blockers. `/orbit:resume` reads it and gives exactly ONE next action.
 
 ### LOOP.md structure
 
 ```markdown
 ---
-project: 01-foundation
+project: 01-auth
 plan: 01
 type: execute
 autonomous: true
@@ -349,10 +233,10 @@ Goal, Purpose, Output
 </context>
 
 <acceptance_criteria>
-## AC-1: Feature Works
-Given [precondition]
-When [action]
-Then [outcome]
+## AC-1: Login works
+Given a valid user
+When they submit credentials
+Then they receive a JWT token
 </acceptance_criteria>
 
 <tasks>
@@ -360,7 +244,7 @@ Then [outcome]
   <name>Create login endpoint</name>
   <files>src/api/auth/login.ts</files>
   <action>Implementation details...</action>
-  <verify>curl command returns 200</verify>
+  <verify>curl returns 200 with token</verify>
   <done>AC-1 satisfied</done>
 </task>
 </tasks>
@@ -372,45 +256,38 @@ Then [outcome]
 </boundaries>
 ```
 
-Every task requires `files`, `action`, `verify`, `done`. If you can't fill all four, the task is too vague to execute.
-
 ### Task types
 
 | Type | Use for |
 |------|---------|
 | `auto` | Fully autonomous execution |
 | `checkpoint:decision` | Choices requiring human input |
-| `checkpoint:human-verify` | Visual/functional verification |
-| `checkpoint:human-action` | Manual steps (rare) |
-
-### CARL integration
-
-ORBIT integrates with **[CARL](https://github.com/ChristopherKahler/carl-core)** — a dynamic rule injection system. ORBIT's governance rules load only when inside an `.orbit/` project and disappear when you're not. Context stays lean.
+| `checkpoint:human-verify` | Visual or functional verification |
+| `checkpoint:human-action` | Manual steps (deploy, external service) |
 
 ---
 
 ## Troubleshooting
 
 **Commands not found after install?**
-- Restart Claude Code to reload slash commands
-- Verify files exist in `~/.claude/commands/orbit/` (global) or `./.claude/commands/orbit/` (local)
+Restart Claude Code. Verify files exist in `~/.claude/commands/orbit/` (global) or `./.claude/commands/orbit/` (local).
 
 **Commands not working as expected?**
-- Run `/orbit:help` to verify installation
-- Re-run `npx github:menosjuros/orbit-framework` to reinstall
+Run `/orbit:help` to verify installation. Re-run `npx github:menosjuros/orbit-framework` to reinstall.
 
 **Loop position seems wrong?**
-- Check `.orbit/STATE.md` directly
-- Run `/orbit:progress` for guided next action
+Check `.orbit/STATE.md` directly. Run `/orbit:progress` for guided next action.
 
 **Resuming after a break?**
-- Run `/orbit:resume` — reads STATE.md and handoffs automatically
+Run `/orbit:resume` — reads STATE.md and handoffs automatically.
 
 ---
 
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+This project is a fork of [CARL](https://github.com/ChristopherKahler/carl) by Chris Kahler.
 
 ---
 

@@ -22,16 +22,16 @@
     "orbit",
     "observe-refine-build-integrate-test"
   ],
-  "author": "Chris Kahler",
+  "author": "Flávio Freitas",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChristopherKahler/orbit.git"
+    "url": "git+https://github.com/menosjuros/orbit-framework.git"
   },
   "bugs": {
-    "url": "https://github.com/ChristopherKahler/orbit/issues"
+    "url": "https://github.com/menosjuros/orbit-framework/issues"
   },
-  "homepage": "https://github.com/ChristopherKahler/orbit#readme",
+  "homepage": "https://github.com/menosjuros/orbit-framework#readme",
   "engines": {
     "node": ">=16.7.0"
   }

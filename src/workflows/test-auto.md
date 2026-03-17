@@ -72,48 +72,18 @@ Falling back to manual UAT.
 </step>
 
 <step name="map_acs_to_tests">
-**Find existing tests for each AC:**
+**Verify tests were written during BUILD:**
 
-For each AC in the LOOP.md:
-1. Search for existing tests that cover it:
-   ```bash
-   grep -r "AC-[0-9]" tests/ spec/ __tests__/ 2>/dev/null
-   grep -r "[keyword from AC description]" tests/ spec/ __tests__/ 2>/dev/null
-   ```
-2. Mark each AC as:
-   - `covered` — existing test found
-   - `missing` — no test found, needs to be written
-</step>
+Tests should already exist — they are written during BUILD alongside the implementation.
 
-<step name="write_missing_tests">
-**Write integration tests for uncovered ACs:**
-
-For each `missing` AC:
-
-1. Identify the appropriate test file location based on project conventions:
-   - Look at existing test files for naming patterns
-   - Place new test file alongside existing ones
-
-2. Write a focused integration test:
-   - Test the actual behavior, not implementation details
-   - Use the project's existing test helpers and fixtures if any
-   - Name the test clearly referencing the AC: `// AC-1: [description]`
-   - Keep it minimal — one test per AC, covering the Given/When/Then
-
-3. **Do not:**
-   - Add test frameworks or new dependencies
-   - Mock things that can be tested directly
-   - Write unit tests when an integration test is appropriate
-
-**Example pattern (adapt to project language/framework):**
-
+For each AC in the LOOP.md, confirm a test exists:
+```bash
+grep -r "AC-[0-9]" tests/ spec/ __tests__/ test/ 2>/dev/null
 ```
-// AC-2: User receives error on invalid input
-test('returns 400 on invalid payload', async () => {
-  const res = await request(app).post('/endpoint').send({ invalid: true })
-  expect(res.status).toBe(400)
-})
-```
+
+If any AC has no test:
+- Warn: "AC-N has no test — was BUILD completed? Writing test now."
+- Write the missing test before running (same rules as BUILD: one test per AC, behavior not implementation, no new dependencies)
 </step>
 
 <step name="run_tests">

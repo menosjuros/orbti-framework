@@ -97,11 +97,20 @@ For each <task> in order:
    - Create/modify files specified in <files>
    - Follow specific instructions
    - Respect boundaries (DO NOT CHANGE protected files)
-3. Run <verify> command/check
-4. Record result:
+3. **Write integration test for this task's AC (if AC referenced in <done>):**
+   - Find which AC this task satisfies (from <done> field)
+   - Check if the project has a test runner (package.json test script, pytest.ini, go.mod, etc.)
+   - If test runner exists: write a focused integration test alongside the implementation
+     - Place in the project's existing test directory (match conventions)
+     - Name clearly: reference the AC in the test name
+     - Test the behavior, not the implementation
+     - One test per AC — minimal, direct
+   - If no test runner detected: skip (test will be manual UAT)
+4. Run <verify> command/check
+5. Record result:
    - PASS: verification succeeded
    - FAIL: verification failed (stop and report)
-5. Note <done> criteria satisfied
+6. Note <done> criteria satisfied
 
 **If type="checkpoint:human-verify":**
 1. Stop execution

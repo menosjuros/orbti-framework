@@ -150,7 +150,9 @@ Use these to align before writing a single line of plan:
 /orbit:integrate   # close the loop
 ```
 
-**`/orbit:test`** — Auto-detects the project's test runner (Jest, Vitest, Pytest, Go test, Cargo), writes integration tests for any ACs without coverage, runs them, and maps results to AC-1, AC-2... Falls back to guided manual UAT if no test runner is found.
+**`/orbit:test`** — Runs the integration tests written during BUILD and maps results to AC-1, AC-2... Auto-detects the project's test runner (Jest, Vitest, Pytest, Go test, Cargo). Falls back to guided manual UAT if no test runner is found.
+
+Tests are written during BUILD — one per AC, alongside the implementation. By the time you reach TEST, the tests already exist and just need to run.
 
 Flags:
 - `--e2e` — also run Playwright CLI browser tests (requires setup below)

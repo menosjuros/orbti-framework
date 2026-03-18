@@ -270,14 +270,6 @@ Group related projects into milestones for larger initiatives:
 | `/orbit:observe "topic"` | Deploy research subagents to compare options — produces `OBSERVE.md` |
 | `/orbit:assumptions` | Surface what Claude intends to do — catch misalignments before build |
 
-### Session management
-
-| Command | Description |
-|---------|-------------|
-| `/orbit:pause` | Safe stop — captures full context into a handoff file |
-| `/orbit:resume` | Restore context and get exactly one next action |
-| `/orbit:progress` | Smart status — shows where you are and suggests the next step |
-
 ### Project setup
 
 | Command | Description |

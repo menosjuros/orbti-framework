@@ -54,41 +54,20 @@ Available integrations:
 [1] SonarQube - Code quality scanning
     Status: [enabled/disabled/not configured]
 
-[2] Playwright CLI E2E - Browser-based acceptance testing (default: disabled)
-    Status: [enabled/disabled/not configured]
-
-[3] Test Writer - Write integration tests alongside /orbit:build (default: disabled)
+[2] Test Writer - Write integration tests alongside /orbit:build (default: disabled)
     Status: [enabled/disabled]
     Note: if Agent Teams active, tests written in parallel; otherwise written sequentially
 
-[4] Agent Teams - Parallel research and review (default: disabled)
+[3] Agent Teams - Parallel research and review (default: disabled)
     Status: [enabled/disabled]
 
-[5] Done - save and exit
+[4] Done - save and exit
 ```
 
 **If user selects SonarQube:**
 
 Prompt for project_key (default: directory name).
 Set sonarqube.enabled = true/false in config.md.
-
----
-
-**If user selects Playwright CLI E2E:**
-
-```
-Playwright CLI E2E — run browser tests on /orbit:test
-Current: [enabled/disabled]
-
-[1] Enable  [2] Disable  [3] Back
-```
-
-If enabling:
-1. Check if Playwright CLI is installed: `playwright-cli --version 2>/dev/null || echo "NOT_INSTALLED"`
-2. If not installed: `npm install -g @playwright/cli@latest && playwright-cli install --skills && playwright-cli install chromium`
-3. Set e2e.enabled = true in config.md.
-
-If disabling: set e2e.enabled = false.
 
 ---
 
@@ -166,17 +145,6 @@ project:
 sonarqube:
   enabled: [true/false]
   project_key: [key]
-```
-
-### E2E Testing
-
-```yaml
-e2e:
-  enabled: false
-  runner: playwright-cli
-  browser: chromium
-  default: false
-  base_url: ""
 ```
 
 ### Test Writer

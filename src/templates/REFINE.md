@@ -239,16 +239,16 @@ Then [expected outcome]
 
 ## Scope Guidance
 
-**Plan sizing:**
-- 2-3 tasks per plan maximum
+**Refine sizing:**
+- 2-3 tasks per refine maximum
 - ~50% context usage target
-- Single concern per plan
+- Single concern per refine
 
-**When to split into multiple plans:**
+**When to split into multiple refines:**
 - Different subsystems (auth vs API vs UI)
 - More than 3 tasks
 - Risk of context overflow
-- TDD candidates (separate plans)
+- TDD candidates (separate refines)
 
 **Prefer vertical slices:**
 ```

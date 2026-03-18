@@ -36,7 +36,7 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 
 ## Resolved Issues
 
-[Moved here after fix plan executes and fixes are verified]
+[Moved here after fix refine executes and fixes are verified]
 
 ### UAT-001: [Brief description]
 **Resolved:** [date] — Fixed in {project}-{plan}-FIX.md
@@ -122,7 +122,7 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 ## Workflow
 
 1. **verify-work workflow** runs against a INTEGRATE.md
-2. User tests each feature from the plan's AC
+2. User tests each feature from the refine's AC
 3. Issues found → create/update {project}-{plan}-UAT.md
 4. If blockers exist → create FIX plan immediately
 5. If majors exist → create FIX plan before shipping

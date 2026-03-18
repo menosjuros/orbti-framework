@@ -166,7 +166,7 @@ Context saved for handoff.
 
 ────────────────────────────────────────
 ▶ NEXT: /orbit:refine
-  Create the plan structure from this context
+  Create the refine structure from this context
 ────────────────────────────────────────
 
 Type "yes" to proceed, or continue discussing.
@@ -222,7 +222,7 @@ DO: Focus on user input. Use /orbit:assumptions for Claude's analysis.
 - Offer: "We can start with the roadmap goals and refine"
 
 **Scope too large:**
-- Suggest splitting into multiple plans
+- Suggest splitting into multiple refines
 - Ask: "What's the most critical part?"
 
 **User wants to skip discussion:**

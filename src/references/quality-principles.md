@@ -66,10 +66,10 @@ Plans must complete within reasonable context usage.
 - 50-70% context: Degrading quality
 - 70%+ context: Poor quality
 
-**Solution:** Aggressive atomicity - split into small, focused plans.
-- 2-3 tasks per plan maximum
+**Solution:** Aggressive atomicity - split into refines.
+- 2-3 tasks per refine maximum
 - Each plan independently executable
-- Target ~50% context per plan (40% for TDD plans)
+- Target ~50% context per refine (40% for TDD refines)
 </scope_control>
 
 <claude_automates>
@@ -104,7 +104,7 @@ All deviations logged during INTEGRATE for audit trail.
 
 No enterprise process. No approval gates beyond REFINE approval.
 
-Plan → Execute → Ship → Learn → Repeat
+Refine → Execute → Ship → Learn → Repeat
 
 Milestones mark shipped versions (v0.1 → v0.2 → v1.0).
 Decimal phases (8.5) for urgent interruptions.

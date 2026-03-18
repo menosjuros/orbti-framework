@@ -72,7 +72,7 @@ Based on state (+ user context if provided), determine **ONE** next action:
 | Situation | Single Suggestion |
 |-----------|-------------------|
 | No plan exists | `/orbit:refine` |
-| Plan awaiting approval | "Approve plan to proceed" |
+| Plan awaiting approval | "Approve refine to proceed" |
 | Plan approved, not executed | `/orbit:build [path]` |
 | Applied, not unified | `/orbit:integrate [path]` |
 | Loop complete, more phases | `/orbit:refine` (next phase) |

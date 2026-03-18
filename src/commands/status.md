@@ -48,7 +48,7 @@ ORBIT Status
 
 Milestone: [name]
 Project: [X of Y] ([project name])
-Plan: [status]
+Refine: [status]
 
 Loop Position:
 ┌─────────────────────────────────────┐

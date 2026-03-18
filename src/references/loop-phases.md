@@ -39,7 +39,7 @@ Explain the semantics of ORBIT's three loop phases: REFINE, BUILD, INTEGRATE. Ev
 
 **Exit Condition:**
 - REFINE.md created with all required sections
-- User has approved the plan
+- User has approved the refine
 - STATE.md updated to show "ready for BUILD"
 
 **Loop Position:**
@@ -50,7 +50,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 
 ## BUILD Phase
 
-**Purpose:** Execute the approved plan by completing tasks in order, verifying each.
+**Purpose:** Execute the approved refine by completing tasks in order, verifying each.
 
 **Artifacts Created:**
 - Code/files specified in REFINE.md
@@ -120,7 +120,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 **Never Skip REFINE:**
 ```
 # BAD
-"Let me just quickly implement this without a plan"
+"Let me just quickly implement this without a refine"
 
 # GOOD
 "Let me create a REFINE.md first, even for small work"
@@ -130,10 +130,10 @@ Why: No REFINE = no acceptance criteria = no way to verify completion.
 **Never Execute Without Approval:**
 ```
 # BAD
-"I've written the plan, now executing..."
+"I've written the refine, now executing..."
 
 # GOOD
-"Plan created. Ready to execute when you approve."
+"Refine created. Ready to execute when you approve."
 ```
 Why: Plans may have incorrect assumptions. Approval catches issues early.
 
@@ -203,7 +203,7 @@ Why bad: No record of what was built. Can't track progress.
 
 **Implicit approval:**
 ```
-"I assume the plan is approved and will proceed"
+"I assume the refine is approved and will proceed"
 ```
 Why bad: May execute on flawed assumptions. Always wait for explicit approval.
 

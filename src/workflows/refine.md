@@ -51,8 +51,8 @@ Next project: BUILD (after plan approval)
 <step name="analyze_scope">
 1. Review project goals from ROADMAP.md
 2. Estimate number of tasks needed:
-   - Target: 2-3 tasks per plan
-   - If >3 tasks, consider splitting into multiple plans
+   - Target: 2-3 tasks per refine
+   - If >3 tasks, consider splitting into multiple refines
 3. Identify files that will be modified
 4. Determine if checkpoints are needed:
    - Visual verification required? → checkpoint:human-verify
@@ -114,7 +114,7 @@ Required skills will BLOCK build until confirmed loaded.
 
    **Frontmatter:**
    - project: NN-name
-   - plan: 01 (or next number if multiple plans in phase)
+   - plan: 01 (or next number if multiple refines in phase)
    - type: execute (or tdd/research)
    - wave: 1 (adjust if dependencies exist)
    - depends_on: [] (or prior plan IDs if genuine dependency)
@@ -159,7 +159,7 @@ Required skills will BLOCK build until confirmed loaded.
 
    Milestone: v0.1 [Milestone Name]
    Project: [N] of [total] ([Project Name]) — Planning
-   Plan: [NN-PP] created, awaiting approval
+   Refine: [NN-PP] created, awaiting approval
    Status: REFINE created, ready for BUILD
    Last activity: [timestamp] — Created [plan-path]
 
@@ -172,13 +172,13 @@ Required skills will BLOCK build until confirmed loaded.
    Current loop state:
    ```
    REFINE ──▶ BUILD ──▶ INTEGRATE
-     ✓        ○        ○     [Plan created, awaiting approval]
+     ✓        ○        ○     [Refine created, awaiting approval]
    ```
 
    ## Session Continuity
 
    Last session: [timestamp]
-   Stopped at: Plan [NN-PP] created
+   Stopped at: Refine [NN-PP] created
    Next action: Review and approve plan, then run /orbit:build [plan-path]
 
    Resume file: [plan-path]
@@ -194,7 +194,7 @@ Required skills will BLOCK build until confirmed loaded.
    REFINE CREATED
    ════════════════════════════════════════
 
-   Plan: [plan-path]
+   Refine: [plan-path]
    Project: [N] — [Project Name]
 
    [plan summary - key tasks, checkpoints]

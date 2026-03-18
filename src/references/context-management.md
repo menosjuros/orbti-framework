@@ -32,7 +32,7 @@ ORBIT uses context brackets to adapt behavior based on remaining capacity:
 ### DEEP (20-40%)
 - Read INTEGRATE.md instead of full REFINE.md
 - Defer new complex work to fresh session
-- Focus on completing current plan
+- Focus on completing current refine
 - Prepare handoff documentation
 
 ### CRITICAL (<20%)
@@ -87,22 +87,22 @@ Start with high-level, drill down only when needed:
 
 Don't load implementation details until you need them.
 
-## Plan Sizing for Context
+## Refine Sizing for Context
 
-### Target: ~50% Context Usage Per Plan
+### Target: ~50% Context Usage Per Refine
 A plan should use roughly half the available context:
 - Leaves room for execution output
 - Allows error recovery
 - Supports verification steps
 
-### Single Concern Per Plan
+### Single Concern Per Refine
 ```
 GOOD: "Create User model and API endpoints"
 BAD: "Create User model, Product model, Order model, and all API endpoints"
 ```
 
 ### 2-3 Tasks Maximum
-More tasks = more context per plan. Split large projects into multiple plans.
+More tasks = more context per refine. Split large projects into multiple refines.
 
 ## Avoiding Reflexive Chaining
 

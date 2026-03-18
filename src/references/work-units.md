@@ -34,22 +34,22 @@ Why 50% not 80%?
 <task_limits>
 **Each plan: 2-3 tasks maximum. Stay under 50% context.**
 
-| Task Complexity | Tasks/Plan | Context/Task | Total |
+| Task Complexity | Tasks/Refine | Context/Task | Total |
 |-----------------|------------|--------------|-------|
 | Simple (config, single file) | 3 | ~10-15% | ~30-45% |
 | Medium (feature, few files) | 2 | ~20-30% | ~40-50% |
 | Complex (architecture, many files) | 1-2 | ~30-40% | ~30-50% |
 
-**When in doubt: Default to 2 tasks.** Better to have an extra plan than degraded quality.
+**When in doubt: Default to 2 tasks.** Better to have an extra refine than degraded quality.
 </task_limits>
 
 <split_signals>
 
 **Always split when:**
 - More than 3 tasks (even if tasks seem small)
-- Multiple subsystems (DB + API + UI = separate plans)
+- Multiple subsystems (DB + API + UI = separate refines)
 - Any task with >5 file modifications
-- Discovery + implementation (OBSERVE.md in one plan, implementation in another)
+- Discovery + implementation (OBSERVE.md in one refine, implementation in another)
 
 **Consider splitting when:**
 - Estimated >5 files modified total
@@ -134,7 +134,7 @@ ORBIT provides the framework. CARL provides operational automation.
 
 **Bad - Comprehensive plan:**
 ```
-Plan: "Complete Authentication System"
+Refine: "Complete Authentication System"
 Tasks: 8
 Result: Task 1-3 good, Task 4-5 degrading, Task 6-8 rushed
 ```
@@ -150,12 +150,12 @@ Each: 30-40% context, peak quality
 
 <summary>
 **Core rules:**
-- 2-3 tasks per plan
+- 2-3 tasks per refine
 - 50% context target
 - Split when in doubt
 - Vertical slices over horizontal layers
 
-**The principle:** Aggressive atomicity. More plans, smaller scope, consistent quality.
+**The principle:** Aggressive atomicity. More refines, smaller scope, consistent quality.
 </summary>
 
 </work_units>

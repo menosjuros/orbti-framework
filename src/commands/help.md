@@ -40,7 +40,7 @@ Every unit of work follows this cycle:
 
 1. `/orbit:init` - Initialize ORBIT in your project
 2. `/orbit:refine` - Create a plan for your work
-3. `/orbit:build` - Execute the approved plan
+3. `/orbit:build` - Execute the approved refine
 4. `/orbit:integrate` - Close the loop with summary
 
 ## Commands Overview
@@ -362,10 +362,10 @@ Usage: `/orbit:test`
 ---
 
 ### `/orbit:refine-fix`
-Plan fixes for UAT issues from verify.
+Refine fixes for UAT issues from verify.
 
 - Reads issues identified during verify
-- Creates targeted fix plan
+- Creates targeted fix refine
 - Smaller scope than full project plan
 
 Usage: `/orbit:refine-fix`

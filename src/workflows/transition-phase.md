@@ -149,7 +149,7 @@ Update ROADMAP.md:
 1. Mark current project complete:
    - Status: ✅ Complete
    - Completed: [date]
-   - Plan count: X/X
+   - Refine count: X/X
 
 2. Update progress summary:
    - Projects: Y of Z complete

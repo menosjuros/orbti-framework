@@ -77,14 +77,14 @@ If this step was skipped and tasks were already executed: log deviation to STATE
 </step>
 
 <step name="validate_approval" priority="first">
-1. Confirm user has explicitly approved the plan
+1. Confirm user has explicitly approved the refine
    - Do NOT assume approval
    - Look for explicit signal: "approved", "execute", "go ahead", "background", etc.
 2. Read STATE.md to verify:
    - Loop position shows REFINE complete
    - Correct phase and plan identified
 3. If approval unclear:
-   - Ask: "Plan ready at [path]. Approve execution?"
+   - Ask: "Plan ready at [path]. Approve refine execution?"
    - Wait for explicit approval before proceeding
 4. Check execution mode:
    - If invoked via `/orbit:build-bg` → route to `background_build` step
@@ -128,7 +128,7 @@ Confirm to user:
 BUILD RUNNING IN BACKGROUND
 ════════════════════════════════════════
 
-Plan: [plan-path]
+Refine: [plan-path]
 Tasks: [N] tasks
 
 You will be notified when complete.
@@ -404,7 +404,7 @@ After all tasks attempted:
 </output>
 
 <error_handling>
-**Plan not found:**
+**Refine not found:**
 - Check STATE.md for correct path
 - Ask user to confirm plan location
 
@@ -426,7 +426,7 @@ After all tasks attempted:
 
 <anti_patterns>
 **Assuming approval:**
-Do NOT start BUILD without explicit user approval of the plan.
+Do NOT start BUILD without explicit user approval of the refine.
 
 **Skipping check_test_writer:**
 Do NOT jump directly to task execution without checking test_writer config first. With `test_writer: true` + `agent_teams: true`, the correct mode is parallel team build — skipping this step silently drops the test-writing behavior. Always run `check_test_writer` before any task. If already skipped, log the deviation and write tests manually post-build.

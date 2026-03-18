@@ -134,7 +134,7 @@ Use AskUserQuestion with relevant options:
 
 **If urgent issues exist:**
 - "Insert urgent phase" - Create decimal phase (e.g., 10.3)
-- "Add to current plan" - Include in next plan
+- "Add to current refine" - Include in next plan
 - "Defer anyway" - Keep as-is
 
 **If natural fits exist:**

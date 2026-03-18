@@ -181,7 +181,7 @@ See: .orbit/PROJECT.md (updated [timestamp])
 
 Milestone: v0.1 Initial Release
 Phase: Not yet defined
-Plan: None yet
+Refine: None yet
 Status: Ready to create roadmap and first REFINE
 Last activity: [timestamp] — Project initialized
 

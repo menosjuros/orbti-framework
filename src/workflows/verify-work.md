@@ -53,7 +53,7 @@ Map AC to tests:
 Create structured test plan:
 
 ```
-# User Acceptance Test: [Plan Name]
+# User Acceptance Test: [Refine Name]
 
 **Scope:** [What was built - from INTEGRATE.md]
 **Source:** [path to INTEGRATE.md]
@@ -154,7 +154,7 @@ If any issues found:
 **Present test summary:**
 
 ```
-# Test Results: [Plan Name]
+# Test Results: [Refine Name]
 
 **Tests run:** [N]
 **Passed:** [N]
@@ -193,7 +193,7 @@ If all passed:
 - "Done" — Finish testing session
 
 If issues found:
-- "Plan fixes" — Create plan to address issues
+- "Refine fixes" — Create plan to address issues
 - "Log and continue" — Issues logged, proceed anyway
 - "Review issues" — Look at logged issues in detail
 </step>

@@ -1,6 +1,6 @@
 # INTEGRATE.md Template
 
-Template for `.orbit/projects/{project-number}-{name}/{project}-{plan}-INTEGRATE.md` — plan completion documentation.
+Template for `.orbit/projects/{project-number}-{name}/{project}-{plan}-INTEGRATE.md` — refine completion documentation.
 
 **Purpose:** Document what was built, decisions made, deviations from plan, and readiness for next project.
 

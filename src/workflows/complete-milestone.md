@@ -245,7 +245,7 @@ Update STATE.md for post-milestone state:
 
    Milestone: Awaiting next milestone
    Phase: None active
-   Plan: None
+   Refine: None
    Status: Milestone {milestone_name} complete — ready for next
    Last activity: {timestamp} — Milestone completed
    ```

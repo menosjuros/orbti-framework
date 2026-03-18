@@ -59,7 +59,7 @@ Run the detection commands above.
 
 If `--e2e` flag passed:
 - Check if Playwright CLI is available: `npx playwright --version 2>/dev/null`
-- If available: add E2E test writing to the plan
+- If available: add E2E test writing to the refine
 - If not available: warn user and continue with integration tests only
 
 If no runner found and no --e2e:
@@ -89,7 +89,7 @@ If any AC has no test:
 <step name="run_tests">
 **Run the test suite:**
 
-Run only tests related to the current plan's scope when possible.
+Run only tests related to the current refine's scope when possible.
 If the runner supports file filtering, prefer that over running the full suite.
 
 Capture full output. Look for:
@@ -164,7 +164,7 @@ If installed, after integration tests pass:
 
 ```
 ════════════════════════════════════════
-TEST RESULTS: [Plan Name]
+TEST RESULTS: [Refine Name]
 ════════════════════════════════════════
 
 Runner: [detected runner]

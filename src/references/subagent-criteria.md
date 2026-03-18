@@ -80,7 +80,7 @@ Current workflow state supports async completion.
 
 ```
 GOOD state:
-- BUILD phase with autonomous plan
+- BUILD phase with autonomous refine
 - No pending decisions or blockers
 
 BAD state:
@@ -141,7 +141,7 @@ When using subagents:
 1. **Document decision** - Why subagent was chosen
 2. **Define clear handoff** - REFINE.md with full context
 3. **Specify verification** - How to validate subagent output
-4. **Plan integration** - How results merge back to main session
+4. **Refine integration** - How results merge back to main session
 
 ## Anti-Patterns
 

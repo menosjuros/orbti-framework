@@ -1,6 +1,6 @@
 ---
 name: orbit:refine-fix
-description: Create a fix plan (REFINE variant) from UAT issues
+description: Create a fix refine (REFINE variant) from UAT issues
 argument-hint: "<plan, e.g., '04-02'>"
 allowed-tools: [Read, Bash, Write, Glob, Grep, AskUserQuestion]
 ---
@@ -41,7 +41,7 @@ Error: Plan number required.
 
 Usage: /orbit:plan-fix 04-02
 
-This creates a fix plan from .orbit/projects/XX-name/{plan}-UAT.md
+This creates a fix refine from .orbit/projects/XX-name/{plan}-UAT.md
 ```
 Exit.
 </step>
@@ -59,7 +59,7 @@ If not found:
 No UAT.md found for plan {plan}.
 
 UAT.md files are created by /orbit:test when testing finds issues.
-If no issues were found during testing, no fix plan is needed.
+If no issues were found during testing, no fix refine is needed.
 ```
 Exit.
 </step>

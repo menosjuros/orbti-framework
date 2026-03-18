@@ -92,7 +92,7 @@ ORBIT uses explicit loop phase names:
 | Phase | Purpose | Artifacts |
 |-------|---------|-----------|
 | REFINE | Define work, acceptance criteria | REFINE.md |
-| BUILD | Execute approved plan | Code changes |
+| BUILD | Execute approved refine | Code changes |
 | INTEGRATE | Reconcile plan vs actual | INTEGRATE.md, STATE.md updates |
 
 Always reference the current loop position when relevant.

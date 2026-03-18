@@ -6,7 +6,7 @@ Define a new milestone in the project. Creates milestone structure in ROADMAP.md
 - User explicitly requests new milestone
 - Triggered after /orbit:cocreate-milestone (reads context)
 - Project completed previous milestone, needs next
-- Starting fresh project milestone planning
+- Starting fresh project milestone refinening
 </when_to_use>
 
 <loop_context>
@@ -133,7 +133,7 @@ Update STATE.md:
 
    Milestone: {milestone_name}
    Project: {first_project_number} of {total} ({first_project_name})
-   Plan: Not started
+   Refine: Not started
    Status: Ready to plan
    Last activity: {timestamp} — Milestone created
    ```

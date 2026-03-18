@@ -15,10 +15,10 @@ The git log should read like a changelog of what shipped, not a diary of plannin
 | Event                   | Commit? | Why                                              |
 | ----------------------- | ------- | ------------------------------------------------ |
 | PROJECT + ROADMAP init  | YES     | Project initialization                           |
-| REFINE.md created           | NO      | Intermediate - commit with plan completion       |
+| REFINE.md created           | NO      | Intermediate - commit with refine completion       |
 | Research notes          | NO      | Intermediate                                     |
 | **Task completed**      | YES     | Atomic unit of work (1 commit per task)          |
-| **Plan completed**      | YES     | Metadata commit (SUMMARY + STATE + ROADMAP)      |
+| **Refine completed**      | YES     | Metadata commit (SUMMARY + STATE + ROADMAP)      |
 | HANDOFF created         | YES     | WIP state preserved                              |
 
 </commit_points>
@@ -87,9 +87,9 @@ git commit -m "test(07-02): add failing test for JWT generation
 "
 ```
 
-## Plan Completion (After INTEGRATE)
+## Refine Completion (After INTEGRATE)
 
-After all tasks committed, one final metadata commit captures plan completion.
+After all tasks committed, one final metadata commit captures refine completion.
 
 ```
 docs({phase}-{plan}): complete [plan-name]
@@ -163,14 +163,14 @@ Each plan produces 2-4 commits (tasks + metadata). Clear, granular, bisectable.
 <anti_patterns>
 
 **Still don't commit (intermediate artifacts):**
-- REFINE.md creation (commit with plan completion)
+- REFINE.md creation (commit with refine completion)
 - Research notes
 - Minor planning tweaks
 - "Fixed typo in roadmap"
 
 **Do commit (outcomes):**
 - Each task completion (feat/fix/test/refactor)
-- Plan completion metadata (docs)
+- Refine completion metadata (docs)
 - Project initialization (docs)
 - Handoffs (wip)
 
@@ -194,7 +194,7 @@ Each plan produces 2-4 commits (tasks + metadata). Clear, granular, bisectable.
 - Can `git reset --hard` to last successful task
 
 **Debugging:**
-- `git bisect` finds exact failing task, not just failing plan
+- `git bisect` finds exact failing task, not just failing refine
 - `git blame` traces line to specific task context
 - Each commit is independently revertable
 

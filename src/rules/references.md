@@ -76,7 +76,7 @@ References explain concepts for workflows and commands to load when relevant.
 ## Why Boundaries Matter
 
 Without explicit boundaries, AI assistants may:
-- Refactor code outside the plan scope
+- Refactor code outside the refine scope
 - "Improve" working code that wasn't part of the task
 - Break existing functionality while fixing something else
 

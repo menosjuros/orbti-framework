@@ -18,10 +18,10 @@ Available models (as of Claude 4.x):
 | `/orbit:refine`        | Opus    | Planning quality directly affects all downstream work |
 | `/orbit:research`      | Opus    | Synthesis of complex, ambiguous information |
 | `/orbit:assumptions`   | Opus    | Surfacing blind spots requires deep reasoning |
-| `/orbit:build`         | Sonnet  | Execution of an approved plan — capability over cost |
+| `/orbit:build`         | Sonnet  | Execution of an approved refine — capability over cost |
 | `/orbit:test`          | Sonnet  | Test writing + result analysis |
 | `/orbit:integrate`     | Sonnet  | Reconciliation and deviation analysis |
-| `/orbit:refine-fix`      | Sonnet  | Debugging and fix planning |
+| `/orbit:refine-fix`      | Sonnet  | Debugging and fix refinening |
 | `/orbit:debug`         | Sonnet  | Root cause analysis |
 | `/orbit:progress`      | Haiku   | Status read — no reasoning required |
 | `/orbit:pause`         | Haiku   | Handoff file generation — structured, low-complexity |

@@ -141,7 +141,7 @@ The workflow populates from:
 1. **ROADMAP.md** — Phase details, goals, scope, plan lists
 2. **STATE.md** — Decisions from Accumulated Context section
 3. **MILESTONES.md** — Overview description
-4. **SUMMARY files** — Plan completion details
+4. **SUMMARY files** — Refine completion details
 
 ### After archiving
 

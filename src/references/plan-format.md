@@ -213,17 +213,17 @@ Claude: "How? What type? What library? Where?"
 Claude can implement immediately.
 
 ### Too Detailed
-Writing the actual code in the plan. Trust Claude to implement from clear instructions.
+Writing the actual code in the refine. Trust Claude to implement from clear instructions.
 
 ## Sizing Guidance
 
 **Good plan size:** 2-3 tasks, ~50% context usage, single concern.
 
-**When to split into multiple plans:**
+**When to split into multiple refines:**
 - Different subsystems (auth vs API vs UI)
 - More than 3 tasks
 - Risk of context overflow
-- TDD candidates (separate plans)
+- TDD candidates (separate refines)
 
 **Prefer vertical slices:**
 ```

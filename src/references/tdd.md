@@ -10,7 +10,7 @@ TDD is about design quality, not coverage metrics. The red-green-refactor cycle 
 
 ## When TDD Improves Quality
 
-**TDD candidates (create a TDD plan with `type: tdd`):**
+**TDD candidates (create a TDD refine with `type: tdd`):**
 - Business logic with defined inputs/outputs
 - API endpoints with request/response contracts
 - Data transformations, parsing, formatting
@@ -19,7 +19,7 @@ TDD is about design quality, not coverage metrics. The red-green-refactor cycle 
 - State machines and workflows
 - Utility functions with clear specifications
 
-**Skip TDD (use standard plan with `type: execute`):**
+**Skip TDD (use standard refine with `type: execute`):**
 - UI layout, styling, visual components
 - Configuration changes
 - Glue code connecting existing components
@@ -28,16 +28,16 @@ TDD is about design quality, not coverage metrics. The red-green-refactor cycle 
 - Exploratory prototyping
 
 **Heuristic:** Can you write `expect(fn(input)).toBe(output)` before writing `fn`?
-→ Yes: Create a TDD plan
-→ No: Use standard plan, add tests after if needed
+→ Yes: Create a TDD refine
+→ No: Use standard refine, add tests after if needed
 
 </when_to_use_tdd>
 
 <tdd_plan_structure>
 
-## TDD Plan Structure
+## TDD Refine Structure
 
-Each TDD plan implements **one feature** through the full RED-GREEN-REFACTOR cycle.
+Each TDD refine implements **one feature** through the full RED-GREEN-REFACTOR cycle.
 
 ```yaml
 ---
@@ -87,7 +87,7 @@ Output: [Working, tested feature]
 DO NOT CHANGE: [files outside TDD scope]
 ```
 
-**One feature per TDD plan.** If features are trivial enough to batch, they're trivial enough to skip TDD.
+**One feature per TDD refine.** If features are trivial enough to batch, they're trivial enough to skip TDD.
 
 </tdd_plan_structure>
 
@@ -113,7 +113,7 @@ DO NOT CHANGE: [files outside TDD scope]
 2. Run tests - MUST still pass
 3. Only commit if changes made: `refactor({phase}-{plan}): clean up [feature]`
 
-**Result:** Each TDD plan produces 2-3 atomic commits.
+**Result:** Each TDD refine produces 2-3 atomic commits.
 
 </execution_flow>
 
@@ -152,7 +152,7 @@ Example structure (9 test cases covering AC-1, AC-2, AC-3):
 
 ## ORBIT Commit Pattern for TDD Plans
 
-TDD plans produce 2-3 atomic commits (one per phase):
+TDD refines produce 2-3 atomic commits (one per phase):
 
 ```
 test(08-02): add failing test for email validation
@@ -187,7 +187,7 @@ Types for TDD:
 
 ## Context Budget
 
-TDD plans target **~40% context usage** (lower than standard plans' ~50%).
+TDD refines target **~40% context usage** (lower than standard refines' ~50%).
 
 Why lower:
 - RED phase: write test, run test, potentially debug why it didn't fail

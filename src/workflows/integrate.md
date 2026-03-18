@@ -32,7 +32,7 @@ Next phase: REFINE (next plan or next phase)
    - Which tasks completed successfully
    - Which tasks failed (if any)
    - Which checkpoints were resolved and how
-   - Any deviations from the plan
+   - Any deviations from the refine
 2. Read REFINE.md to refresh:
    - Original acceptance criteria
    - Expected outputs
@@ -188,7 +188,7 @@ Update STATE.md — three sections:
 **Project:** [N] — [Name]
 **Plan:** [A] complete
 **Status:** Ready for next REFINE (or transitioning)
-**Last activity:** [timestamp] — Plan [A] integrated
+**Last activity:** [timestamp] — Refine [A] integrated
 
 Loop position:
 REFINE ──▶ BUILD ──▶ INTEGRATE
@@ -196,8 +196,8 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 ```
 
 **3. Session Continuity:**
-- Stopped at: Plan [A] integrated
-- Next action: `/orbit:refine` for Plan [A+1] (or next project)
+- Stopped at: Refine [A] integrated
+- Next action: `/orbit:refine` for Refine [A+1] (or next project)
 - Resume file: point to the INTEGRATE.md just created
 </step>
 

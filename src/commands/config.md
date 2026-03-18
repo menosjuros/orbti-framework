@@ -57,8 +57,9 @@ Available integrations:
 [2] Playwright CLI E2E - Browser-based acceptance testing (default: disabled)
     Status: [enabled/disabled/not configured]
 
-[3] Parallel Tests - Write tests during BUILD using agent teams (default: disabled)
-    Status: [enabled/disabled] (requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1)
+[3] Test Writer - Write integration tests alongside /orbit:build (default: disabled)
+    Status: [enabled/disabled]
+    Note: if Agent Teams active, tests written in parallel; otherwise written sequentially
 
 [4] Agent Teams - Parallel research and review
     Status: [enabled/disabled] (requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1)
@@ -89,19 +90,21 @@ Note: requires Playwright CLI installed. Run /orbit:enable-e2e if not set up yet
 
 ---
 
-**If user selects Parallel Tests:**
+**If user selects Test Writer:**
 
 ```
-Parallel Tests — test-writer agent runs alongside builder during /orbit:build
+Test Writer — writes integration tests for each AC during /orbit:build
 Current: [enabled/disabled]
+
+When enabled:
+  • Agent Teams active → test-writer agent runs in parallel with builder
+  • Agent Teams inactive → tests written sequentially after each task
 
 [1] Enable  [2] Disable  [3] Back
 ```
 
-If enabling: set parallel_tests.enabled = true in config.md.
-If disabling: set parallel_tests.enabled = false.
-
-Note: requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1.
+If enabling: set test_writer.enabled = true in config.md.
+If disabling: set test_writer.enabled = false.
 
 ---
 
@@ -186,11 +189,11 @@ e2e:
   base_url: ""
 ```
 
-### Parallel Tests
+### Test Writer
 
 ```yaml
-parallel_tests:
-  enabled: false   # requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+test_writer:
+  enabled: false   # parallel if Agent Teams active, sequential otherwise
 ```
 
 ## Preferences

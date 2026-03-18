@@ -26,22 +26,23 @@ Next phase:  INTEGRATE (after execution completes)
 
 <process>
 
-<step name="check_parallel_tests" priority="first">
-**Check if parallel test writing is enabled:**
+<step name="check_test_writer" priority="first">
+**Check if Test Writer is enabled:**
 
 ```bash
-grep -A2 "parallel_tests:" .orbit/config.md 2>/dev/null | grep "enabled: true"
+grep -A2 "test_writer:" .orbit/config.md 2>/dev/null | grep "enabled: true"
+echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
 ```
 
-- If `parallel_tests.enabled: true` AND `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`:
-  → **Use team mode**: spawn builder + test-writer agents (see step `parallel_team_build`)
-  → Skip `execute_tasks` step (handled by team)
+- If `test_writer.enabled: false` or not set (default):
+  → Build normally, no test writing during BUILD
 
-- If `parallel_tests.enabled: true` AND teams NOT available:
-  → Continue with `execute_tasks`, write tests inline after each task (fallback)
+- If `test_writer.enabled: true` AND Agent Teams active:
+  → **Parallel mode**: spawn builder + test-writer agents simultaneously
+  → Skip `execute_tasks` step — handled by `parallel_team_build`
 
-- If `parallel_tests.enabled: false` or not set (default):
-  → Continue normally with `execute_tasks`, no test writing during BUILD
+- If `test_writer.enabled: true` AND Agent Teams NOT active:
+  → **Sequential mode**: run `execute_tasks` normally, write test after each task completes
 </step>
 
 <step name="validate_approval" priority="first">
@@ -120,6 +121,9 @@ For each <task> in order:
    - PASS: verification succeeded
    - FAIL: verification failed (stop and report)
 5. Note <done> criteria satisfied
+6. **If sequential test writing active** (`test_writer.enabled: true` AND teams not active):
+   Write integration test for the AC this task satisfies (from <done> field).
+   Use project's existing test runner and conventions. One test per AC, behavior not implementation.
 
 **If type="checkpoint:human-verify":**
 1. Stop execution
@@ -197,7 +201,7 @@ For each <task> in order:
 <step name="parallel_team_build">
 **Team mode: builder + test-writer in parallel**
 
-Only runs when `parallel_tests.enabled: true` AND `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
+Only runs when `test_writer.enabled: true` AND `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
 
 Spawn a 2-agent team sharing the same task list:
 

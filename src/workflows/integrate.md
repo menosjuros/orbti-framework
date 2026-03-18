@@ -16,7 +16,7 @@ Next phase: REFINE (next plan or next phase)
 
 <required_reading>
 @.orbit/STATE.md
-@.orbit/projects/{project}/{plan}-LOOP.md
+@.orbit/projects/{project}/{plan}-REFINE.md
 </required_reading>
 
 <references>
@@ -33,7 +33,7 @@ Next phase: REFINE (next plan or next phase)
    - Which tasks failed (if any)
    - Which checkpoints were resolved and how
    - Any deviations from the plan
-2. Read LOOP.md to refresh:
+2. Read REFINE.md to refresh:
    - Original acceptance criteria
    - Expected outputs
    - Task definitions
@@ -101,11 +101,11 @@ Spawn a 3-reviewer team in parallel. Each reviewer has a distinct lens so they d
 ```
 Create a review team for plan: [plan-path]
 Spawn 3 reviewers:
-- code-reviewer: code quality, adherence to boundaries in LOOP.md, no unintended changes
+- code-reviewer: code quality, adherence to boundaries in REFINE.md, no unintended changes
 - security-reviewer: input validation, exposed secrets, injection risks, auth issues
 - coverage-reviewer: are all ACs actually satisfied? any edge cases missed?
 
-Each reviewer reads the LOOP.md and the changed files.
+Each reviewer reads the REFINE.md and the changed files.
 Each produces a short findings list (PASS or issues with severity: blocker/major/minor).
 Team lead synthesizes into a review summary.
 ```
@@ -204,11 +204,11 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 <step name="check_phase_completion">
 **Determine if this is the last plan in the phase:**
 
-1. Count LOOP.md files in current project directory
+1. Count REFINE.md files in current project directory
 2. Count INTEGRATE.md files (including the one just created)
 3. Compare counts:
-   - If LOOP count = SUMMARY count → Last plan, trigger transition
-   - If LOOP count > SUMMARY count → More loops remain in project
+   - If REFINE count = SUMMARY count → Last plan, trigger transition
+   - If REFINE count > SUMMARY count → More loops remain in project
 </step>
 
 <step name="route_based_on_completion">
@@ -217,7 +217,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 Report with quick continuation:
 ```
 ════════════════════════════════════════
-LOOP COMPLETE
+REFINE COMPLETE
 ════════════════════════════════════════
 
 Plan: {NN}-{plan} — [description]
@@ -281,7 +281,7 @@ Continue to next loop?
 - Ask user to confirm what was completed
 - Document uncertainty in INTEGRATE.md
 
-**LOOP.md missing:**
+**REFINE.md missing:**
 - Cannot reconcile without original plan
 - Ask user to locate or reconstruct
 </error_handling>

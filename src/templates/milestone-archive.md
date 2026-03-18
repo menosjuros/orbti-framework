@@ -13,7 +13,7 @@ Template for milestone archives at `.orbit/milestones/v{VERSION}-{NAME}.md`.
 
 **Status:** ✅ SHIPPED {{DATE}}
 **Phases:** {{PHASE_START}}-{{PHASE_END}}
-**Total Loops:** {{LOOP_COUNT}}
+**Total Loops:** {{REFINE_COUNT}}
 
 ## Overview
 
@@ -26,11 +26,11 @@ Template for milestone archives at `.orbit/milestones/v{VERSION}-{NAME}.md`.
 
 **Goal:** {{PROJECT_GOAL}}
 **Depends on:** {{DEPENDS_ON}}
-**Loops:** {{LOOP_COUNT}} completed
+**Loops:** {{REFINE_COUNT}} completed
 
 Plans:
-- [x] {{PROJECT_NUM}}-01: {{LOOP_DESCRIPTION}}
-- [x] {{PROJECT_NUM}}-02: {{LOOP_DESCRIPTION}}
+- [x] {{PROJECT_NUM}}-01: {{REFINE_DESCRIPTION}}
+- [x] {{PROJECT_NUM}}-02: {{REFINE_DESCRIPTION}}
 [... all plans ...]
 
 **Details:**
@@ -45,7 +45,7 @@ Plans:
 **Reason:** {{INSERTION_REASON}}
 
 Plans:
-- [x] {{PROJECT_NUM}}-01: {{LOOP_DESCRIPTION}}
+- [x] {{PROJECT_NUM}}-01: {{REFINE_DESCRIPTION}}
 {{/DECIMAL_PROJECTS}}
 
 ---
@@ -96,13 +96,13 @@ None
 | `{{DATE}}` | Ship date | `2026-01-28` |
 | `{{PHASE_START}}` | First project number | `7` |
 | `{{PHASE_END}}` | Last project number | `8.7` |
-| `{{LOOP_COUNT}}` | Total plans | `5` |
+| `{{REFINE_COUNT}}` | Total plans | `5` |
 | `{{MILESTONE_DESCRIPTION}}` | One-sentence summary | From MILESTONES.md entry |
 | `{{PROJECT_NUM}}` | Project number | `7` or `8.5` |
 | `{{PROJECT_NAME}}` | Project name | `Session Handoff` |
 | `{{PROJECT_GOAL}}` | Project goal | From ROADMAP.md |
 | `{{DEPENDS_ON}}` | Project dependencies | `Project 6` |
-| `{{LOOP_DESCRIPTION}}` | Plan brief | From ROADMAP.md or SUMMARY |
+| `{{REFINE_DESCRIPTION}}` | Plan brief | From ROADMAP.md or SUMMARY |
 | `{{PROJECT_SCOPE_FROM_ROADMAP}}` | Scope bullets | From ROADMAP.md |
 | `{{INSERTION_REASON}}` | Why decimal inserted | `Urgent quality fix` |
 | `{{DECISION}}` | Decision made | From STATE.md Decisions |

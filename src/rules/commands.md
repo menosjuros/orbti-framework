@@ -101,7 +101,7 @@ Follow workflow: @src/workflows/refine.md
 </process>
 
 <success_criteria>
-- [ ] LOOP.md created in correct project directory
+- [ ] REFINE.md created in correct project directory
 - [ ] All acceptance criteria defined
 - [ ] STATE.md updated with loop position
 </success_criteria>

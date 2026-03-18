@@ -1,5 +1,5 @@
 <purpose>
-Create an executable LOOP.md for the current or specified project. The plan defines objective, acceptance criteria, tasks, boundaries, and verification - everything needed for BUILD phase execution.
+Create an executable REFINE.md for the current or specified project. The plan defines objective, acceptance criteria, tasks, boundaries, and verification - everything needed for BUILD phase execution.
 </purpose>
 
 <when_to_use>
@@ -88,7 +88,7 @@ Next project: BUILD (after plan approval)
    - Read SPECIAL-FLOWS.md
    - Extract skills marked as "required" for the work type being planned
    - Match against phase/plan work being done
-   - Prepare <skills> section content for LOOP.md
+   - Prepare <skills> section content for REFINE.md
 3. If not exists:
    - Add comment: "No SPECIAL-FLOWS.md - skills section omitted"
    - Skip skills section in REFINE (or include minimal placeholder)
@@ -110,7 +110,7 @@ Required skills will BLOCK build until confirmed loaded.
 
 <step name="create_plan">
 1. Create project directory: `.orbit/projects/{NN}-{project-name}/`
-2. Generate LOOP.md following template structure:
+2. Generate REFINE.md following template structure:
 
    **Frontmatter:**
    - project: NN-name
@@ -210,9 +210,9 @@ Required skills will BLOCK build until confirmed loaded.
 </process>
 
 <output>
-LOOP.md at `.orbit/projects/{NN}-{project-name}/{NN}-{plan}-LOOP.md`
+REFINE.md at `.orbit/projects/{NN}-{project-name}/{NN}-{plan}-REFINE.md`
 
-Example: `.orbit/projects/04-workflows-layer/04-01-LOOP.md`
+Example: `.orbit/projects/04-workflows-layer/04-01-REFINE.md`
 </output>
 
 <error_handling>

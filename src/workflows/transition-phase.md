@@ -21,7 +21,7 @@ Handle project-level transition after all plans in a project are complete. Evolv
 <process>
 
 <step name="verify_phase_completion" priority="first">
-1. Count LOOP.md files in current project directory
+1. Count REFINE.md files in current project directory
 2. Count INTEGRATE.md files in current project directory
 3. **Verification:**
    - If counts match: Project complete
@@ -363,7 +363,7 @@ What's next?
 </output>
 
 <success_criteria>
-- [ ] Project LOOP/SUMMARY count verified
+- [ ] Project REFINE/INTEGRATE count verified
 - [ ] Stale handoffs cleaned
 - [ ] PROJECT.md evolved (requirements, decisions)
 - [ ] STATE.md updated (position, context, session)

@@ -77,7 +77,7 @@ Set sonarqube.enabled = true/false in config.md.
 **If user selects Playwright CLI E2E:**
 
 ```
-Playwright CLI E2E — browser-based testing (external tool, not part of ORBIT)
+Playwright CLI E2E — run browser tests on /orbit:test
 Current: [enabled/disabled]
 
 [1] Enable  [2] Disable  [3] Back
@@ -85,7 +85,7 @@ Current: [enabled/disabled]
 
 If enabling:
 
-1. Check if Playwright CLI is installed:
+1. Check if Playwright CLI binary is installed:
    ```bash
    playwright-cli --version 2>/dev/null || echo "NOT_INSTALLED"
    ```
@@ -95,27 +95,27 @@ If enabling:
    ls ~/.claude/skills/playwright-cli 2>/dev/null || echo "NOT_INSTALLED"
    ```
 
-3. If either is missing, show install instructions and do NOT enable:
+3. If either is missing — show instructions and **do NOT enable**:
    ```
    ════════════════════════════════════════
    Playwright CLI not ready
    ════════════════════════════════════════
 
-   Missing: [playwright-cli binary / playwright-cli skill / both]
+   Missing: [playwright-cli binary / skill / both]
 
-   Install steps:
+   To install:
      npm install -g @playwright/cli@latest
      playwright-cli install --skills
      playwright-cli install chromium
 
-   After installing, run /orbit:config again to enable.
+   Run /orbit:config again after installing.
    ════════════════════════════════════════
    ```
 
-4. If both are installed: set `e2e.enabled: true` in config.md. Confirm:
+4. If both installed: set `e2e.enabled: true` in config.md and confirm:
    ```
    ✓ Playwright CLI E2E enabled
-     playwright-cli: installed
+     binary: installed
      skill: installed
    ```
 
@@ -204,6 +204,10 @@ sonarqube:
 ```yaml
 e2e:
   enabled: false
+  runner: playwright-cli
+  browser: chromium
+  default: false
+  base_url: ""
 ```
 
 ### Test Writer

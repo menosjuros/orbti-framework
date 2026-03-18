@@ -1,7 +1,7 @@
 ---
 name: orbit:test
 description: Run integration tests against acceptance criteria — auto-detects test runner, writes missing tests, then falls back to manual UAT
-argument-hint: "[optional: phase or plan number, e.g., '4' or '04-02'] [--manual]"
+argument-hint: "[optional: phase or plan number, e.g., '4' or '04-02'] [--manual] [--e2e]"
 allowed-tools: [Read, Bash, Glob, Grep, Edit, Write, AskUserQuestion, Task]
 ---
 
@@ -10,10 +10,11 @@ Validate that what was built satisfies the acceptance criteria defined in LOOP.m
 
 **Primary mode:** Auto-detect the project's test runner, write integration tests for any ACs without coverage, run them, and map results back to AC-1, AC-2, etc.
 
-**Fallback:** If no test runner is detected, fall back to guided manual UAT.
+**Fallback:** If no test runner is detected and --e2e is not passed, fall back to guided manual UAT.
 
 **Flags:**
 - `--manual` — skip auto-detection, go straight to manual UAT
+- `--e2e` — attempt Playwright CLI for browser-based tests (requires `npx playwright` available)
 </objective>
 
 <execution_context>
@@ -56,5 +57,5 @@ Scope: $ARGUMENTS (optional)
 - Don't skip writing tests — if an AC has no test, write one before running
 - Don't fix issues during testing — capture for /orbit:plan-fix
 - Don't assume pass — run the tests, read the output
-- Don't fix issues during testing — capture for /orbit:plan-fix
+- Don't use Playwright unless --e2e flag is passed or it's already installed
 </anti_patterns>

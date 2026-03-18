@@ -153,6 +153,7 @@ Use these to align before writing a single line of plan:
 **`/orbit:test`** — By default runs guided manual UAT: Claude generates a checklist from the acceptance criteria, you test and report pass/fail. No automation, no dependencies.
 
 Flags:
+- `--e2e` — also run Playwright CLI browser tests (requires E2E enabled in config)
 - `--manual` — force manual UAT even if automation is configured
 
 ---
@@ -171,10 +172,42 @@ Available integrations:
 |-------------|-------------|---------|
 | **Agent Teams** | Parallel research on `/orbit:observe`, code review on `/orbit:integrate` | OFF |
 | **Test Writer** | Writes integration tests during `/orbit:build`, one per AC | OFF |
+| **E2E (Playwright CLI)** | Browser-based tests on `/orbit:test` | OFF |
 
 When **Test Writer** is enabled:
 - Agent Teams also ON → builder + test-writer run simultaneously
 - Agent Teams OFF → test written sequentially after each task
+
+When **E2E** is enabled:
+- Integration tests run first
+- Then Playwright CLI navigates `base_url` and runs browser scenarios per AC
+- E2E failures are **warnings** (not blockers) — integration failures **block** INTEGRATE
+
+#### Enable E2E
+
+**1. Install Playwright CLI and skills:**
+
+```bash
+npm install -g @playwright/cli@latest
+playwright-cli install --skills
+playwright-cli install chromium   # or firefox / webkit
+```
+
+> `playwright-cli install --skills` installs Claude Code skill files into your local `.claude/skills/` — required for agent integration.
+
+**2. Enable in ORBIT:**
+
+```
+/orbit:config → Playwright CLI E2E → Enable
+```
+
+Set your app URL in `.orbit/config.md`:
+
+```yaml
+e2e:
+  enabled: true
+  base_url: "http://localhost:3000"
+```
 
 #### Enable Agent Teams
 

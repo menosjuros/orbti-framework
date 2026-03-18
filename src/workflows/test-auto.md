@@ -1,7 +1,7 @@
 <purpose>
 Auto-detect the project's test runner, write integration tests for any acceptance criteria without coverage, run tests, and map results to ACs.
 
-Falls back to manual UAT if no test runner is found.
+Falls back to manual UAT if no test runner is found and --e2e is not passed.
 </purpose>
 
 <test_runner_detection>
@@ -57,7 +57,12 @@ Read LOOP.md to extract:
 
 Run the detection commands above.
 
-If no runner found:
+If `--e2e` flag passed:
+- Check if Playwright CLI is available: `npx playwright --version 2>/dev/null`
+- If available: add E2E test writing to the plan
+- If not available: warn user and continue with integration tests only
+
+If no runner found and no --e2e:
 ```
 No test runner detected in this project.
 
@@ -110,6 +115,49 @@ For each FAIL:
 - Categorize: assertion error / exception / timeout / setup failure
 </step>
 
+<step name="handle_e2e_optional">
+**E2E with Playwright CLI (--e2e flag or e2e.default: true in config):**
+
+Check config and flag:
+```bash
+# Check if enabled by default in config
+grep -A3 "^e2e:" .orbit/config.md 2>/dev/null | grep "default: true"
+
+# Check if playwright-cli is installed
+playwright-cli --version 2>/dev/null || echo "NOT_INSTALLED"
+```
+
+If not installed:
+```
+Playwright CLI not installed. Run /orbit:enable-e2e to set it up.
+Continuing with integration tests only.
+```
+
+If installed, after integration tests pass:
+
+1. Read `base_url` from `.orbit/config.md` (e2e.base_url)
+   If empty, ask user: "What is your app's base URL? (e.g. http://localhost:3000)"
+
+2. For each user-facing AC, write a minimal Playwright CLI test:
+   ```bash
+   # Tests go in tests/e2e/ or playwright/ (match project convention)
+   # Use playwright-cli snapshot to inspect the page structure first:
+   playwright-cli goto <base_url>
+   playwright-cli snapshot
+   # Then write tests based on what's found
+   ```
+
+3. Run E2E tests via playwright-cli:
+   ```bash
+   playwright-cli goto <base_url>
+   # Execute the scenario steps for each AC
+   playwright-cli screenshot  # capture evidence
+   ```
+
+4. Map results to ACs. E2E failures are **warnings**, not blockers —
+   log them as issues in UAT file but do not block INTEGRATE.
+   Flakiness is real; integration test failures block, E2E failures warn.
+</step>
 
 <step name="report_and_route">
 **Present results and route:**

@@ -34,15 +34,17 @@ grep -A2 "test_writer:" .orbit/config.md 2>/dev/null | grep "enabled: true"
 echo "${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-0}"
 ```
 
-- If `test_writer.enabled: false` or not set (default):
-  → Build normally, no test writing during BUILD
+| Test Writer | Agent Teams | BUILD behavior |
+|-------------|-------------|----------------|
+| OFF (default) | OFF | Build only — no test writing |
+| OFF (default) | ON  | Build only — no test writing. Agent Teams active in other phases (observe, integrate) |
+| ON | OFF | Sequential — write test after each task completes |
+| ON | ON  | Parallel — spawn builder + test-writer agents simultaneously |
 
-- If `test_writer.enabled: true` AND Agent Teams active:
-  → **Parallel mode**: spawn builder + test-writer agents simultaneously
-  → Skip `execute_tasks` step — handled by `parallel_team_build`
-
-- If `test_writer.enabled: true` AND Agent Teams NOT active:
-  → **Sequential mode**: run `execute_tasks` normally, write test after each task completes
+Route:
+- `test_writer.enabled: false` (any teams state) → proceed to `execute_tasks`, no test writing
+- `test_writer.enabled: true` AND teams ON → skip to `parallel_team_build`
+- `test_writer.enabled: true` AND teams OFF → proceed to `execute_tasks` with sequential test writing
 </step>
 
 <step name="validate_approval" priority="first">

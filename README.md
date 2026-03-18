@@ -150,11 +150,10 @@ Use these to align before writing a single line of plan:
 /orbit:integrate   # close the loop
 ```
 
-**`/orbit:test`** — By default runs guided manual UAT: Claude generates a checklist from the acceptance criteria, you test and report pass/fail. No automation, no dependencies.
+**`/orbit:test`** — Auto-detects the project's test runner, writes missing tests, and maps results to each AC. Falls back to guided manual UAT if no runner is found.
 
 Flags:
-- `--e2e` — also run Playwright CLI browser tests (requires E2E enabled in config)
-- `--manual` — force manual UAT even if automation is configured
+- `--manual` — skip auto-detection, go straight to manual UAT
 
 ---
 
@@ -172,42 +171,11 @@ Available integrations:
 |-------------|-------------|---------|
 | **Agent Teams** | Parallel research on `/orbit:observe`, code review on `/orbit:integrate` | OFF |
 | **Test Writer** | Writes integration tests during `/orbit:build`, one per AC | OFF |
-| **E2E (Playwright CLI)** | Browser-based tests on `/orbit:test` | OFF |
+| **E2E (Playwright CLI)** | Browser-based tests via external Playwright CLI | OFF |
 
 When **Test Writer** is enabled:
 - Agent Teams also ON → builder + test-writer run simultaneously
 - Agent Teams OFF → test written sequentially after each task
-
-When **E2E** is enabled:
-- Integration tests run first
-- Then Playwright CLI navigates `base_url` and runs browser scenarios per AC
-- E2E failures are **warnings** (not blockers) — integration failures **block** INTEGRATE
-
-#### Enable E2E
-
-**1. Install Playwright CLI and skills:**
-
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
-playwright-cli install chromium   # or firefox / webkit
-```
-
-> `playwright-cli install --skills` installs Claude Code skill files into your local `.claude/skills/` — required for agent integration.
-
-**2. Enable in ORBIT:**
-
-```
-/orbit:config → Playwright CLI E2E → Enable
-```
-
-Set your app URL in `.orbit/config.md`:
-
-```yaml
-e2e:
-  enabled: true
-  base_url: "http://localhost:3000"
-```
 
 #### Enable Agent Teams
 
@@ -217,20 +185,45 @@ e2e:
 
 Also writes `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` to `.claude/settings.json` automatically. Restart Claude Code after enabling.
 
+#### Enable E2E (Playwright CLI)
+
+Playwright CLI is an external tool — install it independently first:
+
+```bash
+npm install -g @playwright/cli@latest
+playwright-cli install --skills
+playwright-cli install chromium
+```
+
+Then enable in ORBIT:
+
+```
+/orbit:config → Playwright CLI E2E → Enable
+```
+
+ORBIT will verify the binary and skill are installed before enabling.
+
 ---
 
 ### Session management
 
-Work across multiple sessions without losing context:
+Work across multiple sessions and multiple projects without losing context:
 
 ```
-/orbit:pause    # safe stop — creates a handoff with full context
-/orbit:resume   # restore context and get exactly ONE next action
+/orbit:pause    # safe stop — saves context into a handoff file inside the project folder
+/orbit:resume   # restore context — shows all projects and their status, suggests next action
 ```
 
-**`/orbit:pause`** — Captures current loop position, open decisions, and next steps into a handoff file. Safe to close Claude Code after this.
+**`/orbit:pause`** — Marks the current project as `⏸ Paused` in the overview and creates a handoff file at `.orbit/projects/{project}/HANDOFF-{date}.md`. You can then start a different project or close Claude Code.
 
-**`/orbit:resume`** — Reads `STATE.md` and the latest handoff. Gives you exactly one next action — no decision fatigue when returning to work.
+**`/orbit:resume`** — Shows the full Projects Overview with every project's status and loop position. If multiple projects are active or paused, lets you choose which to continue. Then gives exactly one next action.
+
+```
+Projects Overview:
+│  01  auth-service    1/3   ⏸ Paused        ✓ ◉ ○  │
+│  02  dashboard       0/2   🔵 In Progress  ◉ ○ ○  │
+│  03  api-layer       0/2   ○ Pending       ○ ○ ○  │
+```
 
 ---
 
@@ -270,6 +263,14 @@ Group related projects into milestones for larger initiatives:
 | `/orbit:cocreate "feature"` | Conversational exploration — articulate goals and scope before planning |
 | `/orbit:observe "topic"` | Deploy research subagents to compare options — produces `OBSERVE.md` |
 | `/orbit:assumptions` | Surface what Claude intends to do — catch misalignments before build |
+
+### Session management
+
+| Command | Description |
+|---------|-------------|
+| `/orbit:pause` | Mark current project as paused, create handoff in project folder |
+| `/orbit:resume` | Show all projects overview, pick which to continue, get one next action |
+| `/orbit:progress` | Smart status — shows where you are and suggests the next step |
 
 ### Project setup
 
@@ -324,7 +325,12 @@ Projects are numbered continuously across milestones. Milestone grouping lives i
 
 ### State management
 
-`STATE.md` always knows where you are: current project, loop position (REFINE / BUILD / INTEGRATE), accumulated decisions, and blockers. `/orbit:resume` reads it and gives exactly ONE next action.
+A single `STATE.md` acts as the global dashboard — it has two layers:
+
+- **Projects Overview** — one row per project with loop count, status (`○ Pending / ⏸ Paused / 🔵 In Progress / ✅ Complete`), and current loop position
+- **Current Focus** — deep view of the active project with loop position and last activity
+
+`/orbit:resume` reads it and either gives ONE next action (single active project) or shows the Overview and lets you pick which project to continue.
 
 ### LOOP.md structure
 

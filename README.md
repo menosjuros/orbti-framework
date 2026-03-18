@@ -251,6 +251,59 @@ Group related projects into milestones for larger initiatives:
 
 ---
 
+## Command Reference
+
+### Core loop
+
+| Command | Description |
+|---------|-------------|
+| `/orbit:refine` | Plan the next unit of work — creates `LOOP.md` with objective, ACs, tasks, and boundaries |
+| `/orbit:build` | Execute the approved plan sequentially, with verification at each step |
+| `/orbit:integrate` | Reconcile plan vs actual, update state, close the loop — never skip |
+| `/orbit:test` | Verify against acceptance criteria — auto-detects test runner, falls back to manual UAT |
+
+### Before planning
+
+| Command | Description |
+|---------|-------------|
+| `/orbit:cocreate "feature"` | Conversational exploration — articulate goals and scope before planning |
+| `/orbit:observe "topic"` | Deploy research subagents to compare options — produces `OBSERVE.md` |
+| `/orbit:assumptions` | Surface what Claude intends to do — catch misalignments before build |
+
+### Session management
+
+| Command | Description |
+|---------|-------------|
+| `/orbit:pause` | Safe stop — captures full context into a handoff file |
+| `/orbit:resume` | Restore context and get exactly one next action |
+| `/orbit:progress` | Smart status — shows where you are and suggests the next step |
+
+### Project setup
+
+| Command | Description |
+|---------|-------------|
+| `/orbit:init` | Initialize ORBIT in a project — creates `.orbit/` with PROJECT.md, ROADMAP.md, STATE.md |
+| `/orbit:config` | Enable/disable integrations (Agent Teams, Test Writer, E2E) |
+
+### Milestones
+
+| Command | Description |
+|---------|-------------|
+| `/orbit:cocreate-milestone` | Define milestone vision and success criteria before creating projects |
+| `/orbit:milestone "name"` | Create a milestone and add projects to ROADMAP.md |
+| `/orbit:complete-milestone` | Archive milestone, create git tag, prepare for next milestone |
+
+### Utilities
+
+| Command | Description |
+|---------|-------------|
+| `/orbit:help` | Show all available commands |
+| `/orbit:add-phase` | Add a new project to the current milestone |
+| `/orbit:remove-phase` | Remove a future (not started) project |
+| `/orbit:plan-fix` | Plan fixes for issues found during `/orbit:test` |
+
+---
+
 ## How It Works
 
 ### File structure

@@ -60,7 +60,7 @@ Route:
    - Ask: "Plan ready at [path]. Approve execution?"
    - Wait for explicit approval before proceeding
 4. Check execution mode:
-   - If user said "background" or "run in background" → route to `background_build`
+   - If invoked via `/orbit:build-bg` → route to `background_build` step
    - Otherwise → proceed with foreground execution
 </step>
 

@@ -1,7 +1,7 @@
 ---
 name: orbit:build
 description: Execute an approved REFINE plan
-argument-hint: "[plan-path] [--background]"
+argument-hint: "[plan-path]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, AskUserQuestion, Task]
 ---
 
@@ -10,8 +10,6 @@ Execute an approved LOOP.md file, running tasks in order with verification at ea
 
 **When to use:** After REFINE phase complete and plan is approved.
 
-**Flags:**
-- `--background` — run autonomously in background (requires `autonomous: true` plan)
 </objective>
 
 <execution_context>

@@ -94,7 +94,7 @@ Repeat for each piece of work.
 
 ### REFINE
 
-Creates a `LOOP.md` — the contract for what gets built. Defines:
+Creates a `REFINE.md` — the contract for what gets built. Defines:
 - **Objective** — what and why
 - **Acceptance Criteria** — Given/When/Then definitions of done
 - **Tasks** — each with `files`, `action`, `verify`, and `done`
@@ -115,7 +115,7 @@ Closes the loop — **never skip this**:
 - Compares plan vs what was actually built
 - Records decisions and deferred issues
 - Updates `STATE.md`
-- If it's the last plan in a project: triggers project transition and git commit automatically
+- If it's the last refine in a project: triggers project transition and git commit automatically
 
 ---
 
@@ -251,7 +251,7 @@ Group related projects into milestones for larger initiatives:
 
 | Command | Description |
 |---------|-------------|
-| `/orbit:refine` | Plan the next unit of work — creates `LOOP.md` with objective, ACs, tasks, and boundaries |
+| `/orbit:refine` | Plan the next unit of work — creates `REFINE.md` with objective, ACs, tasks, and boundaries |
 | `/orbit:build` | Execute the approved plan sequentially, with verification at each step |
 | `/orbit:build-bg` | Run the approved plan as a background agent — unattended (requires `autonomous: true`) |
 | `/orbit:integrate` | Reconcile plan vs actual, update state, close the loop — never skip |
@@ -295,7 +295,7 @@ Group related projects into milestones for larger initiatives:
 | `/orbit:help` | Show all available commands |
 | `/orbit:add-phase` | Add a new project to the current milestone |
 | `/orbit:remove-phase` | Remove a future (not started) project |
-| `/orbit:plan-fix` | Plan fixes for issues found during `/orbit:test` |
+| `/orbit:refine-fix` | Plan fixes for issues found during `/orbit:test` |
 
 ---
 
@@ -314,11 +314,11 @@ Group related projects into milestones for larger initiatives:
 │   └── v1.0-launch.md
 └── projects/            # Flat numbering — never restarts at 01
     ├── 01-auth/
-    │   ├── 01-01-LOOP.md
+    │   ├── 01-01-REFINE.md
     │   ├── 01-01-INTEGRATE.md
     │   └── HANDOFF-2026-03-17.md   # Created on /orbit:pause, deleted on complete
     └── 02-dashboard/
-        ├── 02-01-LOOP.md
+        ├── 02-01-REFINE.md
         └── 02-01-INTEGRATE.md
 ```
 
@@ -333,12 +333,12 @@ A single `STATE.md` acts as the global dashboard — it has two layers:
 
 `/orbit:resume` reads it and either gives ONE next action (single active project) or shows the Overview and lets you pick which project to continue.
 
-### LOOP.md structure
+### REFINE.md structure
 
 ```markdown
 ---
 project: 01-auth
-plan: 01
+refine: 01
 type: execute
 autonomous: true
 ---

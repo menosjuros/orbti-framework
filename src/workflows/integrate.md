@@ -144,35 +144,6 @@ After team completes, extract:
    - Next Phase (what comes next)
 </step>
 
-<step name="capture_learnings">
-**Extract learnings from deviations and post-build corrections.**
-
-Run only if deviations were recorded in the previous step.
-
-1. Check INTEGRATE.md for any deviations, corrections, or unexpected failures
-2. For each deviation/correction, extract:
-   - What failed or went wrong
-   - Root cause (planning assumption that was wrong)
-   - Fix applied
-   - Pattern to avoid in future REFINE refines
-
-3. Append to `.orbit/LEARNINGS.md` (create if doesn't exist):
-
-```markdown
-## [date] [refine-path]: [brief description]
-
-**What failed:** [what went wrong during BUILD or testing]
-**Root cause:** [why — which planning assumption was wrong]
-**Fix applied:** [what was changed to resolve it]
-**Avoid in future refines:** [specific anti-pattern]
-**Prefer instead:** [what to refine/do instead]
-```
-
-4. If no deviations: skip this step entirely (no entry needed)
-
-**Purpose:** This file is read by REFINE before creating new refines, so the same mistakes are not replanned.
-</step>
-
 <step name="update_state">
 Update STATE.md — three sections:
 

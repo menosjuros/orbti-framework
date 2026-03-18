@@ -17,7 +17,6 @@ Next phase:  INTEGRATE (after execution completes)
 <required_reading>
 @.orbit/STATE.md
 @.orbit/projects/{project}/{refine}-LOOP.md
-@.orbit/LEARNINGS.md (if exists — read before executing any task)
 </required_reading>
 
 <references>
@@ -26,27 +25,6 @@ Next phase:  INTEGRATE (after execution completes)
 </references>
 
 <process>
-
-<step name="check_learnings" priority="first">
-**Check for accumulated learnings before executing any task.**
-
-```bash
-ls .orbit/LEARNINGS.md 2>/dev/null
-```
-
-If exists:
-- Read `.orbit/LEARNINGS.md`
-- For each learning entry, check if any task in this refine touches the same files or patterns
-- If a match found: surface it before executing that task:
-  ```
-  ⚠ Learning from [refine]: [what failed before]
-  Avoiding: [anti-pattern]
-  Applying: [preferred approach]
-  ```
-- Adjust execution approach accordingly — do not repeat known failures
-
-If not exists: skip.
-</step>
 
 <step name="check_test_writer" priority="blocking">
 **BLOCKING CHECK: Must run before any task execution. Do not skip.**

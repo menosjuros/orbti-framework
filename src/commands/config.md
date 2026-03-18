@@ -1,3 +1,9 @@
+---
+name: orbit:config
+description: View and manage ORBIT project configuration and integrations
+allowed-tools: [Read, Write, Edit, Bash, AskUserQuestion]
+---
+
 <objective>
 Manage ORBIT project configuration and integrations. Create or update .orbit/config.md at any point in the project lifecycle.
 </objective>
@@ -104,15 +110,42 @@ Note: requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1.
 ```
 Agent Teams — parallel research (observe) and review (integrate)
 Current: [enabled/disabled]
-Default: enabled when CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 
-[1] Disable for this project  [2] Re-enable  [3] Back
+[1] Enable  [2] Disable  [3] Back
 ```
 
-Agent Teams are **on by default** when `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is set.
-Use this option to disable per project (e.g. simpler projects, token cost concerns).
+**If enabling:**
 
-Set agent_teams.enabled = false/true in config.md.
+1. Set `agent_teams.enabled: true` in `.orbit/config.md`
+
+2. Also set the env var in Claude Code settings so teams actually work.
+   Check if local `.claude/settings.json` exists:
+   ```bash
+   cat .claude/settings.json 2>/dev/null || echo "{}"
+   ```
+   - If `.claude/settings.json` exists: merge `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: "1"` into the `env` block
+   - If not: create `.claude/settings.json` with:
+     ```json
+     {
+       "env": {
+         "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+       }
+     }
+     ```
+
+3. Confirm:
+   ```
+   ✓ Agent Teams enabled
+     .orbit/config.md → agent_teams.enabled: true
+     .claude/settings.json → CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+
+   Restart Claude Code to activate.
+   ```
+
+**If disabling:**
+
+1. Set `agent_teams.enabled: false` in `.orbit/config.md`
+2. Remove `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` from `.claude/settings.json` env block (if present)
 
 **Step 3: Write config**
 

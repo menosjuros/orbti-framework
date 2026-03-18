@@ -83,10 +83,12 @@ Current: [enabled/disabled]
 [1] Enable  [2] Disable  [3] Back
 ```
 
-If enabling: set e2e.enabled = true in config.md.
-If disabling: set e2e.enabled = false.
+If enabling:
+1. Check if Playwright CLI is installed: `playwright-cli --version 2>/dev/null || echo "NOT_INSTALLED"`
+2. If not installed: `npm install -g @playwright/cli@latest && playwright-cli install --skills && playwright-cli install chromium`
+3. Set e2e.enabled = true in config.md.
 
-Note: requires Playwright CLI installed. Run /orbit:enable-e2e if not set up yet.
+If disabling: set e2e.enabled = false.
 
 ---
 

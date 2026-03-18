@@ -185,11 +185,29 @@ When **E2E** is enabled:
 
 #### Enable E2E
 
-```
-/orbit:enable-e2e
+**1. Install Playwright CLI and skills:**
+
+```bash
+npm install -g @playwright/cli@latest
+playwright-cli install --skills
+playwright-cli install chromium   # or firefox / webkit
 ```
 
-Installs `@playwright/cli`, picks your browser, and sets the app URL. Then toggle on/off anytime via `/orbit:config`.
+> `playwright-cli install --skills` installs Claude Code skill files into your local `.claude/skills/` — required for agent integration.
+
+**2. Enable in ORBIT:**
+
+```
+/orbit:config → Playwright CLI E2E → Enable
+```
+
+Set your app URL in `.orbit/config.md`:
+
+```yaml
+e2e:
+  enabled: true
+  base_url: "http://localhost:3000"
+```
 
 #### Enable Agent Teams
 

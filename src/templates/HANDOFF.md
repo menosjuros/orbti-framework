@@ -19,12 +19,12 @@ You have no prior context. This document tells you everything.
 
 **Version:** {{version}}
 **Project:** {{project_number}} of {{total_projects}} — {{project_name}}
-**Plan:** {{plan_id}} — {{plan_status}}
+**Refine:** {{refine_id}} — {{refine_status}}
 
 **Loop Position:**
 ```
 REFINE ──▶ BUILD ──▶ INTEGRATE
-  {{plan_mark}}        {{apply_mark}}        {{unify_mark}}
+  {{refine_mark}}        {{apply_mark}}        {{unify_mark}}
 ```
 
 ---
@@ -55,17 +55,17 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 |------|---------|
 | `.orbit/STATE.md` | Live project state |
 | `.orbit/ROADMAP.md` | Phase overview |
-| {{current_plan_path}} | {{plan_purpose}} |
+| {{current_refine_path}} | {{refine_purpose}} |
 
 ---
 
 ## Resume Instructions
 
 1. Read `.orbit/STATE.md` for latest position
-2. Check if REFINE plan exists for current phase
+2. Check if REFINE refine exists for current phase
 3. Based on loop position:
    - `○○○` (fresh) → Run `/orbit:refine`
-   - `✓○○` (planned) → Review plan, then `/orbit:build`
+   - `✓○○` (planned) → Review refine, then `/orbit:build`
    - `✓✓○` (applied) → Run `/orbit:integrate`
    - `✓✓✓` (complete) → Ready for next project
 

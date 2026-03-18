@@ -34,7 +34,7 @@ Display current loop position (REFINE/BUILD/INTEGRATE) and project progress.
 Read STATE.md and extract:
 - Current milestone
 - Current project (X of Y)
-- Current plan status
+- Current refine status
 - Loop position (REFINE/BUILD/INTEGRATE)
 - Last activity
 </step>
@@ -65,8 +65,8 @@ Next: [recommended action]
 
 <step name="suggest_next">
 Based on loop position, suggest next action:
-- If REFINE needed: "Run /orbit:refine to create plan"
-- If REFINE ready: "Approve plan, then run /orbit:build"
+- If REFINE needed: "Run /orbit:refine to create refine"
+- If REFINE ready: "Approve refine, then run /orbit:build"
 - If BUILD complete: "Run /orbit:integrate to close loop"
 - If INTEGRATE complete: "Loop closed. Ready for next project."
 </step>

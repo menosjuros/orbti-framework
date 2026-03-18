@@ -97,14 +97,14 @@ Template for `.orbit/research/{topic-slug}.md` - research findings from subagent
 ```
 Draft ──▶ Reviewed ──▶ Integrated
   │          │            │
-  │          │            └── Findings used in plan/code
+  │          │            └── Findings used in refine/code
   │          └── Main session vetted findings
   └── Fresh from subagent
 ```
 
 **Draft:** Subagent just completed research
 **Reviewed:** Main session has vetted and confirmed findings
-**Integrated:** Findings have been incorporated into plans or code
+**Integrated:** Findings have been incorporated into refines or code
 
 ---
 

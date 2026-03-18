@@ -1,6 +1,6 @@
 # UAT Issues Template
 
-Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discovered during user acceptance testing.
+Template for `.orbit/projects/XX-name/{project}-{refine}-UAT.md` — issues discovered during user acceptance testing.
 
 **Purpose:** Capture problems found during verify-work workflow. Unlike global ISSUES.md (for deferred enhancements), this file tracks bugs and problems in specific delivered work.
 
@@ -11,7 +11,7 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 ## File Template
 
 ```markdown
-# UAT Issues: Project [X] Plan [Y]
+# UAT Issues: Project [X] Refine [Y]
 
 **Tested:** [date]
 **Source:** [path to INTEGRATE.md that was tested]
@@ -22,7 +22,7 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 ### UAT-001: [Brief description]
 
 **Discovered:** [date]
-**Phase/Plan:** [XX]-[YY]
+**Phase/Refine:** [XX]-[YY]
 **Severity:** [Blocker/Major/Minor/Cosmetic]
 **Feature:** [Which feature from the test checklist]
 **Description:** [User's description of the problem]
@@ -39,13 +39,13 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 [Moved here after fix refine executes and fixes are verified]
 
 ### UAT-001: [Brief description]
-**Resolved:** [date] — Fixed in {project}-{plan}-FIX.md
+**Resolved:** [date] — Fixed in {project}-{refine}-FIX.md
 **Commit:** [hash]
 
 ---
 
 *Project: XX-name*
-*Plan: YY*
+*Refine: YY*
 *Tested: [date]*
 ```
 
@@ -66,14 +66,14 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 
 - **Prefix:** `UAT-` (distinguishes from ISS- enhancement issues)
 - **Scope:** Per-file numbering (UAT-001, UAT-002, etc. within each file)
-- **No global numbering:** Each {project}-{plan}-UAT.md has its own sequence
+- **No global numbering:** Each {project}-{refine}-UAT.md has its own sequence
 
 ---
 
 ## Good Example
 
 ```markdown
-# UAT Issues: Project 5 Plan 2
+# UAT Issues: Project 5 Refine 2
 
 **Tested:** 2026-01-15
 **Source:** .orbit/projects/05-auth/05-02-INTEGRATE.md
@@ -84,7 +84,7 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 ### UAT-001: Login form doesn't show validation errors
 
 **Discovered:** 2026-01-15
-**Phase/Plan:** 05-02
+**Phase/Refine:** 05-02
 **Severity:** Major
 **Feature:** User login form
 **Description:** When I enter an invalid email, nothing happens. No error message appears.
@@ -98,7 +98,7 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 ### UAT-002: Password field allows paste
 
 **Discovered:** 2026-01-15
-**Phase/Plan:** 05-02
+**Phase/Refine:** 05-02
 **Severity:** Cosmetic
 **Feature:** User login form
 **Description:** Can paste into password field. Minor UX inconsistency.
@@ -113,7 +113,7 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 ---
 
 *Project: 05-auth*
-*Plan: 02*
+*Refine: 02*
 *Tested: 2026-01-15*
 ```
 
@@ -123,10 +123,10 @@ Template for `.orbit/projects/XX-name/{project}-{plan}-UAT.md` — issues discov
 
 1. **verify-work workflow** runs against a INTEGRATE.md
 2. User tests each feature from the refine's AC
-3. Issues found → create/update {project}-{plan}-UAT.md
-4. If blockers exist → create FIX plan immediately
-5. If majors exist → create FIX plan before shipping
-6. After FIX plan executes → move issues to "Resolved" section
+3. Issues found → create/update {project}-{refine}-UAT.md
+4. If blockers exist → create FIX refine immediately
+5. If majors exist → create FIX refine before shipping
+6. After FIX refine executes → move issues to "Resolved" section
 7. File becomes historical record of what was found and fixed
 
 ---

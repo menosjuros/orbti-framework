@@ -96,7 +96,7 @@ Read current ROADMAP.md and update:
 
 2. **Add projects to table:**
    ```markdown
-   | Project | Name | Plans | Status | Completed |
+   | Project | Name | Refines | Status | Completed |
    |---------|------|-------|--------|-----------|
    | {N} | {name} | TBD | Not started | - |
    ```
@@ -106,7 +106,7 @@ Read current ROADMAP.md and update:
    ### Project {N}: {name}
 
    Focus: {description}
-   Plans: TBD (defined during /orbit:refine)
+   Refines: TBD (defined during /orbit:refine)
    ```
 
 4. **Update footer timestamp**

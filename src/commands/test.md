@@ -1,7 +1,7 @@
 ---
 name: orbit:test
 description: Run integration tests against acceptance criteria — auto-detects test runner, writes missing tests, then falls back to manual UAT
-argument-hint: "[optional: phase or plan number, e.g., '4' or '04-02'] [--manual] [--e2e]"
+argument-hint: "[optional: phase or refine number, e.g., '4' or '04-02'] [--manual] [--e2e]"
 allowed-tools: [Read, Bash, Glob, Grep, Edit, Write, AskUserQuestion, Task]
 ---
 
@@ -27,8 +27,8 @@ Validate that what was built satisfies the acceptance criteria defined in LOOP.m
 
 <context>
 Scope: $ARGUMENTS (optional)
-- If provided: Test specific phase or plan (e.g., "4" or "04-02")
-- If not provided: Test most recently completed plan
+- If provided: Test specific phase or refine (e.g., "4" or "04-02")
+- If not provided: Test most recently completed refine
 
 @.orbit/STATE.md
 @.orbit/ROADMAP.md
@@ -49,7 +49,7 @@ Scope: $ARGUMENTS (optional)
 - [ ] Integration tests written for uncovered ACs
 - [ ] Tests executed and results captured
 - [ ] Results mapped to AC-1, AC-2... (PASS/FAIL)
-- [ ] Issues logged to `.orbit/projects/XX-name/{plan}-UAT.md`
+- [ ] Issues logged to `.orbit/projects/XX-name/{refine}-UAT.md`
 - [ ] Summary presented with verdict
 - [ ] User knows next steps
 </success_criteria>

@@ -81,7 +81,7 @@ Update ROADMAP.md:
    ### Project {next_number}: {project_name}
 
    Focus: {project_description}
-   Plans: TBD (defined during /orbit:refine)
+   Refines: TBD (defined during /orbit:refine)
    Status: Not started
    ```
 
@@ -130,7 +130,7 @@ Directory: .orbit/projects/{slug}/
 ROADMAP.md updated ✓
 STATE.md updated ✓
 
-Continue with current work or plan this project later.
+Continue with current work or refine this project later.
 ════════════════════════════════════════
 ```
 </step>

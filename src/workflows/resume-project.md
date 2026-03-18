@@ -123,8 +123,8 @@ Based on the active project's loop position, determine **exactly ONE** next acti
 | Loop State | Single Next Action |
 |------------|-------------------|
 | REFINE ○ (no refine yet) | `/orbit:refine` |
-| REFINE ✓, BUILD ○ (plan awaiting approval) | `/orbit:build [plan-path]` |
-| REFINE ✓, BUILD ✓, INTEGRATE ○ (executed, not reconciled) | `/orbit:integrate [plan-path]` |
+| REFINE ✓, BUILD ○ (refine awaiting approval) | `/orbit:build [refine-path]` |
+| REFINE ✓, BUILD ✓, INTEGRATE ○ (executed, not reconciled) | `/orbit:integrate [refine-path]` |
 | All ✓ (loop complete) | `/orbit:refine` (next loop) |
 | Blocked | "Address blocker: [specific issue]" |
 

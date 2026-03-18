@@ -158,7 +158,7 @@ Continue to offer_next.
 
 ```
 What's next?
-1. Refine this phase - Create detailed execution plans with corrected assumptions
+1. Refine this phase - Create detailed execution refines with corrected assumptions
 2. Re-examine assumptions - I'll analyze again with your corrections
 3. Done for now
 ```

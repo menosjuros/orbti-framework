@@ -50,7 +50,7 @@ Map AC to tests:
 <step name="generate">
 **Generate manual test checklist:**
 
-Create structured test plan:
+Create structured test refine:
 
 ```
 # User Acceptance Test: [Refine Name]
@@ -131,7 +131,7 @@ For each failed/partial test, gather:
 
 If any issues found:
 
-1. Create `.orbit/projects/XX-name/{project}-{plan}-UAT.md` if doesn't exist
+1. Create `.orbit/projects/XX-name/{project}-{refine}-UAT.md` if doesn't exist
 2. Use template from `@src/templates/TEST.md`
 3. Add each issue with UAT-NNN format:
 
@@ -139,7 +139,7 @@ If any issues found:
 ### UAT-001: [Brief description]
 
 **Discovered:** [date] during user acceptance testing
-**Project/Refine:** [project]-[plan] that was tested
+**Project/Refine:** [project]-[refine] that was tested
 **Severity:** [Blocker/Major/Minor/Cosmetic]
 **AC:** [Which acceptance criteria this relates to]
 **Description:** [User's description of the problem]

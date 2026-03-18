@@ -71,21 +71,21 @@ Use checkbox format. Each criterion must be objectively verifiable.
 ```markdown
 ---
 name: orbit:refine
-description: Enter REFINE phase for current or new plan
-argument-hint: "[project-plan]"
+description: Enter REFINE phase for current or new refine
+argument-hint: "[project-refine]"
 allowed-tools: [Read, Write, Glob, AskUserQuestion]
 ---
 
 <objective>
-Create or continue a REFINE plan for the specified project.
+Create or continue a REFINE refine for the specified project.
 
-**When to use:** Starting new work or resuming incomplete plan.
+**When to use:** Starting new work or resuming incomplete refine.
 </objective>
 
 <execution_context>
 @src/workflows/refine.md
 @src/templates/LOOP.md
-@src/references/plan-format.md
+@src/references/refine-format.md
 </execution_context>
 
 <context>

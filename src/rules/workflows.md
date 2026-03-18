@@ -54,7 +54,7 @@ Workflows should be aware of their position in the ORBIT loop:
 ```xml
 <loop_context>
 Expected phase: REFINE
-Prior phase:  INTEGRATE (previous plan) or none (first refine)
+Prior phase:  INTEGRATE (previous refine) or none (first refine)
 Next phase: BUILD (after refine approval)
 </loop_context>
 ```
@@ -87,7 +87,7 @@ A workflow can be long and detailed. It answers "how to do it" comprehensively.
 
 ```markdown
 <purpose>
-Execute an approved REFINE plan by running tasks in order, verifying each, and recording results.
+Execute an approved REFINE refine by running tasks in order, verifying each, and recording results.
 </purpose>
 
 <when_to_use>
@@ -98,7 +98,7 @@ Execute an approved REFINE plan by running tasks in order, verifying each, and r
 
 <required_reading>
 @.orbit/STATE.md
-@.orbit/projects/{project}/{plan}-LOOP.md
+@.orbit/projects/{project}/{refine}-LOOP.md
 </required_reading>
 
 <loop_context>

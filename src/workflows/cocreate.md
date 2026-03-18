@@ -172,7 +172,7 @@ Context saved for handoff.
 Type "yes" to proceed, or continue discussing.
 ```
 
-**Accept:** "yes", "go", "plan" → run `/orbit:refine`
+**Accept:** "yes", "go", "refine" → run `/orbit:refine`
 </step>
 
 </process>

@@ -32,7 +32,7 @@ $ARGUMENTS
 <step name="load_state">
 Read `.orbit/STATE.md` and `.orbit/ROADMAP.md`:
 - Current phase and total phases
-- Current plan (if any)
+- Current refine (if any)
 - Loop position (REFINE/BUILD/INTEGRATE markers)
 - Roadmap progress
 - Performance metrics (if tracked)
@@ -71,9 +71,9 @@ Based on state (+ user context if provided), determine **ONE** next action:
 
 | Situation | Single Suggestion |
 |-----------|-------------------|
-| No plan exists | `/orbit:refine` |
-| Plan awaiting approval | "Approve refine to proceed" |
-| Plan approved, not executed | `/orbit:build [path]` |
+| No refine exists | `/orbit:refine` |
+| Refine awaiting approval | "Approve refine to proceed" |
+| Refine approved, not executed | `/orbit:build [path]` |
 | Applied, not unified | `/orbit:integrate [path]` |
 | Loop complete, more phases | `/orbit:refine` (next phase) |
 | Milestone complete | "Create next milestone or ship" |
@@ -99,7 +99,7 @@ Milestone: [name] - [X]% complete
 ├── Phase 3: [name] ░░░░░░░░░░░░ Pending
 └── Phase 4: [name] ░░░░░░░░░░░░ Pending
 
-Current Loop: Phase 2, Plan 02-03
+Current Loop: Phase 2, Refine 02-03
 ┌─────────────────────────────────────┐
 │  REFINE ──▶ BUILD ──▶ INTEGRATE          │
 │    ✓        ✓        ○             │

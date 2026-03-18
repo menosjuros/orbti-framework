@@ -16,7 +16,7 @@ Next phase: REFINE (next refine or next phase)
 
 <required_reading>
 @.orbit/STATE.md
-@.orbit/projects/{project}/{plan}-LOOP.md
+@.orbit/projects/{project}/{refine}-LOOP.md
 </required_reading>
 
 <references>
@@ -39,7 +39,7 @@ Next phase: REFINE (next refine or next phase)
    - Task definitions
 </step>
 
-<step name="compare_plan_vs_actual">
+<step name="compare_refine_vs_actual">
 1. For each acceptance criterion:
    - Was it satisfied? (PASS/FAIL)
    - Evidence of satisfaction
@@ -47,7 +47,7 @@ Next phase: REFINE (next refine or next phase)
    - Did it complete as specified?
    - Any modifications to approach?
 3. Note deviations:
-   - What differed from plan
+   - What differed from refine
    - Why it differed
    - Impact on outcomes
 </step>
@@ -99,7 +99,7 @@ Teams are **off by default** — only active if `agent_teams.enabled: true` in `
 Spawn a 3-reviewer team in parallel. Each reviewer has a distinct lens so they don't overlap:
 
 ```
-Create a review team for plan: [plan-path]
+Create a review team for refine: [refine-path]
 Spawn 3 reviewers:
 - code-reviewer: code quality, adherence to boundaries in LOOP.md, no unintended changes
 - security-reviewer: input validation, exposed secrets, injection risks, auth issues
@@ -121,14 +121,14 @@ After team completes, extract:
 </step>
 
 <step name="create_summary">
-1. Create INTEGRATE.md at `.orbit/projects/{phase}/{plan}-INTEGRATE.md`
+1. Create INTEGRATE.md at `.orbit/projects/{phase}/{refine}-INTEGRATE.md`
 2. Include:
 
    **Frontmatter:**
    ```yaml
    ---
    project: NN-name
-   plan: NN
+   refine: NN
    completed: ISO timestamp
    duration: approximate time
    ---
@@ -154,23 +154,23 @@ Run only if deviations were recorded in the previous step.
    - What failed or went wrong
    - Root cause (planning assumption that was wrong)
    - Fix applied
-   - Pattern to avoid in future REFINE plans
+   - Pattern to avoid in future REFINE refines
 
 3. Append to `.orbit/LEARNINGS.md` (create if doesn't exist):
 
 ```markdown
-## [date] [plan-path]: [brief description]
+## [date] [refine-path]: [brief description]
 
 **What failed:** [what went wrong during BUILD or testing]
 **Root cause:** [why — which planning assumption was wrong]
 **Fix applied:** [what was changed to resolve it]
-**Avoid in future plans:** [specific anti-pattern]
-**Prefer instead:** [what to plan/do instead]
+**Avoid in future refines:** [specific anti-pattern]
+**Prefer instead:** [what to refine/do instead]
 ```
 
 4. If no deviations: skip this step entirely (no entry needed)
 
-**Purpose:** This file is read by REFINE before creating new plans, so the same mistakes are not replanned.
+**Purpose:** This file is read by REFINE before creating new refines, so the same mistakes are not replanned.
 </step>
 
 <step name="update_state">
@@ -178,7 +178,7 @@ Update STATE.md — three sections:
 
 **1. Projects Overview table:**
 - Find the current project row
-- Update loop position for this plan: `✓ ✓ ◉` → `✓ ✓ ✓`
+- Update loop position for this refine: `✓ ✓ ◉` → `✓ ✓ ✓`
 - Increment loop count: `N/M` → `N+1/M`
 - If more loops remain: keep Status as `🔵 In Progress`
 - If last loop: Status → `✅ Complete` (transition-phase handles this)
@@ -186,7 +186,7 @@ Update STATE.md — three sections:
 **2. Current Focus:**
 ```
 **Project:** [N] — [Name]
-**Plan:** [A] complete
+**Refine:** [A] complete
 **Status:** Ready for next REFINE (or transitioning)
 **Last activity:** [timestamp] — Refine [A] integrated
 
@@ -202,17 +202,17 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 </step>
 
 <step name="check_phase_completion">
-**Determine if this is the last plan in the phase:**
+**Determine if this is the last refine in the phase:**
 
 1. Count LOOP.md files in current project directory
 2. Count INTEGRATE.md files (including the one just created)
 3. Compare counts:
-   - If REFINE count = SUMMARY count → Last plan, trigger transition
+   - If REFINE count = SUMMARY count → Last refine, trigger transition
    - If REFINE count > SUMMARY count → More loops remain in project
 </step>
 
 <step name="route_based_on_completion">
-**If more plans remain in phase:**
+**If more refines remain in phase:**
 
 Report with quick continuation:
 ```
@@ -220,7 +220,7 @@ Report with quick continuation:
 REFINE COMPLETE
 ════════════════════════════════════════
 
-Plan: {NN}-{plan} — [description]
+Refine: {NN}-{refine} — [description]
 [summary of what was built]
 [deviations if any]
 
@@ -229,7 +229,7 @@ Project {N} progress: {X}/{Y} loops complete
 ---
 Continue to next loop?
 
-[1] Yes, plan {NN+1} | [2] Pause here
+[1] Yes, refine {NN+1} | [2] Pause here
 ════════════════════════════════════════
 ```
 
@@ -265,7 +265,7 @@ Continue to next loop?
 </process>
 
 <output>
-- INTEGRATE.md at `.orbit/projects/{project}/{plan}-INTEGRATE.md`
+- INTEGRATE.md at `.orbit/projects/{project}/{refine}-INTEGRATE.md`
 - Updated STATE.md
 - Updated ROADMAP.md (if phase complete)
 </output>
@@ -282,13 +282,13 @@ Continue to next loop?
 - Document uncertainty in INTEGRATE.md
 
 **LOOP.md missing:**
-- Cannot reconcile without original plan
+- Cannot reconcile without original refine
 - Ask user to locate or reconstruct
 </error_handling>
 
 <anti_patterns>
 **Skipping SUMMARY:**
-Every completed plan MUST have a INTEGRATE.md. No exceptions.
+Every completed refine MUST have a INTEGRATE.md. No exceptions.
 
 **Partial state updates:**
 Update ALL of: SUMMARY, STATE, ROADMAP (if phase done). Don't leave partial.

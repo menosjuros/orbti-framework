@@ -197,7 +197,7 @@ Template for `.orbit/codebase/INTEGRATIONS.md` - captures external service depen
 
 **Logs:**
 - Vercel logs - stdout/stderr only
-  - Retention: 7 days on Pro plan
+  - Retention: 7 days on Pro refine
 
 ## CI/CD & Deployment
 

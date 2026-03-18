@@ -49,7 +49,7 @@ git commit
 Each task gets its own commit immediately after completion.
 
 ```
-{type}({phase}-{plan}): {task-name}
+{type}({phase}-{refine}): {task-name}
 
 - [Key change 1]
 - [Key change 2]
@@ -92,13 +92,13 @@ git commit -m "test(07-02): add failing test for JWT generation
 After all tasks committed, one final metadata commit captures refine completion.
 
 ```
-docs({phase}-{plan}): complete [plan-name]
+docs({phase}-{refine}): complete [refine-name]
 
 AC Results:
 - AC-1: [PASS/FAIL]
 - AC-2: [PASS/FAIL]
 
-SUMMARY: .orbit/projects/XX-name/{phase}-{plan}-INTEGRATE.md
+SUMMARY: .orbit/projects/XX-name/{phase}-{refine}-INTEGRATE.md
 ```
 
 What to commit:
@@ -114,7 +114,7 @@ git commit
 ## Handoff (WIP)
 
 ```
-wip({phase}): paused at plan [NN] task [X]/[Y]
+wip({phase}): paused at refine [NN] task [X]/[Y]
 
 Current: [task name]
 [If blocked:] Blocked: [reason]
@@ -184,7 +184,7 @@ Each refine produces 2-4 commits (tasks + metadata). Clear, granular, bisectable
 
 **Context engineering for AI:**
 - Git history becomes primary context source for future Claude sessions
-- `git log --grep="{phase}-{plan}"` shows all work for a plan
+- `git log --grep="{phase}-{refine}"` shows all work for a refine
 - `git diff <hash>^..<hash>` shows exact changes per task
 - Less reliance on parsing INTEGRATE.md = more context for actual work
 

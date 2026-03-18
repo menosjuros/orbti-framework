@@ -22,7 +22,7 @@ Claude degrades when it perceives context pressure and enters "completion mode."
 </quality_insight>
 
 <context_target>
-**Plans should complete within ~50% of context usage.**
+**Refines should complete within ~50% of context usage.**
 
 Why 50% not 80%?
 - No context anxiety possible
@@ -32,7 +32,7 @@ Why 50% not 80%?
 </context_target>
 
 <task_limits>
-**Each plan: 2-3 tasks maximum. Stay under 50% context.**
+**Each refine: 2-3 tasks maximum. Stay under 50% context.**
 
 | Task Complexity | Tasks/Refine | Context/Task | Total |
 |-----------------|------------|--------------|-------|
@@ -64,26 +64,26 @@ Why 50% not 80%?
 **Vertical slices (default):** Group by feature, not by layer.
 
 ```
-PREFER: Plan 01 = User (model + API + UI)
-        Plan 02 = Product (model + API + UI)
+PREFER: Refine 01 = User (model + API + UI)
+        Refine 02 = Product (model + API + UI)
 
-AVOID:  Plan 01 = All models
-        Plan 02 = All APIs (depends on 01)
+AVOID:  Refine 01 = All models
+        Refine 02 = All APIs (depends on 01)
 ```
 
 Vertical slices maximize parallelism and reduce dependencies.
 
 **By dependency:** Only when genuine dependencies exist.
 ```
-Plan 01: Auth foundation (middleware, JWT)
-Plan 02: Protected features (uses auth from 01)
+Refine 01: Auth foundation (middleware, JWT)
+Refine 02: Protected features (uses auth from 01)
 ```
 
 **By complexity:** When one slice is much heavier.
 ```
-Plan 01: Dashboard layout shell
-Plan 02: Data fetching and state
-Plan 03: Visualization components
+Refine 01: Dashboard layout shell
+Refine 02: Data fetching and state
+Refine 03: Visualization components
 ```
 </splitting_strategies>
 
@@ -132,18 +132,18 @@ ORBIT provides the framework. CARL provides operational automation.
 
 <anti_patterns>
 
-**Bad - Comprehensive plan:**
+**Bad - Comprehensive refine:**
 ```
 Refine: "Complete Authentication System"
 Tasks: 8
 Result: Task 1-3 good, Task 4-5 degrading, Task 6-8 rushed
 ```
 
-**Good - Atomic plans:**
+**Good - Atomic refines:**
 ```
-Plan 1: "Auth Database Models" (2 tasks)
-Plan 2: "Auth API Core" (2 tasks)
-Plan 3: "Auth UI Components" (2 tasks)
+Refine 1: "Auth Database Models" (2 tasks)
+Refine 2: "Auth API Core" (2 tasks)
+Refine 3: "Auth UI Components" (2 tasks)
 Each: 30-40% context, peak quality
 ```
 </anti_patterns>

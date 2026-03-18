@@ -23,7 +23,7 @@ Generate a comprehensive handoff document synthesizing session activity, decisio
 Optional notes: $ARGUMENTS (decisions, gaps, thoughts inline)
 
 Session context is primary source - extract:
-- What was accomplished (file changes, plans executed)
+- What was accomplished (file changes, refines executed)
 - Decisions made (explicit or implicit in conversation)
 - Questions asked and answered
 - Gaps identified
@@ -34,7 +34,7 @@ Session context is primary source - extract:
 
 <step name="gather_session_context" priority="first">
 **From STATE.md:**
-- Current phase and plan
+- Current phase and refine
 - Loop position
 - Last activity
 - Session continuity notes
@@ -139,7 +139,7 @@ Create `.orbit/HANDOFF-{date}-{context}.md`:
 
 ## State Summary
 
-**Current:** {phase, plan, loop position}
+**Current:** {phase, refine, loop position}
 **Next:** {recommended next action}
 **Resume:** `/orbit:resume` then read this handoff
 

@@ -1,6 +1,6 @@
 # INTEGRATE.md Template
 
-Template for `.orbit/projects/{project-number}-{name}/{project}-{plan}-INTEGRATE.md` — refine completion documentation.
+Template for `.orbit/projects/{project-number}-{name}/{project}-{refine}-INTEGRATE.md` — refine completion documentation.
 
 **Purpose:** Document what was built, decisions made, deviations from refine, and readiness for next project.
 
@@ -11,7 +11,7 @@ Template for `.orbit/projects/{project-number}-{name}/{project}-{plan}-INTEGRATE
 ```markdown
 ---
 phase: XX-name
-plan: NN
+refine: NN
 subsystem: [primary category: auth, payments, ui, api, database, infra, testing]
 tags: [searchable tech: jwt, stripe, react, postgres, prisma]
 
@@ -20,7 +20,7 @@ requires:
   - phase: [prior phase this depends on]
     provides: [what that phase built that this uses]
 provides:
-  - [what this plan built/delivered]
+  - [what this refine built/delivered]
   - [another deliverable]
 affects: [phase names or keywords that will need this context]
 
@@ -47,7 +47,7 @@ started: YYYY-MM-DDTHH:MM:SSZ
 completed: YYYY-MM-DDTHH:MM:SSZ
 ---
 
-# Phase [X] Plan [Y]: [Name] Summary
+# Phase [X] Refine [Y]: [Name] Summary
 
 **[Substantive one-liner describing outcome - what actually shipped]**
 
@@ -85,7 +85,7 @@ Each task committed atomically:
 | Task 2: [name] | `def456g` | feat | [What was done] |
 | Task 3: [name] | `hij789k` | test | [What was done] |
 
-Plan metadata: `lmn012o` (docs: complete plan)
+Refine metadata: `lmn012o` (docs: complete refine)
 
 ## Files Created/Modified
 
@@ -102,9 +102,9 @@ Plan metadata: `lmn012o` (docs: complete plan)
 |----------|-----------|--------|
 | [What was decided] | [Why] | [Effect on future work] |
 
-Or: "None - followed plan as specified"
+Or: "None - followed refine as specified"
 
-## Deviations from Plan
+## Deviations from Refine
 
 ### Summary
 
@@ -133,7 +133,7 @@ Or: "None - followed plan as specified"
 Logged to issue tracker for future consideration:
 - [Issue ID]: [Brief description] (discovered in Task [N])
 
-Or: "None - plan executed exactly as written"
+Or: "None - refine executed exactly as written"
 
 ## Issues Encountered
 
@@ -159,7 +159,7 @@ Or: "None"
 - [Anything blocking next phase] or "None"
 
 ---
-*Phase: XX-name, Plan: NN*
+*Phase: XX-name, Refine: NN*
 *Completed: [YYYY-MM-DD]*
 ```
 
@@ -172,11 +172,11 @@ Or: "None"
 
 | Field | Purpose |
 |-------|---------|
-| `phase`, `plan` | Identification |
+| `phase`, `refine` | Identification |
 | `subsystem` | Primary categorization (auth, api, ui, etc.) |
 | `tags` | Searchable tech keywords |
 | `requires` | What prior phases this depended on |
-| `provides` | What this plan delivers |
+| `provides` | What this refine delivers |
 | `affects` | Future phases that need this context |
 | `tech-stack` | Libraries added, patterns established |
 | `key-files` | Important files for @context references |
@@ -199,7 +199,7 @@ The one-liner should tell someone what actually shipped.
 ### Acceptance Criteria Results
 **Purpose:** Verify all AC from LOOP.md were met.
 **Contains:** Each AC with pass/fail status and notes.
-**Requirement:** All must pass for plan to be complete.
+**Requirement:** All must pass for refine to be complete.
 
 ### Deviations Section
 **Purpose:** Document unplanned work and its handling.

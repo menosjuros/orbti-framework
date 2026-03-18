@@ -71,7 +71,7 @@ Calculate milestone statistics:
 2. **Files:**
    - Count unique files in all INTEGRATE.md `key-files.created` + `key-files.modified`
 
-3. **Plans:**
+3. **Refines:**
    - Count INTEGRATE.md files across all projects
 
 4. **Projects:**
@@ -125,7 +125,7 @@ Completed milestone log for this project.
 | Metric | Value |
 |--------|-------|
 | Projects | {projects} |
-| Plans | {plans_completed} |
+| Refines | {plans_completed} |
 | Files changed | {files_changed} |
 
 ### Key Accomplishments
@@ -142,7 +142,7 @@ Completed milestone log for this project.
 
 **Update table at top:**
 ```markdown
-| {milestone_name} | {date} | {duration} | {projects} projects, {plans} plans |
+| {milestone_name} | {date} | {duration} | {projects} projects, {refines} refines |
 ```
 </step>
 
@@ -226,7 +226,7 @@ Update ROADMAP.md to collapse completed milestone:
    <details>
    <summary>{milestone_name} - {date} ({projects} projects)</summary>
 
-   | Project | Name | Plans | Completed |
+   | Project | Name | Refines | Completed |
    |---------|------|-------|-----------|
    | {N} | {name} | {X/X} | {date} |
 
@@ -397,7 +397,7 @@ Stats:
 |--------|-------|
 | Duration | {duration} |
 | Projects | {projects} |
-| Plans | {plans_completed} |
+| Refines | {plans_completed} |
 | Files | {files_changed} |
 
 Key Accomplishments:

@@ -34,12 +34,12 @@ Every unit of work follows this cycle:
 └─────────────────────────────────────┘
 ```
 
-**Never skip INTEGRATE.** Every plan needs a summary.
+**Never skip INTEGRATE.** Every refine needs a summary.
 
 ## Quick Start
 
 1. `/orbit:init` - Initialize ORBIT in your project
-2. `/orbit:refine` - Create a plan for your work
+2. `/orbit:refine` - Create a refine for your work
 3. `/orbit:build` - Execute the approved refine
 4. `/orbit:integrate` - Close the loop with summary
 
@@ -54,7 +54,7 @@ Every unit of work follows this cycle:
 | Pre-Planning | cocreate, assumptions, observe, consider-issues |
 | Research | research, research-phase |
 | Specialized | flows, config, map-codebase |
-| Quality | test, plan-fix |
+| Quality | test, refine-fix |
 
 ---
 
@@ -73,7 +73,7 @@ Usage: `/orbit:init`
 ---
 
 ### `/orbit:refine [project]`
-Enter REFINE phase - create an executable plan.
+Enter REFINE phase - create an executable refine.
 
 - Reads current state from STATE.md
 - Creates LOOP.md with tasks, acceptance criteria, boundaries
@@ -85,11 +85,11 @@ Usage: `/orbit:refine 3` (specific project)
 
 ---
 
-### `/orbit:build [plan-path]`
+### `/orbit:build [refine-path]`
 Execute an approved LOOP.md file.
 
 - **Blocks if required skills not loaded** (from SPECIAL-FLOWS.md)
-- Validates plan exists and hasn't been executed
+- Validates refine exists and hasn't been executed
 - Executes tasks sequentially
 - Handles checkpoints (decision, human-verify, human-action)
 - Reports completion and prompts for INTEGRATE
@@ -99,7 +99,7 @@ Usage: `/orbit:build .orbit/projects/01-foundation/01-01-LOOP.md`
 
 ---
 
-### `/orbit:integrate [plan-path]`
+### `/orbit:integrate [refine-path]`
 Reconcile refine vs actual and close the loop.
 
 - Creates INTEGRATE.md documenting what was built
@@ -366,7 +366,7 @@ Refine fixes for UAT issues from verify.
 
 - Reads issues identified during verify
 - Creates targeted fix refine
-- Smaller scope than full project plan
+- Smaller scope than full project refine
 
 Usage: `/orbit:refine-fix`
 
@@ -396,7 +396,7 @@ Usage: `/orbit:refine-fix`
 ```markdown
 ---
 project: 01-foundation
-plan: 01
+refine: 01
 type: execute
 autonomous: true
 ---

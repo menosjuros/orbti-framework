@@ -49,7 +49,7 @@ Optionally annotate projects with required skills:
 ```
 
 ### 3. Task Invocation (LOOP.md)
-Plans can reference skills in pre-implementation or task notes:
+Refines can reference skills in pre-implementation or task notes:
 
 ```markdown
 ## Pre-Implementation

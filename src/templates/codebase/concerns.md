@@ -105,7 +105,7 @@ Template for `.orbit/codebase/CONCERNS.md` - captures known issues and areas req
 **[Package/Service]:**
 - Risk: [e.g., "deprecated", "unmaintained", "breaking changes coming"]
 - Impact: [What breaks if it fails]
-- Migration plan: [Alternative or upgrade path]
+- Migration refine: [Alternative or upgrade path]
 
 ## Missing Critical Features
 
@@ -229,7 +229,7 @@ Template for `.orbit/codebase/CONCERNS.md` - captures known issues and areas req
 
 **Server-side render blocking:**
 - Current capacity: ~50 concurrent users before slowdown
-- Limit: Vercel Hobby plan (10s function timeout, 100GB-hrs/mo)
+- Limit: Vercel Hobby refine (10s function timeout, 100GB-hrs/mo)
 - Symptoms at limit: 504 gateway timeouts on course pages
 - Scaling path: Upgrade to Vercel Pro ($20/mo), add edge caching
 
@@ -238,7 +238,7 @@ Template for `.orbit/codebase/CONCERNS.md` - captures known issues and areas req
 **react-hot-toast:**
 - Risk: Unmaintained (last update 18 months ago), React 19 compatibility unknown
 - Impact: Toast notifications break, no graceful degradation
-- Migration plan: Switch to sonner (actively maintained, similar API)
+- Migration refine: Switch to sonner (actively maintained, similar API)
 
 ## Missing Critical Features
 

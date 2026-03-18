@@ -149,7 +149,7 @@ Phases: 0 of TBD complete
 
 ## Phases
 
-| Phase | Name | Plans | Status | Completed |
+| Phase | Name | Refines | Status | Completed |
 |-------|------|-------|--------|-----------|
 | 1 | TBD | TBD | Not started | - |
 

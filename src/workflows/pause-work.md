@@ -100,7 +100,7 @@ You have no prior context. This document tells you everything.
 
 **Version:** [from STATE.md]
 **Project:** [N] of [total] — [project name]
-**Plan:** [plan-id] — [status]
+**Refine:** [refine-id] — [status]
 
 **Loop Position:**
 ```
@@ -206,7 +206,7 @@ Note: Feature branch is useful if work isn't ready for main.
 **If main (option 1):**
 ```bash
 git add .orbit/ src/
-git commit -m "wip({project}): paused at {plan}
+git commit -m "wip({project}): paused at {refine}
 
 Co-Authored-By: Claude <noreply@anthropic.com>"
 ```
@@ -218,7 +218,7 @@ git checkout -b feature/{project-name}
 
 # Commit to feature branch
 git add .orbit/ src/
-git commit -m "wip({project}): paused at {plan}
+git commit -m "wip({project}): paused at {refine}
 
 Co-Authored-By: Claude <noreply@anthropic.com>"
 

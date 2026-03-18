@@ -29,7 +29,7 @@ All projects in the current milestone — updated after every loop completion.
 ## Current Focus
 
 **Project:** [N] — [Name]
-**Plan:** [A] of [B]
+**Refine:** [A] of [B]
 **Status:** [Ready to refine | Planning | Building | Integrating | Complete | Blocked]
 **Last activity:** [YYYY-MM-DD HH:MM] — [What happened]
 
@@ -107,7 +107,7 @@ When a project has multiple loops, show each loop's position separated by `/`.
 
 **Contains:**
 - Project number and name
-- Plan number within project
+- Refine number within project
 - Status and last activity
 - Visual loop position diagram
 
@@ -137,9 +137,9 @@ When a project has multiple loops, show each loop's position separated by `/`.
 - Add a row per project defined in ROADMAP.md
 - All rows start as `○ Pending | ○ ○ ○`
 
-**At `/orbit:refine` (plan start):**
+**At `/orbit:refine` (refine start):**
 - Update project row: Status → `🔵 In Progress`
-- Update loop position column for active plan
+- Update loop position column for active refine
 
 **At `/orbit:build` (tasks running):**
 - Update loop position: `◉ ○ ○` → `✓ ◉ ○`

@@ -41,7 +41,7 @@ Multiple independent tasks can run simultaneously, providing actual time savings
 
 ```
 GOOD for subagent:
-- Plan 01-01 (User model) and Plan 01-02 (Product model) - independent
+- Refine 01-01 (User model) and Refine 01-02 (Product model) - independent
 - Three test suites for different modules
 
 BAD for subagent:

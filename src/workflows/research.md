@@ -179,7 +179,7 @@ Summary:
 
 ────────────────────────────────────────
 Review the findings above. This research informs but does not
-automatically integrate into plans or code.
+automatically integrate into refines or code.
 
 What's next?
 [1] View full findings | [2] Research another topic | [3] Done
@@ -210,7 +210,7 @@ DON'T: Spawn subagent for "what's the syntax for X"
 DO: Answer directly if < 5 min lookup
 
 **Auto-integrating findings:**
-DON'T: Automatically apply research to code or plans
+DON'T: Automatically apply research to code or refines
 DO: Present findings for human review
 
 **Using wrong agent type:**

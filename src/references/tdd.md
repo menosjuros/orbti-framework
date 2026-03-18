@@ -3,7 +3,7 @@ TDD is about design quality, not coverage metrics. The red-green-refactor cycle 
 
 **Principle:** If you can describe the behavior as `expect(fn(input)).toBe(output)` before writing `fn`, TDD improves the result.
 
-**Key insight:** TDD work is fundamentally heavier than standard tasks—it requires 2-3 execution cycles (RED → GREEN → REFACTOR), each with file reads, test runs, and potential debugging. TDD features get dedicated plans to ensure full context is available throughout the cycle.
+**Key insight:** TDD work is fundamentally heavier than standard tasks—it requires 2-3 execution cycles (RED → GREEN → REFACTOR), each with file reads, test runs, and potential debugging. TDD features get dedicated refines to ensure full context is available throughout the cycle.
 </overview>
 
 <when_to_use_tdd>
@@ -33,7 +33,7 @@ TDD is about design quality, not coverage metrics. The red-green-refactor cycle 
 
 </when_to_use_tdd>
 
-<tdd_plan_structure>
+<tdd_refine_structure>
 
 ## TDD Refine Structure
 
@@ -42,7 +42,7 @@ Each TDD refine implements **one feature** through the full RED-GREEN-REFACTOR c
 ```yaml
 ---
 phase: XX-name
-plan: NN
+refine: NN
 type: tdd
 ---
 ```
@@ -89,7 +89,7 @@ DO NOT CHANGE: [files outside TDD scope]
 
 **One feature per TDD refine.** If features are trivial enough to batch, they're trivial enough to skip TDD.
 
-</tdd_plan_structure>
+</tdd_refine_structure>
 
 <execution_flow>
 
@@ -100,18 +100,18 @@ DO NOT CHANGE: [files outside TDD scope]
 2. Write test describing expected behavior
 3. Run test - it MUST fail
 4. If test passes: feature exists or test is wrong. Investigate.
-5. Commit: `test({phase}-{plan}): add failing test for [feature]`
+5. Commit: `test({phase}-{refine}): add failing test for [feature]`
 
 **GREEN - Implement to pass:**
 1. Write minimal code to make test pass
 2. No cleverness, no optimization - just make it work
 3. Run test - it MUST pass
-4. Commit: `feat({phase}-{plan}): implement [feature]`
+4. Commit: `feat({phase}-{refine}): implement [feature]`
 
 **REFACTOR (if needed):**
 1. Clean up implementation if obvious improvements exist
 2. Run tests - MUST still pass
-3. Only commit if changes made: `refactor({phase}-{plan}): clean up [feature]`
+3. Only commit if changes made: `refactor({phase}-{refine}): clean up [feature]`
 
 **Result:** Each TDD refine produces 2-3 atomic commits.
 
@@ -150,7 +150,7 @@ Example structure (9 test cases covering AC-1, AC-2, AC-3):
 
 <commit_pattern>
 
-## ORBIT Commit Pattern for TDD Plans
+## ORBIT Commit Pattern for TDD Refines
 
 TDD refines produce 2-3 atomic commits (one per phase):
 
@@ -174,7 +174,7 @@ refactor(08-02): extract regex to constant (optional)
 - Tests still pass
 ```
 
-**Format:** `{type}({phase}-{plan}): {description}`
+**Format:** `{type}({phase}-{refine}): {description}`
 
 Types for TDD:
 - `test` - RED phase (failing test)

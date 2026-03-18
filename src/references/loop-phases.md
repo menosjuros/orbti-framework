@@ -22,7 +22,7 @@ Explain the semantics of ORBIT's three loop phases: REFINE, BUILD, INTEGRATE. Ev
 **Purpose:** Define what will be built, how it will be verified, and what's out of scope.
 
 **Artifacts Created:**
-- `{project}-{plan}-LOOP.md` in `.orbit/projects/{project-name}/`
+- `{project}-{refine}-LOOP.md` in `.orbit/projects/{project-name}/`
 
 **Activities:**
 1. Analyze requirements and context
@@ -54,7 +54,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 
 **Artifacts Created:**
 - Code/files specified in LOOP.md
-- BUILD-LOG (optional, for complex plans)
+- BUILD-LOG (optional, for complex refines)
 
 **Activities:**
 1. Read LOOP.md to load task definitions
@@ -86,7 +86,7 @@ REFINE ──▶ BUILD ──▶ INTEGRATE
 **Purpose:** Reconcile what was planned vs. what was built. Close the loop.
 
 **Artifacts Created:**
-- `{project}-{plan}-INTEGRATE.md` in `.orbit/projects/{project-name}/`
+- `{project}-{refine}-INTEGRATE.md` in `.orbit/projects/{project-name}/`
 - Updated `STATE.md`
 - Updated `ROADMAP.md` (if project complete)
 
@@ -135,7 +135,7 @@ Why: No REFINE = no acceptance criteria = no way to verify completion.
 # GOOD
 "Refine created. Ready to execute when you approve."
 ```
-Why: Plans may have incorrect assumptions. Approval catches issues early.
+Why: Refines may have incorrect assumptions. Approval catches issues early.
 
 **Always Close With INTEGRATE:**
 ```

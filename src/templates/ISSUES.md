@@ -2,7 +2,7 @@
 
 Template for `.orbit/ISSUES.md` — deferred enhancements discovered during execution.
 
-**Purpose:** Track nice-to-haves that aren't critical to current work. These follow deviation rule #5: log enhancements, continue with plan.
+**Purpose:** Track nice-to-haves that aren't critical to current work. These follow deviation rule #5: log enhancements, continue with refine.
 
 **Location:** `.orbit/ISSUES.md` (project-level, not phase-level)
 
@@ -19,7 +19,7 @@ Enhancements discovered during execution. Not critical - address in future phase
 
 ### ISS-001: [Brief description]
 
-- **Discovered:** Phase [X] Plan [Y] (YYYY-MM-DD)
+- **Discovered:** Phase [X] Refine [Y] (YYYY-MM-DD)
 - **Type:** [Performance / Refactoring / UX / Testing / Documentation / Accessibility]
 - **Description:** [What could be improved and why it would help]
 - **Impact:** Low (works correctly, this would enhance)
@@ -35,7 +35,7 @@ Enhancements discovered during execution. Not critical - address in future phase
 [Moved here when addressed]
 
 ### ISS-001: [Brief description]
-**Resolved:** [date] — Addressed in Phase [X] Plan [Y]
+**Resolved:** [date] — Addressed in Phase [X] Refine [Y]
 **Commit:** [hash or "N/A"]
 
 ---
@@ -63,8 +63,8 @@ Enhancements discovered during execution. Not critical - address in future phase
 | Effort | Definition |
 |--------|------------|
 | Quick | < 30 min, single task |
-| Medium | 1-2 hours, may need its own plan |
-| Substantial | Half day+, definitely needs dedicated plan |
+| Medium | 1-2 hours, may need its own refine |
+| Substantial | Half day+, definitely needs dedicated refine |
 
 ---
 

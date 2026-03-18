@@ -188,7 +188,7 @@ Detailed findings:
 
 ────────────────────────────────────────
 Review the findings above. This research informs but does not
-automatically integrate into plans.
+automatically integrate into refines.
 
 What's next?
 [1] Review consolidated findings

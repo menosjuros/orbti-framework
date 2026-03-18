@@ -1,14 +1,14 @@
 ---
 name: orbit:refine
-description: Enter REFINE phase for current or new plan
-argument-hint: "[phase-plan]"
+description: Enter REFINE phase for current or new refine
+argument-hint: "[phase-refine]"
 allowed-tools: [Read, Write, Glob, AskUserQuestion]
 ---
 
 <objective>
-Create or continue a REFINE plan for the specified phase.
+Create or continue a REFINE refine for the specified phase.
 
-**When to use:** Starting new work or resuming incomplete plan.
+**When to use:** Starting new work or resuming incomplete refine.
 </objective>
 
 <model>opus</model>
@@ -16,7 +16,7 @@ Create or continue a REFINE plan for the specified phase.
 <execution_context>
 @~/.claude/orbit-framework/workflows/refine.md
 @~/.claude/orbit-framework/templates/LOOP.md
-@~/.claude/orbit-framework/references/plan-format.md
+@~/.claude/orbit-framework/references/refine-format.md
 @~/.claude/orbit-framework/references/model-routing.md
 </execution_context>
 

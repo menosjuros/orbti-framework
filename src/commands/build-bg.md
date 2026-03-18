@@ -1,7 +1,7 @@
 ---
 name: orbit:build-bg
-description: Execute an approved REFINE plan autonomously in the background
-argument-hint: "[plan-path]"
+description: Execute an approved REFINE refine autonomously in the background
+argument-hint: "[refine-path]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
 ---
 
@@ -10,7 +10,7 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
 <objective>
 Run an approved LOOP.md as a background agent — execution happens unattended and you are notified on completion.
 
-**Requires:** Plan must have `autonomous: true`. Plans with checkpoints must use `/orbit:build` (foreground).
+**Requires:** Refine must have `autonomous: true`. Refines with checkpoints must use `/orbit:build` (foreground).
 </objective>
 
 <execution_context>
@@ -18,7 +18,7 @@ Run an approved LOOP.md as a background agent — execution happens unattended a
 </execution_context>
 
 <context>
-Plan path: $ARGUMENTS
+Refine path: $ARGUMENTS
 
 @.orbit/STATE.md
 </context>
@@ -28,7 +28,7 @@ Follow workflow: @~/.claude/orbit-framework/workflows/build.md — route to `bac
 </process>
 
 <success_criteria>
-- [ ] Plan has autonomous: true (blocking if not)
+- [ ] Refine has autonomous: true (blocking if not)
 - [ ] Background agent spawned
 - [ ] User notified on completion
 - [ ] STATE.md updated with BUILD complete

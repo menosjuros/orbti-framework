@@ -28,7 +28,7 @@ Templates define the structure for generated documents. Each template file conta
 
 **Curly braces** for variable interpolation:
 ```
-{project}-{plan}-LOOP.md
+{project}-{refine}-LOOP.md
 .orbit/projects/{project-number}-{name}/
 ```
 
@@ -39,7 +39,7 @@ Templates that define output documents show example frontmatter:
 ```yaml
 ---
 project: XX-name
-plan: NN
+refine: NN
 type: execute
 wave: 1
 depends_on: []

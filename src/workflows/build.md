@@ -16,7 +16,7 @@ Next phase:  INTEGRATE (after execution completes)
 
 <required_reading>
 @.orbit/STATE.md
-@.orbit/projects/{project}/{plan}-LOOP.md
+@.orbit/projects/{project}/{refine}-LOOP.md
 @.orbit/LEARNINGS.md (if exists — read before executing any task)
 </required_reading>
 
@@ -92,7 +92,7 @@ If this step was skipped and tasks were already executed: log deviation to STATE
 </step>
 
 <step name="background_build">
-**Background mode — only available for plans with `autonomous: true`.**
+**Background mode — only available for refines with `autonomous: true`.**
 
 Check LOOP.md frontmatter:
 ```
@@ -109,7 +109,7 @@ Run in foreground instead? [yes / no]
 If `autonomous: true`, spawn a background agent:
 
 ```
-Spawn background agent for: [plan-path]
+Spawn background agent for: [refine-path]
 
 The agent must:
 1. Execute all tasks in order (same rules as execute_tasks step)
@@ -128,7 +128,7 @@ Confirm to user:
 BUILD RUNNING IN BACKGROUND
 ════════════════════════════════════════
 
-Refine: [plan-path]
+Refine: [refine-path]
 Tasks: [N] tasks
 
 You will be notified when complete.
@@ -289,7 +289,7 @@ Only runs when `test_writer.enabled: true` AND `CLAUDE_CODE_EXPERIMENTAL_AGENT_T
 Spawn a 2-agent team sharing the same task list:
 
 ```
-Create a build team for plan: [plan-path]
+Create a build team for refine: [refine-path]
 
 Spawn 2 teammates:
 
@@ -392,7 +392,7 @@ After all tasks attempted:
 
    [1] Yes, run INTEGRATE | [2] Pause here
    ```
-   **Accept quick inputs:** "1", "yes", "continue", "go" → run `/orbit:integrate [plan-path]`
+   **Accept quick inputs:** "1", "yes", "continue", "go" → run `/orbit:integrate [refine-path]`
 </step>
 
 </process>

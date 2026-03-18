@@ -28,10 +28,10 @@ Template for milestone archives at `.orbit/milestones/v{VERSION}-{NAME}.md`.
 **Depends on:** {{DEPENDS_ON}}
 **Loops:** {{REFINE_COUNT}} completed
 
-Plans:
+Refines:
 - [x] {{PROJECT_NUM}}-01: {{REFINE_DESCRIPTION}}
 - [x] {{PROJECT_NUM}}-02: {{REFINE_DESCRIPTION}}
-[... all plans ...]
+[... all refines ...]
 
 **Details:**
 {{PROJECT_SCOPE_FROM_ROADMAP}}
@@ -44,7 +44,7 @@ Plans:
 **Depends on:** {{DEPENDS_ON}}
 **Reason:** {{INSERTION_REASON}}
 
-Plans:
+Refines:
 - [x] {{PROJECT_NUM}}-01: {{REFINE_DESCRIPTION}}
 {{/DECIMAL_PROJECTS}}
 
@@ -96,13 +96,13 @@ None
 | `{{DATE}}` | Ship date | `2026-01-28` |
 | `{{PHASE_START}}` | First project number | `7` |
 | `{{PHASE_END}}` | Last project number | `8.7` |
-| `{{REFINE_COUNT}}` | Total plans | `5` |
+| `{{REFINE_COUNT}}` | Total refines | `5` |
 | `{{MILESTONE_DESCRIPTION}}` | One-sentence summary | From MILESTONES.md entry |
 | `{{PROJECT_NUM}}` | Project number | `7` or `8.5` |
 | `{{PROJECT_NAME}}` | Project name | `Session Handoff` |
 | `{{PROJECT_GOAL}}` | Project goal | From ROADMAP.md |
 | `{{DEPENDS_ON}}` | Project dependencies | `Project 6` |
-| `{{REFINE_DESCRIPTION}}` | Plan brief | From ROADMAP.md or SUMMARY |
+| `{{REFINE_DESCRIPTION}}` | Refine brief | From ROADMAP.md or SUMMARY |
 | `{{PROJECT_SCOPE_FROM_ROADMAP}}` | Scope bullets | From ROADMAP.md |
 | `{{INSERTION_REASON}}` | Why decimal inserted | `Urgent quality fix` |
 | `{{DECISION}}` | Decision made | From STATE.md Decisions |
@@ -138,7 +138,7 @@ Archives are created by the `complete-milestone` workflow when:
 ### How to fill template
 
 The workflow populates from:
-1. **ROADMAP.md** — Phase details, goals, scope, plan lists
+1. **ROADMAP.md** — Phase details, goals, scope, refine lists
 2. **STATE.md** — Decisions from Accumulated Context section
 3. **MILESTONES.md** — Overview description
 4. **SUMMARY files** — Refine completion details
@@ -158,7 +158,7 @@ The workflow populates from:
 
 **Status:** ✅ SHIPPED 2026-01-28
 **Phases:** 7-8.7
-**Total Plans:** 5
+**Total Refines:** 5
 
 ## Overview
 
@@ -170,9 +170,9 @@ Pause/resume workflow with handoff files and enhanced STATE.md session tracking.
 
 **Goal:** Create pause/resume workflow for session breaks
 **Depends on:** Project 6
-**Plans:** 1 completed
+**Refines:** 1 completed
 
-Plans:
+Refines:
 - [x] 07-01: Handoff file generation and resume workflow
 
 **Details:**
@@ -186,7 +186,7 @@ Plans:
 **Depends on:** Project 8
 **Reason:** Discovered need during Project 8 review
 
-Plans:
+Refines:
 - [x] 08.5-01: SonarQube integration (optional)
 
 ### Project 8.6: Codebase CLAUDE.md [INSERTED]
@@ -195,7 +195,7 @@ Plans:
 **Depends on:** Project 8.5
 **Reason:** Improve agent context for ORBIT projects
 
-Plans:
+Refines:
 - [x] 08.6-01: CLAUDE.md template for codebase guidance
 
 ### Project 8.7: SonarQube Integration [INSERTED]
@@ -204,7 +204,7 @@ Plans:
 **Depends on:** Project 8.6
 **Reason:** Complete quality tooling suite
 
-Plans:
+Refines:
 - [x] 08.7-01: SonarQube project setup and config
 
 ---

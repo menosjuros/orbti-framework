@@ -1,14 +1,14 @@
 ---
 name: orbit:build
-description: Execute an approved REFINE plan
-argument-hint: "[plan-path]"
+description: Execute an approved REFINE refine
+argument-hint: "[refine-path]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, AskUserQuestion, Task]
 ---
 
 <objective>
 Execute an approved LOOP.md file, running tasks in order with verification at each step.
 
-**When to use:** After REFINE phase complete and plan is approved.
+**When to use:** After REFINE phase complete and refine is approved.
 
 </objective>
 
@@ -21,7 +21,7 @@ Execute an approved LOOP.md file, running tasks in order with verification at ea
 </execution_context>
 
 <context>
-Plan path: $ARGUMENTS
+Refine path: $ARGUMENTS
 
 @.orbit/STATE.md
 </context>

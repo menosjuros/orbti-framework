@@ -89,7 +89,7 @@ Not for:
 
 <deviation_rules>
 
-Plans are guides, not straitjackets. During BUILD:
+Refines are guides, not straitjackets. During BUILD:
 
 1. **Auto-fix bugs** - Fix immediately, log in SUMMARY
 2. **Auto-add critical** - Security/correctness gaps, add immediately

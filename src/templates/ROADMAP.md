@@ -39,7 +39,7 @@ Projects: [X] of [Y] complete
 
 Projects execute in numeric order: 1 → 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 
-| Project | Name | Plans | Status | Completed |
+| Project | Name | Refines | Status | Completed |
 |---------|------|-------|--------|-----------|
 | 1 | [Name] | [N] | Not started | - |
 | 2 | [Name] | [N] | Not started | - |
@@ -59,7 +59,7 @@ Projects execute in numeric order: 1 → 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 - [Deliverable 2]
 - [Deliverable 3]
 
-**Plans:**
+**Refines:**
 - [ ] 01-01: [Brief description]
 - [ ] 01-02: [Brief description]
 - [ ] 01-03: [Brief description]
@@ -75,7 +75,7 @@ Projects execute in numeric order: 1 → 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 - [Deliverable 1]
 - [Deliverable 2]
 
-**Plans:**
+**Refines:**
 - [ ] 02-01: [Brief description]
 - [ ] 02-02: [Brief description]
 
@@ -85,7 +85,7 @@ Projects execute in numeric order: 1 → 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 **Depends on:** Project 2
 **Reason:** [Why this was inserted]
 
-**Plans:**
+**Refines:**
 - [ ] 02.1-01: [Description]
 
 ### Project 3: [Name]
@@ -98,7 +98,7 @@ Projects execute in numeric order: 1 → 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 - [Deliverable 1]
 - [Deliverable 2]
 
-**Plans:**
+**Refines:**
 - [ ] 03-01: [Brief description]
 - [ ] 03-02: [Brief description]
 
@@ -111,7 +111,7 @@ Projects execute in numeric order: 1 → 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 **Scope:**
 - [Deliverable 1]
 
-**Plans:**
+**Refines:**
 - [ ] 04-01: [Brief description]
 
 ---
@@ -147,8 +147,8 @@ After completing first milestone, reorganize with milestone groupings:
 **Goal:** [What this project delivers]
 **Depends on:** Project 4
 
-**Plans:**
-- [x] 05-01: [Completed plan]
+**Refines:**
+- [x] 05-01: [Completed refine]
 - [ ] 05-02: [In progress or pending]
 
 ### Project 6: [Name]
@@ -156,7 +156,7 @@ After completing first milestone, reorganize with milestone groupings:
 **Goal:** [What this project delivers]
 **Depends on:** Project 5
 
-**Plans:**
+**Refines:**
 - [ ] 06-01: [Brief description]
 
 ## 📋 Planned Milestone: v2.0 [Name]
@@ -165,7 +165,7 @@ After completing first milestone, reorganize with milestone groupings:
 **Prerequisite:** v1.1 complete
 **Estimated projects:** [N]
 
-[Project outlines without detailed plans — detail added when milestone begins]
+[Project outlines without detailed refines — detail added when milestone begins]
 
 | Project | Focus | Research |
 |---------|-------|----------|
@@ -181,7 +181,7 @@ After completing first milestone, reorganize with milestone groupings:
 
 ### Project 1: [Name]
 **Goal:** [What was delivered]
-**Plans:** 3 complete
+**Refines:** 3 complete
 
 - [x] 01-01: [Description]
 - [x] 01-02: [Description]
@@ -189,20 +189,20 @@ After completing first milestone, reorganize with milestone groupings:
 
 ### Project 2: [Name]
 **Goal:** [What was delivered]
-**Plans:** 2 complete
+**Refines:** 2 complete
 
 - [x] 02-01: [Description]
 - [x] 02-02: [Description]
 
 ### Project 3: [Name]
 **Goal:** [What was delivered]
-**Plans:** 1 complete
+**Refines:** 1 complete
 
 - [x] 03-01: [Description]
 
 ### Project 4: [Name]
 **Goal:** [What was delivered]
-**Plans:** 1 complete
+**Refines:** 1 complete
 
 - [x] 04-01: [Description]
 
@@ -230,8 +230,8 @@ After completing first milestone, reorganize with milestone groupings:
 
 ### Projects Table
 **Purpose:** At-a-glance view of all projects.
-**Contains:** Project number, name, plan count, status, completion date.
-**Update:** After each plan/project completion.
+**Contains:** Project number, name, refine count, status, completion date.
+**Update:** After each refine/project completion.
 
 ### Project Details
 **Purpose:** Detailed breakdown of each project.
@@ -240,7 +240,7 @@ After completing first milestone, reorganize with milestone groupings:
 - **Depends on:** Project dependencies with reason
 - **Research:** Likely/Unlikely with justification
 - **Scope:** Bullet list of deliverables
-- **Plans:** Checklist with brief descriptions
+- **Refines:** Checklist with brief descriptions
 
 **Update:** During planning; status after completion.
 
@@ -268,7 +268,7 @@ After completing first milestone, reorganize with milestone groupings:
 
 Project count depends on project depth:
 
-| Depth | Typical Projects | Plans/Project |
+| Depth | Typical Projects | Refines/Project |
 |-------|------------------|---------------|
 | Quick | 3-5 | 1-3 |
 | Standard | 5-8 | 3-5 |
@@ -296,7 +296,7 @@ When `Research: Likely`:
 |--------|---------|
 | Not started | Phase hasn't begun |
 | In progress | Actively working |
-| Complete | All plans done (add date) |
+| Complete | All refines done (add date) |
 | Deferred | Pushed to later (add reason) |
 
 ---
@@ -308,7 +308,7 @@ When `Research: Likely`:
 **Contains:**
 - Goal and status summary
 - Progress bar visualization
-- All projects with plan checklists
+- All projects with refine checklists
 - Research flags where applicable
 
 ### Planned Milestone
@@ -316,7 +316,7 @@ When `Research: Likely`:
 **Contains:**
 - Goal and prerequisites
 - Project table (focus areas, research likelihood)
-- NOT detailed plans (added when milestone begins)
+- NOT detailed refines (added when milestone begins)
 
 ### Completed Milestones
 **Purpose:** Historical record in collapsible sections.

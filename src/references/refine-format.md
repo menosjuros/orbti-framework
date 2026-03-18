@@ -1,10 +1,10 @@
-<plan_format>
+<refine_format>
 
 ## Purpose
 
 LOOP.md IS the executable prompt. It contains everything needed to execute a project: objective, context, acceptance criteria, tasks, boundaries, verification, and output specification.
 
-**Core principle:** A plan is Claude-executable when Claude can read the LOOP.md and immediately start implementing without asking clarifying questions.
+**Core principle:** A refine is Claude-executable when Claude can read the LOOP.md and immediately start implementing without asking clarifying questions.
 
 If Claude has to guess, interpret, or make assumptions - the task is too vague.
 
@@ -15,7 +15,7 @@ Every LOOP.md starts with YAML frontmatter:
 ```yaml
 ---
 project: XX-name
-plan: NN
+refine: NN
 type: execute
 wave: N
 depends_on: []
@@ -27,11 +27,11 @@ autonomous: true
 | Field | Required | Purpose |
 |-------|----------|---------|
 | `project` | Yes | Project identifier (e.g., `02-rules-layer`) |
-| `plan` | Yes | Plan number within project (e.g., `01`, `02`) |
+| `refine` | Yes | Refine number within project (e.g., `01`, `02`) |
 | `type` | Yes | `execute` for standard, `tdd` for test-driven, `research` for exploration |
-| `wave` | Yes | Execution wave number (pre-computed at plan time) |
-| `depends_on` | Yes | Array of plan IDs this plan requires |
-| `files_modified` | Yes | Files this plan touches (for conflict detection) |
+| `wave` | Yes | Execution wave number (pre-computed at refine time) |
+| `depends_on` | Yes | Array of refine IDs this refine requires |
+| `files_modified` | Yes | Files this refine touches (for conflict detection) |
 | `autonomous` | Yes | `true` if no checkpoints, `false` if has checkpoints |
 
 ## Loop Structure
@@ -43,7 +43,7 @@ autonomous: true
 
 <objective>
 ## Goal
-[What this plan accomplishes - specific, measurable]
+[What this refine accomplishes - specific, measurable]
 
 ## Purpose
 [Why this matters for the project]
@@ -165,7 +165,7 @@ Then [expected outcome]
 
 ## Boundaries Section
 
-ORBIT plans include explicit boundaries:
+ORBIT refines include explicit boundaries:
 
 ```markdown
 <boundaries>
@@ -174,7 +174,7 @@ ORBIT plans include explicit boundaries:
 - src/lib/auth.ts (auth system stable)
 
 ## SCOPE LIMITS
-- This plan creates API only - no UI
+- This refine creates API only - no UI
 - Do not add new dependencies
 </boundaries>
 ```
@@ -217,7 +217,7 @@ Writing the actual code in the refine. Trust Claude to implement from clear inst
 
 ## Sizing Guidance
 
-**Good plan size:** 2-3 tasks, ~50% context usage, single concern.
+**Good refine size:** 2-3 tasks, ~50% context usage, single concern.
 
 **When to split into multiple refines:**
 - Different subsystems (auth vs API vs UI)
@@ -227,11 +227,11 @@ Writing the actual code in the refine. Trust Claude to implement from clear inst
 
 **Prefer vertical slices:**
 ```
-PREFER: Plan 01 = User (model + API + UI)
-        Plan 02 = Product (model + API + UI)
+PREFER: Refine 01 = User (model + API + UI)
+        Refine 02 = Product (model + API + UI)
 
-AVOID:  Plan 01 = All models
-        Plan 02 = All APIs
+AVOID:  Refine 01 = All models
+        Refine 02 = All APIs
 ```
 
 ## Anti-Patterns
@@ -260,4 +260,4 @@ depends_on: ["01-01"]  # Loop 02 doesn't actually need 01's output
 depends_on: ["01-01"]  # Loop 02 imports User type from 01-01
 ```
 
-</plan_format>
+</refine_format>

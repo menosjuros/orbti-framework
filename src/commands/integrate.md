@@ -1,14 +1,14 @@
 ---
 name: orbit:integrate
 description: Reconcile refine vs actual and close the loop
-argument-hint: "[plan-path]"
+argument-hint: "[refine-path]"
 allowed-tools: [Read, Write, Bash, Glob, Grep, AskUserQuestion, Task]
 ---
 
 <model>sonnet</model>
 
 <objective>
-Reconcile plan versus actual results, create INTEGRATE.md, and close the loop.
+Reconcile refine versus actual results, create INTEGRATE.md, and close the loop.
 
 **When to use:** After BUILD phase complete. This is MANDATORY - never skip INTEGRATE.
 
@@ -21,10 +21,10 @@ Creates INTEGRATE.md documenting what was built, decisions made, and any deferre
 </execution_context>
 
 <context>
-Plan path: $ARGUMENTS
+Refine path: $ARGUMENTS
 
 @.orbit/STATE.md
-@{plan-path} (the LOOP.md being unified)
+@{refine-path} (the LOOP.md being unified)
 </context>
 
 <process>
@@ -38,7 +38,7 @@ Plan path: $ARGUMENTS
 <step name="reconcile">
 Follow workflow: @~/.claude/orbit-framework/workflows/integrate.md
 
-Compare plan to actual:
+Compare refine to actual:
 - Which tasks completed as planned?
 - Any deviations from refine?
 - Decisions made during execution?
@@ -57,7 +57,7 @@ Create INTEGRATE.md in same directory as LOOP.md:
 <step name="update_state">
 Update STATE.md:
 - Loop position: REFINE ✓ → BUILD ✓ → INTEGRATE ✓
-- Project progress if plan completes project
+- Project progress if refine completes project
 - Performance metrics (duration)
 - Session continuity (next action)
 </step>
@@ -68,7 +68,7 @@ Display:
 Loop Closed
 ════════════════════════════════════════
 
-Plan: {plan-path}
+Refine: {refine-path}
 Summary: {summary-path}
 
 REFINE ──▶ BUILD ──▶ INTEGRATE

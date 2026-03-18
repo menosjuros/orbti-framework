@@ -1,27 +1,27 @@
 ---
 name: orbit:refine-fix
 description: Create a fix refine (REFINE variant) from UAT issues
-argument-hint: "<plan, e.g., '04-02'>"
+argument-hint: "<refine, e.g., '04-02'>"
 allowed-tools: [Read, Bash, Write, Glob, Grep, AskUserQuestion]
 ---
 
 <model>sonnet</model>
 
 <objective>
-Create FIX.md plan from UAT issues found during verify.
+Create FIX.md refine from UAT issues found during verify.
 
 **When to use:** After `/orbit:test` logs issues to project-scoped UAT file.
 
-**Output:** `{plan}-FIX.md` in the project directory, ready for execution.
+**Output:** `{refine}-FIX.md` in the project directory, ready for execution.
 </objective>
 
 <execution_context>
-@~/.claude/orbit-framework/references/plan-format.md
+@~/.claude/orbit-framework/references/refine-format.md
 @~/.claude/orbit-framework/references/checkpoints.md
 </execution_context>
 
 <context>
-Plan number: $ARGUMENTS (required - e.g., "04-02" or "10-01")
+Refine number: $ARGUMENTS (required - e.g., "04-02" or "10-01")
 
 @.orbit/STATE.md
 @.orbit/ROADMAP.md
@@ -30,18 +30,18 @@ Plan number: $ARGUMENTS (required - e.g., "04-02" or "10-01")
 <process>
 
 <step name="parse">
-**Parse plan argument:**
+**Parse refine argument:**
 
-$ARGUMENTS should be a plan number like "04-02" or "10-01".
-Extract project number (XX) and plan number (NN).
+$ARGUMENTS should be a refine number like "04-02" or "10-01".
+Extract project number (XX) and refine number (NN).
 
 If no argument provided:
 ```
-Error: Plan number required.
+Error: Refine number required.
 
-Usage: /orbit:plan-fix 04-02
+Usage: /orbit:refine-fix 04-02
 
-This creates a fix refine from .orbit/projects/XX-name/{plan}-UAT.md
+This creates a fix refine from .orbit/projects/XX-name/{refine}-UAT.md
 ```
 Exit.
 </step>
@@ -51,12 +51,12 @@ Exit.
 
 Search for matching UAT file:
 ```bash
-ls .orbit/projects/*/{plan}-UAT.md 2>/dev/null
+ls .orbit/projects/*/{refine}-UAT.md 2>/dev/null
 ```
 
 If not found:
 ```
-No UAT.md found for plan {plan}.
+No UAT.md found for refine {refine}.
 
 UAT.md files are created by /orbit:test when testing finds issues.
 If no issues were found during testing, no fix refine is needed.
@@ -78,7 +78,7 @@ Parse each issue:
 Count total issues by severity.
 </step>
 
-<step name="plan">
+<step name="refine">
 **Create fix tasks:**
 
 For each issue (or logical group):
@@ -105,12 +105,12 @@ Prioritize: Blocker → Major → Minor → Cosmetic
 <step name="write">
 **Write FIX.md:**
 
-Create `.orbit/projects/XX-name/{plan}-FIX.md`:
+Create `.orbit/projects/XX-name/{refine}-FIX.md`:
 
 ```markdown
 ---
 project: XX-name
-plan: {plan}-FIX
+refine: {refine}-FIX
 type: fix
 wave: 1
 depends_on: []
@@ -120,7 +120,7 @@ autonomous: true
 
 <objective>
 ## Goal
-Fix {N} UAT issues from plan {plan}.
+Fix {N} UAT issues from refine {refine}.
 
 ## Purpose
 Address issues discovered during user acceptance testing.
@@ -128,7 +128,7 @@ Address issues discovered during user acceptance testing.
 ## Output
 All issues resolved, ready for re-verification.
 
-Source: {plan}-UAT.md
+Source: {refine}-UAT.md
 Priority: {blocker count} blocker, {major count} major, {minor count} minor, {cosmetic count} cosmetic
 </objective>
 
@@ -137,10 +137,10 @@ Priority: {blocker count} blocker, {major count} major, {minor count} minor, {co
 @.orbit/ROADMAP.md
 
 **Issues being fixed:**
-@.orbit/projects/XX-name/{plan}-UAT.md
+@.orbit/projects/XX-name/{refine}-UAT.md
 
-**Original plan for reference:**
-@.orbit/projects/XX-name/{plan}-LOOP.md
+**Original refine for reference:**
+@.orbit/projects/XX-name/{refine}-LOOP.md
 </context>
 
 <acceptance_criteria>
@@ -157,12 +157,12 @@ Priority: {blocker count} blocker, {major count} major, {minor count} minor, {co
 - Core functionality that passed testing
 
 ## SCOPE LIMITS
-- Only fix issues from {plan}-UAT.md
+- Only fix issues from {refine}-UAT.md
 - No scope creep or additional improvements
 </boundaries>
 
 <verification>
-Before declaring plan complete:
+Before declaring refine complete:
 - [ ] All blocker issues fixed
 - [ ] All major issues fixed
 - [ ] Minor/cosmetic issues fixed or documented as deferred
@@ -170,12 +170,12 @@ Before declaring plan complete:
 </verification>
 
 <success_criteria>
-- All UAT issues from {plan}-UAT.md addressed
+- All UAT issues from {refine}-UAT.md addressed
 - Ready for re-verification with /orbit:test
 </success_criteria>
 
 <output>
-After completion, create `.orbit/projects/XX-name/{plan}-FIX-INTEGRATE.md`
+After completion, create `.orbit/projects/XX-name/{refine}-FIX-INTEGRATE.md`
 </output>
 ```
 </step>
@@ -188,7 +188,7 @@ After completion, create `.orbit/projects/XX-name/{plan}-FIX-INTEGRATE.md`
 FIX REFINE CREATED
 ════════════════════════════════════════
 
-{plan}-FIX.md — {N} issues to fix
+{refine}-FIX.md — {N} issues to fix
 
 | Severity | Count |
 |----------|-------|
@@ -205,7 +205,7 @@ Continue to BUILD?
 ```
 
 Use AskUserQuestion to get response.
-If approved: `/orbit:build .orbit/projects/XX-name/{plan}-FIX.md`
+If approved: `/orbit:build .orbit/projects/XX-name/{refine}-FIX.md`
 </step>
 
 </process>

@@ -17,7 +17,7 @@ Template for `.orbit/MILESTONES.md` — the project's milestone log.
 
 **Delivered:** [One sentence describing what shipped]
 
-**Phases completed:** [X-Y] ([Z] plans total)
+**Phases completed:** [X-Y] ([Z] refines total)
 
 **Key accomplishments:**
 - [Major achievement 1]
@@ -31,7 +31,7 @@ Template for `.orbit/MILESTONES.md` — the project's milestone log.
 | Files modified | [X] |
 | Lines of code | [Y] |
 | Phases | [N] |
-| Plans completed | [M] |
+| Refines completed | [M] |
 | Duration | [D] days |
 
 **Git range:** `feat(XX-XX)` → `feat(YY-YY)`
@@ -54,8 +54,8 @@ Template for `.orbit/MILESTONES.md` — the project's milestone log.
 **Keep it:** User-focused, outcome-oriented.
 
 ### Phases completed
-**Format:** `[Start]-[End] ([N] plans total)`
-**Example:** `5-7 (4 plans total)` or `8.5-8.7 (3 plans total)` for decimal phases
+**Format:** `[Start]-[End] ([N] refines total)`
+**Example:** `5-7 (4 refines total)` or `8.5-8.7 (3 refines total)` for decimal phases
 
 ### Key accomplishments
 **Count:** 3-5 major achievements.
@@ -67,7 +67,7 @@ Template for `.orbit/MILESTONES.md` — the project's milestone log.
 **Collect via:**
 - Files: `git diff --stat feat(XX-XX)..feat(YY-YY) | tail -1`
 - LOC: Count primary language (varies by project)
-- Phases/Plans: Count from ROADMAP.md
+- Phases/Refines: Count from ROADMAP.md
 - Duration: Days from first commit to ship
 
 ### Git range
@@ -105,7 +105,7 @@ Entries are **reverse chronological** — newest milestone at top.
 ### Decimal phases
 
 Include decimal phases in the range when relevant:
-- "Phases completed: 8-8.7 (5 plans total)" — includes 8, 8.5, 8.6, 8.7
+- "Phases completed: 8-8.7 (5 refines total)" — includes 8, 8.5, 8.6, 8.7
 
 ---
 
@@ -118,7 +118,7 @@ Include decimal phases in the range when relevant:
 
 **Delivered:** Pause/resume workflow with handoff files and enhanced STATE.md session tracking
 
-**Phases completed:** 7-8.7 (5 plans total)
+**Phases completed:** 7-8.7 (5 refines total)
 
 **Key accomplishments:**
 - Handoff file generation for session breaks
@@ -132,7 +132,7 @@ Include decimal phases in the range when relevant:
 | Files modified | 12 |
 | Lines of code | 850 |
 | Phases | 4 (7, 8.5, 8.6, 8.7) |
-| Plans completed | 5 |
+| Refines completed | 5 |
 | Duration | 2 days |
 
 **Git range:** `feat(07-01)` → `feat(08.7-01)`
@@ -145,7 +145,7 @@ Include decimal phases in the range when relevant:
 
 **Delivered:** ORBIT framework foundation with Observe-Refine-Build-Integrate-Test loop
 
-**Phases completed:** 1-6 (4 plans total)
+**Phases completed:** 1-6 (4 refines total)
 
 **Key accomplishments:**
 - LOOP.md, STATE.md, PROJECT.md, INTEGRATE.md templates
@@ -158,7 +158,7 @@ Include decimal phases in the range when relevant:
 | Files modified | 18 |
 | Lines of code | 1,200 |
 | Phases | 6 |
-| Plans completed | 4 |
+| Refines completed | 4 |
 | Duration | 1 day |
 
 **Git range:** `feat(01-01)` → `feat(06-01)`

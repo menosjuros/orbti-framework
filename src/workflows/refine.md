@@ -5,7 +5,7 @@ Create an executable LOOP.md for the current or specified project. The refine de
 <when_to_use>
 - Starting a new project (ROADMAP shows next project ready)
 - Previous refine completed (loop closed with INTEGRATE)
-- First plan in a project (after init-project)
+- First refine in a project (after init-project)
 - Resuming work that needs a new refine
 </when_to_use>
 
@@ -19,11 +19,11 @@ Next project: BUILD (after refine approval)
 @.orbit/STATE.md
 @.orbit/ROADMAP.md
 @.orbit/PROJECT.md
-@.orbit/projects/{prior-project}/{plan}-INTEGRATE.md (if exists and relevant)
+@.orbit/projects/{prior-project}/{refine}-INTEGRATE.md (if exists and relevant)
 </required_reading>
 
 <references>
-@~/.claude/orbit-framework/references/plan-format.md
+@~/.claude/orbit-framework/references/refine-format.md
 @~/.claude/orbit-framework/references/checkpoints.md (if refine will have checkpoints)
 @~/.claude/orbit-framework/templates/LOOP.md
 </references>
@@ -95,7 +95,7 @@ Next project: BUILD (after refine approval)
 4. Display reminder if required skills found:
    ```
    ════════════════════════════════════════
-   ⚠️  REQUIRED SKILLS for this plan:
+   ⚠️  REQUIRED SKILLS for this refine:
    ════════════════════════════════════════
    - /skill-1 (work type: X)
    - /skill-2 (work type: Y)
@@ -114,7 +114,7 @@ Required skills will BLOCK build until confirmed loaded.
 
    **Frontmatter:**
    - project: NN-name
-   - plan: 01 (or next number if multiple refines in phase)
+   - refine: 01 (or next number if multiple refines in phase)
    - type: execute (or tdd/research)
    - wave: 1 (adjust if dependencies exist)
    - depends_on: [] (or prior refine IDs if genuine dependency)
@@ -161,7 +161,7 @@ Required skills will BLOCK build until confirmed loaded.
    Project: [N] of [total] ([Project Name]) — Planning
    Refine: [NN-PP] created, awaiting approval
    Status: REFINE created, ready for BUILD
-   Last activity: [timestamp] — Created [plan-path]
+   Last activity: [timestamp] — Created [refine-path]
 
    Progress:
    - Milestone: [░░░░░░░░░░] X%
@@ -179,9 +179,9 @@ Required skills will BLOCK build until confirmed loaded.
 
    Last session: [timestamp]
    Stopped at: Refine [NN-PP] created
-   Next action: Review and approve plan, then run /orbit:build [plan-path]
+   Next action: Review and approve refine, then run /orbit:build [refine-path]
 
-   Resume file: [plan-path]
+   Resume file: [refine-path]
    ```
 
 2. **Update ROADMAP.md** milestone status:
@@ -194,7 +194,7 @@ Required skills will BLOCK build until confirmed loaded.
    REFINE CREATED
    ════════════════════════════════════════
 
-   Refine: [plan-path]
+   Refine: [refine-path]
    Project: [N] — [Project Name]
 
    [refine summary - key tasks, checkpoints]
@@ -204,13 +204,13 @@ Required skills will BLOCK build until confirmed loaded.
 
    [1] Approved, run BUILD | [2] Questions first | [3] Pause here
    ```
-4. **Accept quick inputs:** "1", "approved", "yes", "go" → run `/orbit:build [plan-path]`
+4. **Accept quick inputs:** "1", "approved", "yes", "go" → run `/orbit:build [refine-path]`
 </step>
 
 </process>
 
 <output>
-LOOP.md at `.orbit/projects/{NN}-{project-name}/{NN}-{plan}-LOOP.md`
+LOOP.md at `.orbit/projects/{NN}-{project-name}/{NN}-{refine}-LOOP.md`
 
 Example: `.orbit/projects/04-workflows-layer/04-01-LOOP.md`
 </output>

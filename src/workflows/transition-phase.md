@@ -1,12 +1,12 @@
 <purpose>
-Handle project-level transition after all plans in a project are complete. Evolves PROJECT.md, verifies project completion, cleans up, and routes to next project or milestone completion.
+Handle project-level transition after all refines in a project are complete. Evolves PROJECT.md, verifies project completion, cleans up, and routes to next project or milestone completion.
 
 **Invoked by:** integrate.md when it detects "last refine in project"
 **Scope:** Project N → Project N+1 (or milestone completion)
 </purpose>
 
 <when_to_use>
-- All plans in current project have INTEGRATE.md files
+- All refines in current project have INTEGRATE.md files
 - Project is ready to close
 - Moving to next project or completing milestone
 </when_to_use>
@@ -33,14 +33,14 @@ Handle project-level transition after all plans in a project are complete. Evolv
 PROJECT INCOMPLETE
 ════════════════════════════════════════
 
-Project {N} has incomplete plans:
+Project {N} has incomplete refines:
 - {project}-01-INTEGRATE.md ✓
 - {project}-02-INTEGRATE.md ✗ Missing
 - {project}-03-INTEGRATE.md ✗ Missing
 
 Options:
-[1] Continue current project (execute remaining plans)
-[2] Mark complete anyway (skip remaining plans)
+[1] Continue current project (execute remaining refines)
+[2] Mark complete anyway (skip remaining refines)
 [3] Review what's left
 ════════════════════════════════════════
 ```
@@ -215,9 +215,9 @@ git commit -m "$(cat <<'EOF'
 feat({project}): {project-description}
 
 Project {N} complete:
-- {plan-01 summary}
-- {plan-02 summary}
-- {plan-03 summary}
+- {refine-01 summary}
+- {refine-02 summary}
+- {refine-03 summary}
 
 Co-Authored-By: Claude <noreply@anthropic.com>
 EOF
@@ -313,7 +313,7 @@ State consistency: ✓
 PROJECT {N} COMPLETE
 ════════════════════════════════════════
 
-✓ All {X} plans complete
+✓ All {X} refines complete
 ✓ PROJECT.md evolved
 ✓ Ready for next project
 

@@ -184,7 +184,7 @@ Verdict: [ALL PASS | FAILURES FOUND]
 ```
 
 **If FAILURES FOUND:**
-- Log each failing AC to `.orbit/projects/XX-name/{plan}-UAT.md`
+- Log each failing AC to `.orbit/projects/XX-name/{refine}-UAT.md`
 - Offer: "Run /orbit:refine-fix to address failing tests before integrating"
 - User can override and continue to human verification anyway (with issues logged)
 
@@ -215,5 +215,5 @@ Human verification runs for every AC, independent of automated results. An AC th
 - [ ] Issues logged if any failures
 - [ ] Human verification checklist presented (always — automated tests do not substitute)
 - [ ] Human verdict captured for each AC
-- [ ] User routed to integrate or plan-fix
+- [ ] User routed to integrate or refine-fix
 </success_criteria>

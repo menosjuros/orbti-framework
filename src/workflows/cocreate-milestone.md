@@ -37,7 +37,7 @@ After discussion, routes to /orbit:milestone (create-milestone).
    You have an active milestone: {milestone_name}
 
    [1] Complete current milestone first
-   [2] Start discussion for NEXT milestone (plan ahead)
+   [2] Start discussion for NEXT milestone (refine ahead)
    ```
    Wait for decision.
 

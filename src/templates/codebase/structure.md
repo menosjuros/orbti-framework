@@ -161,7 +161,7 @@ orbit-framework/
 **src/templates/**
 - Purpose: Document templates for .orbit/ files
 - Contains: Template definitions with frontmatter
-- Key files: project.md, roadmap.md, plan.md, summary.md
+- Key files: project.md, roadmap.md, refine.md, summary.md
 - Subdirectories: codebase/ (stack/architecture/structure templates)
 
 **src/workflows/**

@@ -27,7 +27,7 @@ ORBIT uses context brackets to adapt behavior based on remaining capacity:
 - Re-read key files (PROJECT.md, STATE.md) before decisions
 - Consider splitting large remaining work
 - Prefer summaries over full prior refine content
-- Single-concern plans
+- Single-concern refines
 
 ### DEEP (20-40%)
 - Read INTEGRATE.md instead of full LOOP.md
@@ -76,7 +76,7 @@ When referencing prior work:
 @.orbit/projects/01-foundation/01-01-INTEGRATE.md
 ```
 
-Summaries capture what was built. Plans capture what was intended. After completion, the summary is more useful.
+Summaries capture what was built. Refines capture what was intended. After completion, the summary is more useful.
 
 ### Progressive Detail
 Start with high-level, drill down only when needed:
@@ -108,13 +108,13 @@ More tasks = more context per refine. Split large projects into multiple refines
 
 **Anti-pattern: Reflexive chain**
 ```yaml
-# Plan 01-01
+# Refine 01-01
 depends_on: []
 
-# Plan 01-02
+# Refine 01-02
 depends_on: ["01-01"]  # Does 02 actually need 01's output?
 
-# Plan 01-03
+# Refine 01-03
 depends_on: ["01-02"]  # Does 03 actually need 02's output?
 ```
 
@@ -122,13 +122,13 @@ This creates false sequential execution and unnecessary context loading.
 
 **Pattern: Genuine dependencies only**
 ```yaml
-# Plan 01-01: Create User model
+# Refine 01-01: Create User model
 depends_on: []
 
-# Plan 01-02: Create Product model
+# Refine 01-02: Create Product model
 depends_on: []  # Independent! Can parallelize.
 
-# Plan 01-03: Create Order model (references User and Product)
+# Refine 01-03: Create Order model (references User and Product)
 depends_on: ["01-01", "01-02"]  # Genuine: imports types from both
 ```
 
@@ -150,11 +150,11 @@ Always updated. Minimal but sufficient for quick resume:
 ## Session Continuity
 
 Last session: 2026-01-28 11:15
-Stopped at: Project 3, Plan 01, Task 2 complete
+Stopped at: Project 3, Refine 01, Task 2 complete
 Next action: Create context-management.md reference
 Resume file: .orbit/projects/03-references-layer/03-01-LOOP.md
 Resume context:
-- Task 1 complete (checkpoints.md, plan-format.md created)
+- Task 1 complete (checkpoints.md, refine-format.md created)
 - Task 2 in progress
 - 55% context remaining
 ```
@@ -214,6 +214,6 @@ Why bad: Next session loses context. Always prepare resume.
 | Verification output | ~2-5k tokens |
 | INTEGRATE.md write | ~2-3k tokens |
 
-Plan your work with these estimates in mind.
+Refine your work with these estimates in mind.
 
 </context_management>

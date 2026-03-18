@@ -35,7 +35,7 @@ Exception: INTEGRATE.md deviations section, git commits (their purpose IS tracki
 | Bash variables | CAPS_UNDERSCORES | `PHASE_ARG` |
 | Type attributes | colon separator | `type="checkpoint:human-verify"` |
 | Phase directories | `NN-kebab-name` | `02-rules-layer` |
-| Plan files | `NN-NN-LOOP.md` | `02-01-LOOP.md` |
+| Refine files | `NN-NN-LOOP.md` | `02-01-LOOP.md` |
 
 ## XML Conventions
 
@@ -112,7 +112,7 @@ Each criterion must be independently testable.
 ## Commit Format
 
 ```
-{type}({phase}-{plan}): {description}
+{type}({phase}-{refine}): {description}
 ```
 
 Types: `feat`, `fix`, `test`, `refactor`, `docs`, `chore`

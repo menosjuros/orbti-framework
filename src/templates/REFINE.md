@@ -1,8 +1,8 @@
 # LOOP.md Template
 
-Template for `.orbit/projects/{project-number}-{name}/{project}-{plan}-LOOP.md` - executable project plans.
+Template for `.orbit/projects/{project-number}-{name}/{project}-{refine}-LOOP.md` - executable project refines.
 
-**Naming:** `{project}-{plan}-LOOP.md` (e.g., `01-02-LOOP.md` for Project 1, Plan 2)
+**Naming:** `{project}-{refine}-LOOP.md` (e.g., `01-02-LOOP.md` for Project 1, Refine 2)
 
 ---
 
@@ -11,17 +11,17 @@ Template for `.orbit/projects/{project-number}-{name}/{project}-{plan}-LOOP.md` 
 ```markdown
 ---
 project: XX-name
-plan: NN
+refine: NN
 type: execute                    # execute | tdd | research
-wave: N                          # Execution wave (1, 2, 3...). Pre-computed at plan time.
-depends_on: []                   # Plan IDs this plan requires (e.g., ["01-01"]).
-files_modified: []               # Files this plan modifies.
+wave: N                          # Execution wave (1, 2, 3...). Pre-computed at refine time.
+depends_on: []                   # Refine IDs this refine requires (e.g., ["01-01"]).
+files_modified: []               # Files this refine modifies.
 autonomous: true                 # false if refine has checkpoints requiring user interaction
 ---
 
 <objective>
 ## Goal
-[What this plan accomplishes - specific, measurable]
+[What this refine accomplishes - specific, measurable]
 
 ## Purpose
 [Why this matters for the project - connects to PROJECT.md value]
@@ -38,11 +38,11 @@ autonomous: true                 # false if refine has checkpoints requiring use
 
 ## Prior Work (only if genuinely needed)
 # Only reference prior SUMMARYs if:
-# - This plan imports types/exports from prior plan
-# - Prior plan made decision affecting this plan
-# - Prior plan's output is direct input to this plan
+# - This refine imports types/exports from prior refine
+# - Prior refine made decision affecting this refine
+# - Prior refine's output is direct input to this refine
 #
-# Do NOT reflexively chain: Plan 02 refs 01, Plan 03 refs 02...
+# Do NOT reflexively chain: Refine 02 refs 01, Refine 03 refs 02...
 
 ## Source Files
 @path/to/relevant/source.ts
@@ -154,13 +154,13 @@ Then [outcome]
 - [Another protected element]
 
 ## SCOPE LIMITS
-- [What's explicitly out of scope for this plan]
+- [What's explicitly out of scope for this refine]
 - [Another exclusion]
 
 </boundaries>
 
 <verification>
-Before declaring plan complete:
+Before declaring refine complete:
 - [ ] [Specific test command]
 - [ ] [Build/type check passes]
 - [ ] [Behavior verification]
@@ -171,11 +171,11 @@ Before declaring plan complete:
 - All tasks completed
 - All verification checks pass
 - No errors or warnings introduced
-- [Plan-specific criteria]
+- [Refine-specific criteria]
 </success_criteria>
 
 <output>
-After completion, create `.orbit/projects/XX-name/{project}-{plan}-INTEGRATE.md`
+After completion, create `.orbit/projects/XX-name/{project}-{refine}-INTEGRATE.md`
 </output>
 ```
 
@@ -186,11 +186,11 @@ After completion, create `.orbit/projects/XX-name/{project}-{plan}-INTEGRATE.md`
 | Field | Required | Purpose |
 |-------|----------|---------|
 | `project` | Yes | Project identifier (e.g., `01-foundation`) |
-| `plan` | Yes | Plan number within project (e.g., `01`, `02`) |
+| `refine` | Yes | Refine number within project (e.g., `01`, `02`) |
 | `type` | Yes | `execute` for standard, `tdd` for test-driven, `research` for exploration |
-| `wave` | Yes | Execution wave number (1, 2, 3...). Pre-computed at plan time. |
-| `depends_on` | Yes | Array of plan IDs this plan requires. Empty = parallel candidate. |
-| `files_modified` | Yes | Files this plan touches. For conflict detection. |
+| `wave` | Yes | Execution wave number (1, 2, 3...). Pre-computed at refine time. |
+| `depends_on` | Yes | Array of refine IDs this refine requires. Empty = parallel candidate. |
+| `files_modified` | Yes | Files this refine touches. For conflict detection. |
 | `autonomous` | Yes | `true` if no checkpoints, `false` if has checkpoints |
 
 ---
@@ -252,12 +252,12 @@ Then [expected outcome]
 
 **Prefer vertical slices:**
 ```
-PREFER: Plan 01 = User (model + API + UI)
-        Plan 02 = Product (model + API + UI)
+PREFER: Refine 01 = User (model + API + UI)
+        Refine 02 = Product (model + API + UI)
 
-AVOID:  Plan 01 = All models
-        Plan 02 = All APIs
-        Plan 03 = All UIs
+AVOID:  Refine 01 = All models
+        Refine 02 = All APIs
+        Refine 03 = All UIs
 ```
 
 ---
@@ -266,7 +266,7 @@ AVOID:  Plan 01 = All models
 
 **Wave 1 candidates (parallel):**
 - `depends_on: []` - No dependencies
-- No file conflicts with other Wave 1 plans
+- No file conflicts with other Wave 1 refines
 - `autonomous: true` - No checkpoints blocking
 
 **Sequential (genuine dependency):**
@@ -274,7 +274,7 @@ AVOID:  Plan 01 = All models
 - Uses types/exports created by prior loop
 - Prior loop makes decision affecting this loop
 
-**Do NOT reflexively chain:** Plan 02 depending on 01 "just because" creates false sequential execution.
+**Do NOT reflexively chain:** Refine 02 depending on 01 "just because" creates false sequential execution.
 
 ---
 

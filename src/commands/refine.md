@@ -15,7 +15,7 @@ Create or continue a REFINE plan for the specified phase.
 
 <execution_context>
 @~/.claude/orbit-framework/workflows/refine.md
-@~/.claude/orbit-framework/templates/REFINE.md
+@~/.claude/orbit-framework/templates/LOOP.md
 @~/.claude/orbit-framework/references/plan-format.md
 @~/.claude/orbit-framework/references/model-routing.md
 </execution_context>
@@ -33,7 +33,7 @@ Follow workflow: @~/.claude/orbit-framework/workflows/refine.md
 </process>
 
 <success_criteria>
-- [ ] REFINE.md created in correct project directory
+- [ ] LOOP.md created in correct project directory
 - [ ] All acceptance criteria defined
 - [ ] STATE.md updated with loop position
 </success_criteria>

@@ -1,8 +1,8 @@
-# REFINE.md Template
+# LOOP.md Template
 
-Template for `.orbit/projects/{project-number}-{name}/{project}-{plan}-REFINE.md` - executable project plans.
+Template for `.orbit/projects/{project-number}-{name}/{project}-{plan}-LOOP.md` - executable project plans.
 
-**Naming:** `{project}-{plan}-REFINE.md` (e.g., `01-02-REFINE.md` for Project 1, Plan 2)
+**Naming:** `{project}-{plan}-LOOP.md` (e.g., `01-02-LOOP.md` for Project 1, Plan 2)
 
 ---
 

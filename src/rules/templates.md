@@ -28,7 +28,7 @@ Templates define the structure for generated documents. Each template file conta
 
 **Curly braces** for variable interpolation:
 ```
-{project}-{plan}-REFINE.md
+{project}-{plan}-LOOP.md
 .orbit/projects/{project-number}-{name}/
 ```
 

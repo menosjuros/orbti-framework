@@ -30,7 +30,7 @@ ORBIT uses context brackets to adapt behavior based on remaining capacity:
 - Single-concern plans
 
 ### DEEP (20-40%)
-- Read INTEGRATE.md instead of full REFINE.md
+- Read INTEGRATE.md instead of full LOOP.md
 - Defer new complex work to fresh session
 - Focus on completing current refine
 - Prepare handoff documentation
@@ -72,7 +72,7 @@ When referencing prior work:
 @.orbit/projects/01-foundation/01-01-INTEGRATE.md
 
 <!-- AVOID: Full plan + summary -->
-@.orbit/projects/01-foundation/01-01-REFINE.md
+@.orbit/projects/01-foundation/01-01-LOOP.md
 @.orbit/projects/01-foundation/01-01-INTEGRATE.md
 ```
 
@@ -152,7 +152,7 @@ Always updated. Minimal but sufficient for quick resume:
 Last session: 2026-01-28 11:15
 Stopped at: Project 3, Plan 01, Task 2 complete
 Next action: Create context-management.md reference
-Resume file: .orbit/projects/03-references-layer/03-01-REFINE.md
+Resume file: .orbit/projects/03-references-layer/03-01-LOOP.md
 Resume context:
 - Task 1 complete (checkpoints.md, plan-format.md created)
 - Task 2 in progress
@@ -208,7 +208,7 @@ Why bad: Next session loses context. Always prepare resume.
 
 | Activity | Typical Cost |
 |----------|--------------|
-| REFINE.md template | ~3-5k tokens |
+| LOOP.md template | ~3-5k tokens |
 | Read source file | ~1-3k tokens |
 | Task execution | ~5-15k tokens |
 | Verification output | ~2-5k tokens |

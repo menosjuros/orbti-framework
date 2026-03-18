@@ -140,7 +140,7 @@ Priority: {blocker count} blocker, {major count} major, {minor count} minor, {co
 @.orbit/projects/XX-name/{plan}-UAT.md
 
 **Original plan for reference:**
-@.orbit/projects/XX-name/{plan}-REFINE.md
+@.orbit/projects/XX-name/{plan}-LOOP.md
 </context>
 
 <acceptance_criteria>

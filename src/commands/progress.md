@@ -106,7 +106,7 @@ Current Loop: Phase 2, Plan 02-03
 └─────────────────────────────────────┘
 
 ────────────────────────────────────────
-▶ NEXT: /orbit:integrate .orbit/projects/02-features/02-03-REFINE.md
+▶ NEXT: /orbit:integrate .orbit/projects/02-features/02-03-LOOP.md
   Close the loop and update state.
 ────────────────────────────────────────
 

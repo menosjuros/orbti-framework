@@ -146,15 +146,21 @@ como?   →  /orbti:cocreate "topic"     # Claude researches, you decide — com
 The default loop starts at refine. Observe and cocreate are optional — use them when scope or approach is unclear.
 
 ```
+observe → cocreate → assumptions → refine → build → test → integrate
+ o quê?    como?       validar      plano   executa  verifica  fecha
+```
+
+```
 # optional pre-planning
-/orbti:observe     # o quê — align on goals with you
-/orbti:cocreate    # como — research technical options autonomously
+/orbti:observe      # o quê — you talk, Claude articulates goals
+/orbti:cocreate     # como — Claude researches technical options autonomously
+/orbti:assumptions  # validate Claude's understanding before committing
 
 # main loop (always)
-/orbti:refine      # plan informed by observe + cocreate (or from scratch)
-/orbti:build       # execute
-/orbti:test        # verify against acceptance criteria
-/orbti:integrate   # close the loop
+/orbti:refine       # plan informed by observe + cocreate (or from scratch)
+/orbti:build        # execute
+/orbti:test         # verify against acceptance criteria
+/orbti:integrate    # close the loop
 ```
 
 **`/orbti:test`** — Auto-detects the project's test runner, writes missing tests, and maps results to each AC. Falls back to guided manual UAT if no runner is found.

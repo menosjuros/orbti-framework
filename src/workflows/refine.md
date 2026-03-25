@@ -103,6 +103,10 @@ Required skills will BLOCK build until confirmed loaded.
 
 <step name="create_plan">
 1. Create project directory: `.orbti/projects/{project-name}/`
+   **IMPORTANT:** `{project-name}` is the project name in kebab-case with NO numeric prefix.
+   Even if the ROADMAP lists projects as "01. cohort-inadimplencia", use only "cohort-inadimplencia".
+   WRONG: `.orbti/projects/01-cohort-inadimplencia/`
+   RIGHT: `.orbti/projects/cohort-inadimplencia/`
 2. Generate REFINE.md following template structure:
 
    **Frontmatter:**

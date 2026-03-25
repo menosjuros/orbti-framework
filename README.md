@@ -2,382 +2,205 @@
 
 # ORBTI
 
-**Cocreate, Refine, Build, Integrate, Test** — A structured development loop for Claude Code.
+**Um loop de desenvolvimento estruturado para Claude Code.**
 
 [![npm version](https://img.shields.io/npm/v/orbti-framework?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/orbti-framework)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/menosjuros/orbti-framework?style=for-the-badge&logo=github&color=181717)](https://github.com/menosjuros/orbti-framework)
 
-<br>
-
-```bash
-npx github:menosjuros/orbti-framework
-```
-
 </div>
 
 ---
 
-## What is ORBTI
+## Instalação
 
-ORBTI is a framework for Claude Code that keeps AI-assisted development **predictable and reliable** across sessions.
-
-Most AI workflows break down over time: sessions fill up, context degrades, plans get started but never closed, state drifts. ORBTI solves this with a **mandatory closed loop** — every unit of work must be planned, executed, and reconciled before moving on.
-
-### How ORBTI stands out
-
-| | ORBTI | Generic AI workflows |
-|--|-------|----------------------|
-| **State** | Tracked in `STATE.md` — always knows where you are | Lost between sessions |
-| **Planning** | Acceptance criteria before a single line of code | Vague prompts |
-| **Execution** | Tasks run sequentially, deviations logged | Freeform, unpredictable |
-| **Closure** | INTEGRATE is mandatory — loop can't skip | Plans abandoned mid-way |
-| **Research** | Subagents for research only, never implementation | Mixed concerns |
-| **Context** | Rich in-session context preserved via pause/resume | Restarts from zero |
-
----
-
-## Getting Started
-
-**Prerequisites:** [Node.js](https://nodejs.org) 18+ and [Claude Code](https://claude.ai/code).
-
-### Install
+**Pré-requisitos:** [Node.js](https://nodejs.org) 18+ e [Claude Code](https://claude.ai/code).
 
 ```bash
 npx github:menosjuros/orbti-framework
 ```
 
-Choose **global** (`~/.claude/`) to use in all projects, or **local** (`./.claude/`) for this project only.
-
-<details>
-<summary>Non-interactive install</summary>
+Escolha **global** (`~/.claude/`) para usar em todos os projetos, ou **local** (`./.claude/`) apenas para o projeto atual.
 
 ```bash
+# não-interativo
 npx github:menosjuros/orbti-framework --global
 npx github:menosjuros/orbti-framework --local
 ```
 
-</details>
+### Init
 
-### Initialize
-
-Restart Claude Code, then run:
+Reinicie o Claude Code após instalar, então rode:
 
 ```
 /orbti:init
 ```
 
-This creates `.orbti/` with `PROJECT.md`, `ROADMAP.md`, and `STATE.md` through a short conversational setup.
-
-Verify with `/orbti:help` — you should see the full command reference.
-
----
-
-## The Main Loop
-
-The core of ORBTI. Every unit of work follows this cycle — no shortcuts.
+Isso cria `.orbti/` com `PROJECT.md`, `ROADMAP.md` e `STATE.md` via setup conversacional. Ao final você verá a estrutura:
 
 ```
-┌──────────────────────────────────────────┐
-│  REFINE ──▶ BUILD ──▶ INTEGRATE          │
-│  Define     Execute    Reconcile & close  │
-└──────────────────────────────────────────┘
+.orbti/
+├── PROJECT.md        # contexto e objetivos do projeto
+├── ROADMAP.md        # milestones e projetos
+├── STATE.md          # dashboard global — onde você está
+├── config.md         # integrações opcionais
+└── projects/         # uma pasta por projeto
 ```
 
-```
-/orbti:refine     # define what you're building — get plan approved
-/orbti:build      # execute the approved plan
-/orbti:integrate  # reconcile and close the loop — never skip
-```
+Verifique com `/orbti:help` — você deve ver toda a referência de comandos.
 
-Repeat for each piece of work.
+### Config
 
-### REFINE
-
-Creates a `REFINE.md` — the contract for what gets built. Defines:
-- **Objective** — what and why
-- **Acceptance Criteria** — Given/When/Then definitions of done
-- **Tasks** — each with `files`, `action`, `verify`, and `done`
-- **Boundaries** — what must NOT change
-
-If you can't fill all four fields per task, the task is too vague to execute.
-
-### BUILD
-
-Executes the approved plan sequentially:
-- Each task has a built-in verification step
-- Deviations are logged with reason and impact
-- Checkpoints pause for human decisions, visual verification, or manual steps
-
-### INTEGRATE
-
-Closes the loop — **never skip this**:
-- Compares plan vs what was actually built
-- Records decisions and deferred issues
-- Updates `STATE.md`
-- If it's the last refine in a project: triggers project transition and git commit automatically
-
----
-
-## Going Deeper
-
-These commands add structure before and around the main loop. Use them for complex projects, unclear scope, or multi-session work.
-
-### Before planning a project
-
-Two optional phases answer two distinct questions — **what** and **how** — before any plan is written:
-
-```
-o quê?  →  /orbti:observe "feature"    # you talk, Claude listens — articulate goals
-como?   →  /orbti:cocreate "topic"     # Claude researches, you decide — compare options
-        →  /orbti:assumptions          # surface Claude's understanding before committing
-```
-
-**`/orbti:observe`** — *What do you want to build?* Conversational exploration led by you. Claude asks questions to help articulate goals, scope, and constraints. Output: `CONTEXT.md`. Avoids building the wrong thing.
-
-**`/orbti:cocreate "topic"`** — *How should it be built?* Claude deploys research subagents to compare libraries, patterns, or approaches. Produces `COCREATE.md` with a recommendation and confidence level. Use when a technical unknown could change the plan.
-
-**`/orbti:assumptions`** — Surfaces what Claude *intends* to do before planning. Run after observe and cocreate to catch misalignments early, not mid-build.
-
----
-
-### The full loop
-
-The default loop starts at refine. Observe and cocreate are optional — use them when scope or approach is unclear.
-
-```
-observe → (cocreate → assumptions) → refine → build → test → integrate
- o quê?      como?       validar      plano   executa  verifica  fecha
-```
-
-```
-# optional pre-planning
-/orbti:observe      # o quê — you talk, Claude articulates goals
-/orbti:cocreate     # como — Claude researches technical options autonomously
-/orbti:assumptions  # validate Claude's understanding before committing
-
-# main loop (always)
-/orbti:refine       # plan informed by observe + cocreate (or from scratch)
-/orbti:build        # execute
-/orbti:test         # verify against acceptance criteria
-/orbti:integrate    # close the loop
-```
-
-**`/orbti:test`** — Auto-detects the project's test runner, writes missing tests, and maps results to each AC. Falls back to guided manual UAT if no runner is found.
-
-Flags:
-- `--manual` — skip auto-detection, go straight to manual UAT
-
----
-
-### Configuration
-
-All optional features are **disabled by default**. Enable via:
+Todas as integrações são **desabilitadas por padrão**. Habilite via:
 
 ```
 /orbti:config
 ```
 
-Available integrations:
-
-| Integration | What it does | Default |
-|-------------|-------------|---------|
-| **Agent Teams** | Parallel research on `/orbti:cocreate`, code review on `/orbti:integrate` | OFF |
-| **Test Writer** | Writes integration tests during `/orbti:build`, one per AC | OFF |
-| **E2E (Playwright CLI)** | Browser-based tests via external Playwright CLI | OFF |
-
-When **Test Writer** is enabled:
-- Agent Teams also ON → builder + test-writer run simultaneously
-- Agent Teams OFF → test written sequentially after each task
-
-#### Enable Agent Teams
-
-```
-/orbti:config → Agent Teams → Enable
-```
-
-Also writes `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` to `.claude/settings.json` automatically. Restart Claude Code after enabling.
-
-#### Enable E2E (Playwright CLI)
-
-Playwright CLI is an external tool — install it independently first:
-
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
-playwright-cli install chromium
-```
-
-Then enable in ORBTI:
-
-```
-/orbti:config → Playwright CLI E2E → Enable
-```
-
-ORBTI will verify the binary and skill are installed before enabling.
+| Integração | O que faz | Padrão |
+|---|---|---|
+| **Agent Teams** | Pesquisa paralela no `/orbti:cocreate`, code review no `/orbti:integrate` | OFF |
+| **Test Writer** | Escreve testes de integração durante `/orbti:build`, um por AC | OFF |
+| **E2E (Playwright CLI)** | Testes browser via CLI externo do Playwright | OFF |
 
 ---
 
-### Session management
+## O Fluxo Principal
 
-Work across multiple sessions and multiple projects without losing context:
-
-```
-/orbti:pause         # pause active project (if only one active)
-/orbti:pause auth    # pause specific project by name or number
-/orbti:resume        # restore context — shows all projects, suggests next action
-```
-
-**`/orbti:pause [project]`** — Marks the project as `⏸ Paused` and creates a handoff at `.orbti/projects/{project}/HANDOFF-{date}.md`. If multiple projects are active and no argument is given, asks which to pause.
-
-**`/orbti:resume`** — Shows the full Projects Overview with every project's status and loop position. If multiple projects are active or paused, lets you choose which to continue. Then gives exactly one next action.
+Todo trabalho segue este ciclo. Sem atalhos.
 
 ```
-Projects Overview:
-│  auth-service    1/3   ⏸ Paused        ✓ ◉ ○  │
-│  dashboard       0/2   🔵 In Progress  ◉ ○ ○  │
-│  api-layer       0/2   ○ Pending       ○ ○ ○  │
+REFINE ──▶ BUILD ──▶ TEST ──▶ INTEGRATE
+Planejar    Executar   Verificar   Fechar
+```
+
+```
+/orbti:refine     # define o que será construído — plano aprovado
+/orbti:build      # executa o plano aprovado
+/orbti:test       # valida contra os critérios de aceite
+/orbti:integrate  # reconcilia e fecha o loop — nunca pule
+```
+
+Repita para cada unidade de trabalho.
+
+---
+
+## Observe — *o quê*
+
+**Quando usar:** antes de planejar, quando os objetivos precisam ser articulados.
+
+```
+/orbti:observe "nome-do-projeto"
+```
+
+Exploração conversacional guiada por você. O Claude faz perguntas para ajudar a articular metas, escopo e restrições. Você fala, o Claude escuta e organiza. Evita construir a coisa errada.
+
+**Output:** `CONTEXT.md` na pasta do projeto.
+
+```
+/orbti:observe-milestone   # mesma coisa, mas para o milestone inteiro
+```
+
+**Como fica após o observe:**
+
+```
+.orbti/projects/meu-projeto/
+└── CONTEXT.md    # visão, restrições, escopo articulados
 ```
 
 ---
 
-### Milestones
+## Cocreate — *como*
 
-Group related projects into milestones for larger initiatives:
+**Quando usar:** quando há incógnitas técnicas que podem mudar o plano (seleção de biblioteca, padrão de arquitetura, abordagem de integração).
 
 ```
-/orbti:observe-milestone    # align on milestone vision before starting
-/orbti:milestone "name"      # create milestone and add projects to ROADMAP.md
-...                          # work through projects with the main loop
-/orbti:complete-milestone    # archive, tag, and close the milestone
+/orbti:cocreate "tema ou projeto"
 ```
 
-**`/orbti:observe-milestone`** — Like observe, but for the full milestone. Define the vision, success criteria, and scope before creating any projects.
+O Claude implanta subagentes para pesquisar e comparar opções. Você decide. Diferente do `observe` (que é sobre objetivos), o `cocreate` é sobre decisões técnicas.
 
-**`/orbti:complete-milestone`** — Archives completed milestone to `.orbti/milestones/`, creates a git tag, and prepares `STATE.md` for the next milestone.
+**Variações de profundidade** — detectadas automaticamente ou declaradas:
+- **quick** — resposta direta, sem documento
+- **standard** — pesquisa com `COCREATE.md`
+- **deep** — múltiplos subagentes com verificação cruzada
+
+**Output:** `COCREATE.md` com achados, recomendação e nível de confiança.
+
+```
+/orbti:assumptions   # superficia o que o Claude pretende fazer — pegue desalinhamentos antes do build
+```
+
+**Como fica o COCREATE.md:**
+
+```markdown
+# Cocreate: Auth Strategy
+
+**Recommendation:** JWT with refresh rotation
+**Confidence:** High
+
+## Options Compared
+| Option | Pros | Cons |
+|--------|------|------|
+| JWT + refresh | stateless, scalable | revocation complexity |
+| Session-based | simple revocation | requires session store |
+
+## Decision
+...
+```
 
 ---
 
-## Command Reference
+## Refine — *o plano*
 
-### Core loop
-
-| Command | Description |
-|---------|-------------|
-| `/orbti:refine` | Plan the next unit of work — creates `REFINE.md` with objective, ACs, tasks, and boundaries |
-| `/orbti:build` | Execute the approved plan sequentially, with verification at each step |
-| `/orbti:build-bg` | Run the approved plan as a background agent — unattended (requires `autonomous: true`) |
-| `/orbti:integrate` | Reconcile plan vs actual, update state, close the loop — never skip |
-| `/orbti:test` | Verify against acceptance criteria — auto-detects test runner, falls back to manual UAT |
-
-### Before planning
-
-| Command | Description |
-|---------|-------------|
-| `/orbti:observe "feature"` | Conversational exploration — articulate goals and scope before planning |
-| `/orbti:cocreate "topic"` | Deploy research subagents to compare options — produces `COCREATE.md` |
-| `/orbti:assumptions` | Surface what Claude intends to do — catch misalignments before build |
-
-### Session management
-
-| Command | Description |
-|---------|-------------|
-| `/orbti:pause [project]` | Pause a project — argument required when multiple projects are active |
-| `/orbti:resume` | Show all projects overview, pick which to continue, get one next action |
-| `/orbti:progress` | Smart status — shows where you are and suggests the next step |
-
-### Project setup
-
-| Command | Description |
-|---------|-------------|
-| `/orbti:init` | Initialize ORBTI in a project — creates `.orbti/` with PROJECT.md, ROADMAP.md, STATE.md |
-| `/orbti:config` | Enable/disable integrations (Agent Teams, Test Writer, E2E) |
-
-### Milestones
-
-| Command | Description |
-|---------|-------------|
-| `/orbti:observe-milestone` | Define milestone vision and success criteria before creating projects |
-| `/orbti:milestone "name"` | Create a milestone and add projects to ROADMAP.md |
-| `/orbti:complete-milestone` | Archive milestone, create git tag, prepare for next milestone |
-
-### Utilities
-
-| Command | Description |
-|---------|-------------|
-| `/orbti:help` | Show all available commands |
-| `/orbti:add-phase` | Add a new project to the current milestone |
-| `/orbti:remove-phase` | Remove a future (not started) project |
-| `/orbti:refine-fix` | Plan fixes for issues found during `/orbti:test` |
-
----
-
-## How It Works
-
-### File structure
+**Quando usar:** após `observe` + `cocreate` (ou direto, se o escopo já está claro).
 
 ```
-.orbti/
-├── PROJECT.md           # Project context and goals
-├── ROADMAP.md           # Milestones and project breakdown
-├── STATE.md             # Global dashboard — all projects overview + current focus
-├── config.md            # Optional integrations
-├── SPECIAL-FLOWS.md     # Optional skill requirements per project
-├── milestones/          # Archived completed milestones
-│   └── v1.0-launch.md
-└── projects/            # Named folders — one per project
-    ├── auth/
-    │   ├── 01-REFINE.md
-    │   ├── 01-INTEGRATE.md
-    │   └── HANDOFF-2026-03-17.md   # Created on /orbti:pause, deleted on complete
-    └── dashboard/
-        ├── 01-REFINE.md
-        └── 01-INTEGRATE.md
+/orbti:refine
+/orbti:refine "nome-do-projeto"   # especificar projeto
 ```
 
-Projects are identified by name. Milestone grouping lives in `ROADMAP.md`, not in the folder structure.
+Cria um `REFINE.md` — o contrato do que será construído. Se você não consegue preencher todos os campos de uma tarefa, a tarefa está vaga demais para executar.
 
-### State management
-
-A single `STATE.md` acts as the global dashboard — it has two layers:
-
-- **Projects Overview** — one row per project with loop count, status (`○ Pending / ⏸ Paused / 🔵 In Progress / ✅ Complete`), and current loop position
-- **Current Focus** — deep view of the active project with loop position and last activity
-
-`/orbti:resume` reads it and either gives ONE next action (single active project) or shows the Overview and lets you pick which project to continue.
-
-### REFINE.md structure
+### Estrutura do REFINE.md
 
 ```markdown
 ---
 project: auth
 refine: 01
-type: execute
-autonomous: true
+type: execute          # execute | tdd | research
+wave: 1                # onda de execução (para paralelo)
+depends_on: []         # IDs de refines que este depende
+files_modified: []     # arquivos que este refine toca
+autonomous: true       # false se tem checkpoints que exigem input
 ---
 
 <objective>
-Goal, Purpose, Output
+## Goal    — o que este refine entrega
+## Purpose — por que importa para o projeto
+## Output  — artefatos criados/modificados
 </objective>
 
-<context>
-@-references to relevant files
-</context>
-
 <acceptance_criteria>
-## AC-1: Login works
-Given a valid user
-When they submit credentials
-Then they receive a JWT token
+## AC-1: Login funciona
+Given um usuário válido
+When ele submete as credenciais
+Then recebe um JWT token
 </acceptance_criteria>
 
 <tasks>
 <task type="auto">
-  <name>Create login endpoint</name>
-  <files>src/api/auth/login.ts</files>
-  <action>Implementation details...</action>
-  <verify>curl returns 200 with token</verify>
-  <done>AC-1 satisfied</done>
+  <name>Criar endpoint de login com JWT</name>
+  <files>src/api/auth/login.ts, src/lib/jwt.ts</files>
+  <action>
+    Criar POST /api/auth/login:
+    - Aceitar { email, password }
+    - Validar contra User model com bcrypt
+    - Retornar JWT (15min) em sucesso
+    - Retornar 401 em credenciais inválidas
+  </action>
+  <verify>curl -X POST /api/auth/login retorna token</verify>
+  <done>AC-1 satisfeito</done>
 </task>
 </tasks>
 
@@ -388,30 +211,346 @@ Then they receive a JWT token
 </boundaries>
 ```
 
-### Task types
+### Tipos de tarefa (checkpoints)
 
-| Type | Use for |
-|------|---------|
-| `auto` | Fully autonomous execution |
-| `checkpoint:decision` | Choices requiring human input |
-| `checkpoint:human-verify` | Visual or functional verification |
-| `checkpoint:human-action` | Manual steps (deploy, external service) |
+| Tipo | Uso |
+|------|-----|
+| `auto` | Execução totalmente autônoma |
+| `checkpoint:decision` | Decisão de implementação — apresenta opções, espera seleção |
+| `checkpoint:human-verify` | Verificação visual/funcional — pausa, instrui como verificar |
+| `checkpoint:human-action` | Ação manual inevitável (deploy, serviço externo) |
+
+Refines com `autonomous: false` têm checkpoints — não podem rodar em background.
+
+### Macros e ROADMAP
+
+O `ROADMAP.md` define a estrutura completa: milestones e projetos dentro de cada um. O refine lê o ROADMAP para saber qual projeto é o próximo.
+
+```markdown
+# Roadmap
+
+## v1.0 — MVP
+
+### 01. auth-service     (not started)
+### 02. dashboard        (not started)
+### 03. api-layer        (not started)
+```
+
+Projetos com `depends_on: []` e sem conflito de arquivos podem rodar em paralelo (mesmo wave). Use `wave` para declarar a ordem de execução quando há dependências reais.
+
+Após criar o refine, o Claude oferece:
+```
+Continue to BUILD?
+[1] Approved, run BUILD  [2] Questions first  [3] Pause here
+```
 
 ---
 
-## Troubleshooting
+## Build — *a execução*
 
-**Commands not found after install?**
-Restart Claude Code. Verify files exist in `~/.claude/commands/orbti/` (global) or `./.claude/commands/orbti/` (local).
+**Quando usar:** após aprovação explícita do REFINE.md.
 
-**Commands not working as expected?**
-Run `/orbti:help` to verify installation. Re-run `npx github:menosjuros/orbti-framework` to reinstall.
+```
+/orbti:build
+/orbti:build .orbti/projects/auth/01-REFINE.md   # caminho específico
+/orbti:build-bg                                   # background (requer autonomous: true)
+```
 
-**Loop position seems wrong?**
-Check `.orbti/STATE.md` directly. Run `/orbti:progress` for guided next action.
+Executa as tarefas em ordem, com verificação em cada etapa.
 
-**Resuming after a break?**
-Run `/orbti:resume` — reads STATE.md and handoffs automatically.
+### Configuração de testes durante o build
+
+Controlado via `/orbti:config`:
+
+| Test Writer | Agent Teams | Comportamento no BUILD |
+|---|---|---|
+| OFF (padrão) | OFF | Só build — sem escrita de testes |
+| OFF | ON | Só build — Agent Teams ativo em outras fases |
+| ON | OFF | Sequencial — escreve teste após cada tarefa |
+| ON | ON | **Paralelo** — builder + test-writer simultâneos |
+
+Com `Agent Teams + Test Writer ON`, o BUILD spawna 2 agentes:
+- **builder** — executa as tarefas em ordem
+- **test-writer** — escreve testes de integração enquanto o builder termina cada tarefa
+
+### Se o build não estiver ok
+
+Quando uma verificação de tarefa falha, o Claude para imediatamente e oferece:
+
+```
+════════════════════════════════════════
+Task 2 FAILED: Create login endpoint
+Expected: curl returns 200 with token
+Actual: 500 Internal Server Error
+════════════════════════════════════════
+
+[1] Retry — tentar novamente
+[2] Skip — marcar como falha, continuar (cria desvio)
+[3] Stop — parar, preparar para debug
+```
+
+Você pode interagir, corrigir o problema, e retomar. A decisão é registrada no `STATE.md`.
+
+### Habilitando Agent Teams
+
+```
+/orbti:config → Agent Teams → Enable
+```
+
+Isso também escreve `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` em `.claude/settings.json`. Reinicie o Claude Code após habilitar.
+
+Com Agent Teams ativo:
+- **cocreate** — subagentes paralelos pesquisam opções
+- **integrate** — code review roda junto com reconciliação
+- **build (+ test writer)** — builder + test-writer em paralelo
+
+Após o build, o Claude oferece:
+```
+Continue to TEST?
+[1] Yes, run /orbti:test  [2] Pause here
+```
+
+---
+
+## Test — *a verificação*
+
+**Quando usar:** após o BUILD, antes do INTEGRATE.
+
+```
+/orbti:test                    # testa o refine mais recente
+/orbti:test 4                  # testa a fase 4
+/orbti:test 04-02              # testa refine específico
+/orbti:test --manual           # pula detecção, vai direto para UAT manual
+/orbti:test --e2e              # força Playwright (requer instalação)
+```
+
+### Como funciona
+
+1. **Auto-detecta** o test runner do projeto (Jest, Vitest, pytest, go test...)
+2. **Escreve testes** para ACs sem cobertura
+3. **Executa** e mapeia resultados para cada AC
+4. **Fallback** para UAT manual guiado se nenhum runner for encontrado
+
+### E2E com Playwright
+
+Playwright roda automaticamente se:
+- `e2e.enabled: true` em `config.md`, **ou**
+- `playwright-cli` declarado como required em `SPECIAL-FLOWS.md`
+
+Com `--e2e` na flag, força independente do config.
+
+**O que muda com Playwright habilitado:** todos os ACs são testados via browser, não apenas via unit/integration tests. O `/orbti:test` detecta a config e roteia automaticamente.
+
+### Checklist de saída do TEST
+
+```
+════════════════════════════════════════
+TEST RESULTS
+════════════════════════════════════════
+
+AC-1: Login funciona           ✓ PASS
+AC-2: Token expira em 15min    ✓ PASS
+AC-3: 401 em credenciais ruins ✗ FAIL — esperado 401, recebido 500
+
+Issues: 1
+Logged to: .orbti/projects/auth/01-UAT.md
+
+════════════════════════════════════════
+```
+
+Problemas encontrados são logados no `UAT.md` para `/orbti:refine-fix`.
+
+---
+
+## Integrate — *fechar o loop*
+
+**Nunca pule esta fase.** É obrigatória.
+
+```
+/orbti:integrate
+/orbti:integrate .orbti/projects/auth/01-REFINE.md   # caminho específico
+```
+
+### O que o INTEGRATE registra
+
+Cria `INTEGRATE.md` na mesma pasta do `REFINE.md` com:
+
+| Seção | Conteúdo |
+|---|---|
+| **Performance** | Duração, tarefas completadas, arquivos modificados |
+| **Acceptance Criteria Results** | Cada AC com PASS/FAIL |
+| **Accomplishments** | O que foi entregue (substantivo, não genérico) |
+| **Task Commits** | Hash de cada commit por tarefa |
+| **Decisions Made** | Decisões tomadas durante execução com rationale |
+| **Deviations** | Auto-fixados vs. deferidos, impacto |
+| **Next Phase Readiness** | O que está pronto, preocupações, bloqueadores |
+
+O frontmatter do INTEGRATE é machine-readable — usado para montar contexto automaticamente em futuras fases:
+
+```yaml
+---
+phase: auth
+refine: 01
+subsystem: auth
+tags: [jwt, bcrypt, express]
+provides:
+  - JWT login endpoint at POST /api/auth/login
+  - User authentication with refresh tokens
+affects: [dashboard, api-layer]
+key-decisions:
+  - "Chose jose library over jsonwebtoken for edge runtime compatibility"
+---
+```
+
+Após o integrate, o STATE.md é atualizado:
+
+```
+REFINE ──▶ BUILD ──▶ INTEGRATE
+  ✓        ✓        ✓
+```
+
+Se for o último refine de um projeto, o loop fecha automaticamente e atualiza o ROADMAP.
+
+---
+
+## ORBTI Skills — integrações externas
+
+### O que são skills
+
+Skills são workflows especializados que o ORBTI pode invocar durante o loop. Exemplo: ao construir UI, chamar `/figma:implement-design` antes do build. Ao criar uma API, chamar `/orbti:research` para documentação.
+
+### Configurar skills do projeto
+
+```
+/orbti:skills            # configuração interativa completa
+/orbti:skills add        # adicionar uma skill rapidamente
+/orbti:skills list       # ver configuração atual
+/orbti:skills audit      # checar se skills da fase atual foram invocadas
+```
+
+Isso cria `.orbti/SPECIAL-FLOWS.md`:
+
+```markdown
+| Work Type  | Skill/Command              | Priority | When Required         |
+|------------|----------------------------|----------|-----------------------|
+| UI work    | /figma:implement-design    | required | Before any UI build   |
+| API design | /orbti:cocreate            | optional | For new endpoints     |
+```
+
+Skills marcadas como `required` **bloqueiam o BUILD** até serem carregadas. O REFINE.md inclui uma seção `<skills>` com checklist de confirmação.
+
+### Instalar Playwright CLI como skill
+
+O Playwright CLI é uma ferramenta externa — instale-a separadamente:
+
+```bash
+npm install -g @playwright/cli@latest
+playwright-cli install --skills
+playwright-cli install chromium
+```
+
+Então habilite no ORBTI:
+
+```
+/orbti:config → Playwright CLI E2E → Enable
+```
+
+O ORBTI verifica se o binário e a skill estão instalados antes de habilitar. Se algum faltar, mostra as instruções e não habilita.
+
+Após habilitar, `/orbti:test` roda E2E automaticamente para todos os ACs — sem precisar de flag.
+
+---
+
+## Dicas do dia a dia
+
+**Pausar e retomar entre sessões:**
+```
+/orbti:pause         # pausa o projeto ativo
+/orbti:resume        # mostra todos os projetos e sugere próxima ação
+/orbti:progress      # onde estou agora + próximo passo
+```
+
+**Múltiplos projetos no mesmo milestone:**
+```
+/orbti:add-phase "nome"    # adicionar projeto ao milestone atual
+/orbti:remove-phase        # remover projeto que ainda não começou
+```
+
+**Quando o build encontra issues para corrigir depois:**
+```
+/orbti:refine-fix   # planejar fixes de issues encontradas no /orbti:test
+```
+
+**Problemas comuns:**
+
+| Problema | Solução |
+|---|---|
+| Comandos não encontrados após instalar | Reinicie o Claude Code. Verifique `~/.claude/commands/orbti/` |
+| Loop position parece errado | Cheque `.orbti/STATE.md` diretamente. Rode `/orbti:progress` |
+| Retomando após pausa | Rode `/orbti:resume` — lê STATE.md e handoffs automaticamente |
+| Build falhou em uma tarefa | Use `[1] Retry` ou corrija o problema e rode `/orbti:build` novamente |
+
+---
+
+## O Fluxo Completo
+
+```
+                    ┌─────────────────────────────────────┐
+                    │         OPCIONAL (pré-loop)         │
+                    │                                     │
+                    │  /orbti:observe-milestone           │
+                    │    ↓                                │
+                    │  /orbti:milestone "nome"            │
+                    └──────────────┬──────────────────────┘
+                                   │
+                    ┌──────────────▼──────────────────────┐
+                    │         OPCIONAL (pré-fase)         │
+                    │                                     │
+                    │  /orbti:observe "projeto"  ← o quê  │
+                    │    ↓                                │
+                    │  /orbti:cocreate "tema"    ← como   │
+                    │    ↓                                │
+                    │  /orbti:assumptions        ← validar│
+                    └──────────────┬──────────────────────┘
+                                   │
+                    ┌──────────────▼──────────────────────┐
+                    │            LOOP PRINCIPAL           │
+                    │                                     │
+                    │  /orbti:refine   ← plano + ACs      │
+                    │    ↓                                │
+                    │  /orbti:build    ← execução         │
+                    │    ↓                                │
+                    │  /orbti:test     ← verificação      │
+                    │    ↓                                │
+                    │  /orbti:integrate ← fechar loop     │
+                    │    ↓                                │
+                    │  (repetir para próximo refine)      │
+                    └──────────────┬──────────────────────┘
+                                   │
+                    ┌──────────────▼──────────────────────┐
+                    │         FECHAR MILESTONE            │
+                    │                                     │
+                    │  /orbti:complete-milestone          │
+                    └─────────────────────────────────────┘
+```
+
+**Versão compacta — um projeto típico:**
+
+```bash
+# setup único
+/orbti:init
+/orbti:config          # habilitar o que precisar
+
+# opcional, quando há incógnitas
+/orbti:observe "auth"
+/orbti:cocreate "jwt vs session"
+
+# loop — repita até o projeto completo
+/orbti:refine
+/orbti:build
+/orbti:test
+/orbti:integrate
+```
 
 ---
 
@@ -425,6 +564,6 @@ This project is a fork of [CARL](https://github.com/ChristopherKahler/carl) by C
 
 <div align="center">
 
-**Claude Code is powerful. ORBTI makes it reliable.**
+**Claude Code é poderoso. ORBTI torna previsível.**
 
 </div>

@@ -115,7 +115,7 @@ Team lead synthesizes debate output into COCREATE.md.
    - Findings per option
    - Confidence level (should be MEDIUM-HIGH)
 
-Output: `.orbti/projects/XX-name/COCREATE.md`
+Output: `.orbti/context/COCREATE.md`
 </step>
 
 <step name="level_3_deep">

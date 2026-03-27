@@ -1,20 +1,20 @@
 ---
 name: orbti:research-phase
-description: Research unknowns for a phase using subagents
-argument-hint: "<phase-number>"
+description: Research technical unknowns before planning using subagents
+argument-hint: "[topic or question]"
 allowed-tools: [Read, Task, Bash, Write]
 ---
 
 <model>sonnet</model>
 
 <objective>
-Analyze a phase for unknowns and research them using subagents.
+Identify and research technical unknowns before planning. Runs before /orbti:refine — no project exists yet.
 
-**When to use:** Before planning a phase when there are technical unknowns that need investigation.
+**When to use:** Before planning when there are specific technical questions to investigate.
 
-**Distinction from /orbti:research:**
-- `/orbti:research <topic>`: User knows what to research
-- `/orbti:research-phase <N>`: Claude identifies what needs researching
+**Distinction from /orbti:cocreate:**
+- `/orbti:research-phase`: Gathers information, does not decide
+- `/orbti:cocreate`: Researches to make a decision
 
 **Subagent orchestration:** Spawns multiple research agents in parallel for independent unknowns.
 </objective>
@@ -25,38 +25,21 @@ Analyze a phase for unknowns and research them using subagents.
 </execution_context>
 
 <context>
-Phase number: $ARGUMENTS (required)
+Topic: $ARGUMENTS (optional)
 
 @.orbti/PROJECT.md
 @.orbti/STATE.md
-@.orbti/ROADMAP.md
 </context>
 
 <process>
 
-<step name="validate_phase" priority="first">
-1. Parse phase number from $ARGUMENTS
+<step name="identify_unknowns" priority="first">
+**Identify what to research:**
 
-**If argument missing:**
-```
-Error: Phase number required.
+If $ARGUMENTS provided, use as starting point.
+Otherwise, ask: "What do you want to investigate before planning?"
 
-Usage: /orbti:research-phase <phase-number>
-Example: /orbti:research-phase 10
-```
-Exit workflow.
-
-2. Validate phase exists in ROADMAP.md
-3. Extract phase scope, goals, and description
-
-**If phase not found:**
-```
-Error: Phase {N} not found in roadmap.
-
-Available phases:
-[list incomplete phases from roadmap]
-```
-Exit workflow.
+Present identified unknowns for confirmation before spawning agents.
 </step>
 
 <step name="analyze_unknowns">
@@ -87,10 +70,10 @@ Analyze the phase for research needs:
 **Present findings:**
 ```
 ════════════════════════════════════════
-PHASE UNKNOWNS ANALYSIS
+RESEARCH UNKNOWNS
 ════════════════════════════════════════
 
-Phase: {N} — {phase_name}
+Topic: {topic}
 
 Identified unknowns:
 1. {unknown_1} [{codebase|web}]
@@ -155,26 +138,26 @@ Researching in parallel. This may take a few minutes...
 <step name="consolidate_findings">
 When all agents complete:
 
-1. Create research directory for phase:
+1. Create context research directory:
    ```bash
-   mkdir -p .orbti/projects/{NN}-{name}/research
+   mkdir -p .orbti/context/research
    ```
 
 2. Save individual findings:
-   - `.orbti/projects/{NN}-{name}/research/{unknown-slug}.md`
+   - `.orbti/context/research/{unknown-slug}.md`
 
 3. Create consolidated RESEARCH.md:
-   - `.orbti/projects/{NN}-{name}/RESEARCH.md`
+   - `.orbti/context/RESEARCH.md`
    - Summarizes all findings
    - Links to individual research files
 
 4. Present summary:
 ```
 ════════════════════════════════════════
-PROJECT RESEARCH COMPLETE
+RESEARCH COMPLETE
 ════════════════════════════════════════
 
-Project: {N} — {project_name}
+Topic: {topic}
 Unknowns researched: {count}
 
 Summary:
@@ -183,17 +166,16 @@ Summary:
 3. {unknown_3}: {key finding}
 
 Detailed findings:
-- .orbti/projects/{NN}-{name}/RESEARCH.md (consolidated)
-- .orbti/projects/{NN}-{name}/research/*.md (individual)
+- .orbti/context/RESEARCH.md (consolidated)
+- .orbti/context/research/*.md (individual)
 
 ────────────────────────────────────────
-Review the findings above. This research informs but does not
-automatically integrate into refines.
+This research informs but does not automatically integrate into refines.
 
 What's next?
 [1] Review consolidated findings
-[2] Refine this phase (/orbti:refine)
-[3] Discuss this phase (/orbti:observe)
+[2] Plan this (/orbti:refine)
+[3] Discuss goals first (/orbti:observe)
 [4] Done for now
 ────────────────────────────────────────
 ```
@@ -202,7 +184,6 @@ What's next?
 </process>
 
 <success_criteria>
-- [ ] Phase validated against ROADMAP.md
 - [ ] Unknowns identified and classified
 - [ ] User confirmed research list
 - [ ] Appropriate agents spawned in parallel

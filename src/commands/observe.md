@@ -1,16 +1,16 @@
 ---
 name: orbti:observe
-description: Explore and articulate project vision before planning
-argument-hint: "<project-number>"
+description: Explore and articulate what you want to build before planning
+argument-hint: "[topic]"
 allowed-tools: [Read, Write, AskUserQuestion]
 ---
 
 <model>opus</model>
 
 <objective>
-Facilitate vision discussion for a specific project and create context handoff.
+Facilitate vision discussion before a project exists and create context handoff for /orbti:refine.
 
-**When to use:** Before planning a project, when goals and approach need exploration.
+**When to use:** Before planning, when goals and approach need exploration. Runs before /orbti:refine — no project exists yet.
 </objective>
 
 <execution_context>
@@ -18,11 +18,10 @@ Facilitate vision discussion for a specific project and create context handoff.
 </execution_context>
 
 <context>
-Project number: $ARGUMENTS (required)
+Topic: $ARGUMENTS (optional)
 
 @.orbti/PROJECT.md
 @.orbti/STATE.md
-@.orbti/ROADMAP.md
 </context>
 
 <process>

@@ -24,10 +24,10 @@ Execute technical discovery to inform planning decisions. Produces COCREATE.md w
 </execution_context>
 
 <context>
-$ARGUMENTS (project number or topic)
+$ARGUMENTS (topic or question)
 
 @.orbti/STATE.md
-@.orbti/ROADMAP.md
+@.orbti/PROJECT.md
 </context>
 
 <process>
